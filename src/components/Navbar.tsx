@@ -58,12 +58,17 @@ export function Navbar() {
 
         <div className="mobile-panel pointer-events-none absolute inset-x-0 top-[calc(100%+0.75rem)] hidden px-4 peer-checked:pointer-events-auto peer-checked:block md:peer-checked:hidden">
           <ul className="bauhaus-card mx-auto flex max-w-6xl flex-col gap-2 bg-[#fffef0] p-4">
-            {NAV_LINKS.map((link) => (
+            {NAV_LINKS.map((link, i) => (
               <li key={link.href}>
                 <a
                   href={link.href}
                   onClick={closeMobileMenu}
-                  className="mobile-link block rounded-full border-[2px] border-transparent px-4 py-2 text-sm font-bold text-[#2d3525] hover:border-[#1a1a1a] hover:bg-[#e0f2fe]"
+                  aria-current={i === 0 ? 'page' : undefined}
+                  className={`mobile-link block rounded-full border-[2px] px-4 py-2 text-center text-sm font-bold transition-colors ${
+                    i === 0
+                      ? 'border-[#1a1a1a] bg-[#38bdf8] text-[#1a1a1a] shadow-[3px_3px_0_#1a1a1a]'
+                      : 'border-transparent text-[#2d3525] hover:border-[#1a1a1a] hover:bg-[#e0f2fe]'
+                  }`}
                 >
                   {link.label}
                 </a>
