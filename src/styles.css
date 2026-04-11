@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Comfortaa", ui-sans-serif, system-ui, sans-serif;
+
+  --color-bg-warm: #fffef5;
+  --color-bg-cream: #fffef0;
+  --color-bg-section: #f0fdf4;
+  --color-bg-mint: #d1fae5;
+  --color-bg-lemon: #fef9c3;
+  --color-bg-tangerine: #ffedd5;
+  --color-bg-footer: #f0f5e8;
+
+  --color-text-dark: #1a1a1a;
+  --color-text-body: #525c4a;
+  --color-text-medium: #4a5440;
+  --color-text-caption: #3d4735;
+  --color-text-menu: #2d3525;
+
+  --color-accent-lemon: #eab308;
+  --color-accent-tangerine: #f97316;
+  --color-accent-green: #16a34a;
+  --color-accent-emerald: #059669;
+  --color-accent-amber: #d97706;
+  --color-accent-orange: #ea580c;
+
+  --color-whatsapp: #25d366;
+  --color-ink: #1a1a1a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Comfortaa", cursive;
+  color: #1a1a1a;
+  background-color: #fffef5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Skip link — hidden until focused */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 9999;
+  padding: 0.75rem 1rem;
+  background: #1a1a1a;
+  color: #fffef0;
+  font-weight: 700;
+  border-radius: 0 0 0.75rem 0.75rem;
+}
+.skip-link:focus {
+  left: 1rem;
+}
+
+/* ——— Bauhaus utilities ——— */
+
+@utility bauhaus-card {
+  border: 3px solid #1a1a1a;
+  border-radius: 1.5rem;
+  box-shadow: 6px 6px 0 #1a1a1a;
+  background: #ffffff;
+}
+
+@utility bauhaus-card-lg {
+  border: 3px solid #1a1a1a;
+  border-radius: 2rem;
+  box-shadow: 8px 8px 0 #1a1a1a;
+  overflow: hidden;
+}
+
+@utility bauhaus-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 2.5px solid #1a1a1a;
+  border-radius: 9999px;
+  box-shadow: 4px 4px 0 #1a1a1a;
+  font-weight: 700;
+  font-family: "Comfortaa", cursive;
+  padding: 0.65rem 1.25rem;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.bauhaus-btn:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 3px 3px 0 #1a1a1a;
+}
+.bauhaus-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #1a1a1a;
+}
+
+@utility bauhaus-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2.5px solid #1a1a1a;
+  border-radius: 9999px;
+  box-shadow: 3px 3px 0 #1a1a1a;
+  font-weight: 700;
+  font-family: "Comfortaa", cursive;
+}
+
+@utility bauhaus-halftone {
+  background-image: radial-gradient(circle, #1a1a1a 1px, transparent 1px);
+  background-size: 12px 12px;
+  pointer-events: none;
+}
+
+/* Hide scrollbar (for horizontally-scrolling testimonial/gallery rows) */
+@utility scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
