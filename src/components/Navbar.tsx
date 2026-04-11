@@ -1,6 +1,7 @@
 import { Menu, X } from 'lucide-react'
 import { NAV_LINKS, WHATSAPP_MESSAGES, whatsappLink } from '#/lib/brand'
 import { Wordmark } from './Wordmark'
+import { WhatsAppIcon } from './WhatsAppIcon'
 
 const closeMobileMenu = () => {
   const cb = document.getElementById('nav-toggle') as HTMLInputElement | null
@@ -48,35 +49,39 @@ export function Navbar() {
         <input id="nav-toggle" type="checkbox" className="peer sr-only" aria-hidden="true" />
         <label
           htmlFor="nav-toggle"
-          className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border-[2.5px] border-[#1a1a1a] bg-white shadow-[3px_3px_0_#1a1a1a] md:hidden"
+          className="nav-toggle-label inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border-[2.5px] border-[#1a1a1a] bg-white shadow-[3px_3px_0_#1a1a1a] md:hidden"
           aria-label="Toggle navigation menu"
         >
-          <Menu className="h-5 w-5 peer-checked:hidden" aria-hidden="true" />
-          <X className="hidden h-5 w-5 peer-checked:block" aria-hidden="true" />
+          <Menu className="icon-menu h-5 w-5" aria-hidden="true" />
+          <X className="icon-close h-5 w-5" aria-hidden="true" />
         </label>
 
-        <div className="pointer-events-none absolute inset-x-0 top-[calc(100%+0.75rem)] hidden px-4 peer-checked:pointer-events-auto peer-checked:block md:peer-checked:hidden">
+        <div className="mobile-panel pointer-events-none absolute inset-x-0 top-[calc(100%+0.75rem)] hidden px-4 peer-checked:pointer-events-auto peer-checked:block md:peer-checked:hidden">
           <ul className="bauhaus-card mx-auto flex max-w-6xl flex-col gap-2 bg-[#fffef0] p-4">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
                   onClick={closeMobileMenu}
-                  className="block rounded-full border-[2px] border-transparent px-4 py-2 text-sm font-bold text-[#2d3525] hover:border-[#1a1a1a] hover:bg-[#e0f2fe]"
+                  className="mobile-link block rounded-full border-[2px] border-transparent px-4 py-2 text-sm font-bold text-[#2d3525] hover:border-[#1a1a1a] hover:bg-[#e0f2fe]"
                 >
                   {link.label}
                 </a>
               </li>
             ))}
-            <li>
+            <li className="mt-1 flex justify-center">
               <a
                 href={whatsappLink(WHATSAPP_MESSAGES.order)}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={closeMobileMenu}
-                className="bauhaus-btn mt-1 w-full bg-[#25d366] text-sm text-white"
+                aria-label="Order on WhatsApp"
+                className="mobile-cta group relative flex h-12 items-center justify-start gap-2 overflow-hidden rounded-full border-[2.5px] border-[#1a1a1a] bg-[#25d366] pl-[0.875rem] font-bold text-white"
               >
-                Order on WhatsApp
+                <WhatsAppIcon className="h-5 w-5 shrink-0" />
+                <span className="mobile-cta-text inline-block whitespace-nowrap pr-2 text-sm">
+                  Order on WhatsApp
+                </span>
               </a>
             </li>
           </ul>
