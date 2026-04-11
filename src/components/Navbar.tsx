@@ -2,6 +2,11 @@ import { Menu, X } from 'lucide-react'
 import { NAV_LINKS, WHATSAPP_MESSAGES, whatsappLink } from '#/lib/brand'
 import { Wordmark } from './Wordmark'
 
+const closeMobileMenu = () => {
+  const cb = document.getElementById('nav-toggle') as HTMLInputElement | null
+  if (cb) cb.checked = false
+}
+
 export function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-[200] px-4 pt-4">
@@ -21,8 +26,8 @@ export function Navbar() {
                 aria-current={i === 0 ? 'page' : undefined}
                 className={`inline-flex items-center rounded-full border-[2px] px-3.5 py-1.5 text-xs font-bold transition-colors sm:text-sm ${
                   i === 0
-                    ? 'border-[#1a1a1a] bg-[#eab308] text-[#1a1a1a] shadow-[2px_2px_0_#1a1a1a]'
-                    : 'border-transparent text-[#2d3525] hover:border-[#1a1a1a] hover:bg-[#fef9c3]'
+                    ? 'border-[#1a1a1a] bg-[#38bdf8] text-[#1a1a1a] shadow-[2px_2px_0_#1a1a1a]'
+                    : 'border-transparent text-[#2d3525] hover:border-[#1a1a1a] hover:bg-[#e0f2fe]'
                 }`}
               >
                 {link.label}
@@ -35,7 +40,7 @@ export function Navbar() {
           href={whatsappLink(WHATSAPP_MESSAGES.order)}
           target="_blank"
           rel="noopener noreferrer"
-          className="bauhaus-btn hidden bg-[#f97316] text-xs text-[#1a1a1a] lg:inline-flex"
+          className="bauhaus-btn hidden bg-[#25d366] text-xs text-white lg:inline-flex"
         >
           Order on WhatsApp
         </a>
@@ -56,7 +61,8 @@ export function Navbar() {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="block rounded-full border-[2px] border-transparent px-4 py-2 text-sm font-bold text-[#2d3525] hover:border-[#1a1a1a] hover:bg-[#fef9c3]"
+                  onClick={closeMobileMenu}
+                  className="block rounded-full border-[2px] border-transparent px-4 py-2 text-sm font-bold text-[#2d3525] hover:border-[#1a1a1a] hover:bg-[#e0f2fe]"
                 >
                   {link.label}
                 </a>
@@ -67,7 +73,8 @@ export function Navbar() {
                 href={whatsappLink(WHATSAPP_MESSAGES.order)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bauhaus-btn mt-1 w-full bg-[#f97316] text-sm text-[#1a1a1a]"
+                onClick={closeMobileMenu}
+                className="bauhaus-btn mt-1 w-full bg-[#25d366] text-sm text-white"
               >
                 Order on WhatsApp
               </a>

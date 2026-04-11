@@ -39,6 +39,14 @@ body,
   min-height: 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
 body {
   margin: 0;
   font-family: "Comfortaa", cursive;
