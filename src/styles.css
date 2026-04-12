@@ -143,104 +143,82 @@ body {
 .bite-wrap {
   position: relative;
   display: inline-block;
-  padding-right: 0.1em;
 }
 
 .bite-text {
   display: inline-block;
   position: relative;
+  clip-path: circle(150% at 85% 15%);
+  animation: bite-chomp 4s ease-in-out infinite;
 }
 
-/*
-  SVG clip-path referenced by url(#bite-clip) punches two scalloped
-  bite marks into the text. The SVG is placed once in the DOM (hidden)
-  and the clip-path uses objectBoundingBox coordinates so it scales
-  with any font size.
-*/
-.bite-text {
-  clip-path: url(#bite-clip);
+@keyframes bite-chomp {
+  0%, 15% {
+    clip-path: circle(150% at 85% 15%);
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(0.97, 1.03);
+  }
+  25% {
+    clip-path: circle(0.22em at 85% 18%);
+    transform: scale(1);
+  }
+  55% {
+    clip-path: circle(0.22em at 85% 18%);
+  }
+  75% {
+    clip-path: circle(150% at 85% 15%);
+  }
+  100% {
+    clip-path: circle(150% at 85% 15%);
+    transform: scale(1);
+  }
 }
 
-/* Warm amber halftone dots visible through the bite holes */
-.bite-reveal {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(circle 0.025em, #d97706 0.015em, transparent 0.025em) 0 0 / 0.08em 0.08em,
-    radial-gradient(circle 0.015em, #ea580c 0.008em, transparent 0.015em) 0.04em 0.04em / 0.08em 0.08em;
-  opacity: 0.45;
-  /* Inverse of the bite clip — only show dots inside the bitten-away area */
-  clip-path: url(#bite-holes);
-}
-
-/* Crumb particles — top-right cluster (near the upper bite) */
 .bite-wrap::before {
   content: '';
   position: absolute;
-  top: 0.02em;
-  right: -0.04em;
-  width: 0.06em;
-  height: 0.06em;
+  top: -0.05em;
+  right: -0.05em;
+  width: 0.08em;
+  height: 0.08em;
   border-radius: 40%;
   background: currentColor;
+  opacity: 0;
   box-shadow:
-    0.12em -0.04em 0 -0.005em currentColor,
-    -0.02em -0.14em 0 -0.01em currentColor,
-    0.2em 0.06em 0 -0.015em currentColor,
-    0.08em -0.12em 0 -0.02em currentColor;
-  animation: crumb-tumble-a 3.5s ease-out infinite;
+    0.1em 0.04em 0 -0.01em currentColor,
+    -0.06em 0.12em 0 -0.015em currentColor,
+    0.14em -0.06em 0 -0.01em currentColor;
+  animation: crumbs-fly 4s ease-out infinite;
 }
 
-/* Crumb particles — bottom-right cluster (near the lower bite) */
-.bite-wrap::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  right: -0.02em;
-  width: 0.05em;
-  height: 0.05em;
-  border-radius: 35%;
-  background: currentColor;
-  box-shadow:
-    0.1em 0.06em 0 -0.01em currentColor,
-    -0.04em 0.12em 0 -0.015em currentColor,
-    0.16em -0.02em 0 -0.01em currentColor;
-  animation: crumb-tumble-b 3.5s ease-out 0.5s infinite;
-}
-
-@keyframes crumb-tumble-a {
-  0%, 55% {
+@keyframes crumbs-fly {
+  0%, 22% {
+    opacity: 0;
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
     opacity: 1;
     transform: translateY(0) rotate(0deg);
   }
-  80% {
-    opacity: 0.4;
+  50% {
+    opacity: 0;
+    transform: translateY(0.5em) rotate(60deg);
   }
   100% {
     opacity: 0;
-    transform: translateY(0.5em) rotate(55deg);
-  }
-}
-
-@keyframes crumb-tumble-b {
-  0%, 50% {
-    opacity: 1;
-    transform: translateY(0) rotate(0deg);
-  }
-  75% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(0.45em) rotate(-40deg);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .bite-wrap::before,
-  .bite-wrap::after {
+  .bite-text {
     animation: none;
+    clip-path: none;
+  }
+  .bite-wrap::before {
+    animation: none;
+    display: none;
   }
 }
 
