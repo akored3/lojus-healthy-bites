@@ -10,15 +10,15 @@ function FloatingImage({
 }) {
   const position =
     side === 'left'
-      ? '-left-4 -rotate-6 sm:left-2 md:left-8 lg:left-16'
-      : '-right-4 rotate-6 sm:right-2 md:right-8 lg:right-16'
+      ? '-left-6 -rotate-6 sm:left-2 md:left-8 lg:left-16'
+      : '-right-6 rotate-6 sm:right-2 md:right-8 lg:right-16'
 
   return (
     <div
       aria-hidden="true"
       className={`pointer-events-none absolute top-[38%] -translate-y-1/2 select-none ${position}`}
     >
-      <div className="h-20 w-20 overflow-hidden rounded-full border-[1.5px] border-ink shadow-[2px_2px_0_var(--color-ink)] sm:h-28 sm:w-28 md:h-40 md:w-40 lg:h-56 lg:w-56">
+      <div className="h-16 w-16 overflow-hidden rounded-full border-[1.5px] border-ink shadow-[2px_2px_0_var(--color-ink)] sm:h-28 sm:w-28 md:h-40 md:w-40 lg:h-56 lg:w-56">
         <img src={src} alt="" className="h-full w-full object-cover" />
       </div>
     </div>
