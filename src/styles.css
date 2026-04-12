@@ -138,6 +138,112 @@ body {
   display: none;
 }
 
+/* ——— Bite effect on text ——— */
+
+.bite-wrap {
+  position: relative;
+  display: inline-block;
+  padding-right: 0.1em;
+}
+
+.bite-text {
+  display: inline-block;
+  position: relative;
+}
+
+/*
+  SVG clip-path referenced by url(#bite-clip) punches two scalloped
+  bite marks into the text. The SVG is placed once in the DOM (hidden)
+  and the clip-path uses objectBoundingBox coordinates so it scales
+  with any font size.
+*/
+.bite-text {
+  clip-path: url(#bite-clip);
+}
+
+/* Warm amber halftone dots visible through the bite holes */
+.bite-reveal {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle 0.025em, #d97706 0.015em, transparent 0.025em) 0 0 / 0.08em 0.08em,
+    radial-gradient(circle 0.015em, #ea580c 0.008em, transparent 0.015em) 0.04em 0.04em / 0.08em 0.08em;
+  opacity: 0.45;
+  /* Inverse of the bite clip — only show dots inside the bitten-away area */
+  clip-path: url(#bite-holes);
+}
+
+/* Crumb particles — top-right cluster (near the upper bite) */
+.bite-wrap::before {
+  content: '';
+  position: absolute;
+  top: 0.02em;
+  right: -0.04em;
+  width: 0.06em;
+  height: 0.06em;
+  border-radius: 40%;
+  background: currentColor;
+  box-shadow:
+    0.12em -0.04em 0 -0.005em currentColor,
+    -0.02em -0.14em 0 -0.01em currentColor,
+    0.2em 0.06em 0 -0.015em currentColor,
+    0.08em -0.12em 0 -0.02em currentColor;
+  animation: crumb-tumble-a 3.5s ease-out infinite;
+}
+
+/* Crumb particles — bottom-right cluster (near the lower bite) */
+.bite-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: -0.02em;
+  width: 0.05em;
+  height: 0.05em;
+  border-radius: 35%;
+  background: currentColor;
+  box-shadow:
+    0.1em 0.06em 0 -0.01em currentColor,
+    -0.04em 0.12em 0 -0.015em currentColor,
+    0.16em -0.02em 0 -0.01em currentColor;
+  animation: crumb-tumble-b 3.5s ease-out 0.5s infinite;
+}
+
+@keyframes crumb-tumble-a {
+  0%, 55% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+  80% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(0.5em) rotate(55deg);
+  }
+}
+
+@keyframes crumb-tumble-b {
+  0%, 50% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+  75% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(0.45em) rotate(-40deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bite-wrap::before,
+  .bite-wrap::after {
+    animation: none;
+  }
+}
+
 /* ——— Mobile menu reveal ——— */
 
 .icon-close {
