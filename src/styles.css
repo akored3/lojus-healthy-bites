@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -25,6 +24,9 @@
   --color-accent-amber: #d97706;
   --color-accent-orange: #ea580c;
 
+  --color-accent-sky: #38bdf8;
+  --color-sky-light: #e0f2fe;
+
   --color-whatsapp: #25d366;
   --color-ink: #1a1a1a;
 }
@@ -50,8 +52,8 @@ section[id] {
 body {
   margin: 0;
   font-family: "Comfortaa", cursive;
-  color: #1a1a1a;
-  background-color: #fffef5;
+  color: var(--color-ink);
+  background-color: var(--color-bg-warm);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -64,8 +66,8 @@ body {
   top: 0;
   z-index: 9999;
   padding: 0.75rem 1rem;
-  background: #1a1a1a;
-  color: #fffef0;
+  background: var(--color-ink);
+  color: var(--color-bg-cream);
   font-weight: 700;
   border-radius: 0 0 0.75rem 0.75rem;
 }
