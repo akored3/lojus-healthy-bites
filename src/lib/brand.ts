@@ -3,7 +3,7 @@ export const BRAND = {
   short: "Loju's",
   tagline: 'Fresh, Flavorful & Guilt-Free Bites.',
   subtitle:
-    'Parfaits, mini pizzas, fresh juices, and wholesome fast food — crafted with love and delivered with care.',
+    'Parfaits, mini pizzas, fresh juices, and wholesome fast food, crafted with love and delivered with care.',
   phone: '+234 913 892 8572',
   whatsappNumber: '2349138928572',
   email: 'slenderbrizzy@gmail.com',

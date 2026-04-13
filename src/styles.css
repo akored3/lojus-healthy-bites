@@ -145,68 +145,85 @@ body {
 .bite-wrap {
   position: relative;
   display: inline-block;
+  animation: bite-squish 3s ease-in-out 3;
 }
 
 .bite-text {
   display: inline-block;
   position: relative;
-  clip-path: circle(150% at 85% 15%);
-  animation: bite-chomp 4s ease-in-out infinite;
+  will-change: clip-path;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  animation: bite-chomp 3s ease-in-out 3;
+}
+
+@keyframes bite-squish {
+  0%, 18% { transform: scale(1); }
+  22% { transform: scale(0.97, 1.03); }
+  26% { transform: scale(1); }
+  100% { transform: scale(1); }
 }
 
 @keyframes bite-chomp {
-  0%, 15% {
-    clip-path: circle(150% at 85% 15%);
-    transform: scale(1);
+  0%, 18% {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
   }
-  20% {
-    transform: scale(0.97, 1.03);
+  22% {
+    clip-path: polygon(
+      0% 0%, 68% 0%, 70% 5%, 74% 0%, 78% 6%, 82% 1%, 86% 7%,
+      90% 2%, 93% 8%, 96% 3%, 100% 0%,
+      100% 100%, 0% 100%
+    );
   }
-  25% {
-    clip-path: circle(0.22em at 85% 18%);
-    transform: scale(1);
+  45% {
+    clip-path: polygon(
+      0% 0%, 68% 0%, 70% 5%, 74% 0%, 78% 6%, 82% 1%, 86% 7%,
+      90% 2%, 93% 8%, 96% 3%, 100% 0%,
+      100% 100%, 0% 100%
+    );
   }
-  55% {
-    clip-path: circle(0.22em at 85% 18%);
-  }
-  75% {
-    clip-path: circle(150% at 85% 15%);
+  60% {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
   }
   100% {
-    clip-path: circle(150% at 85% 15%);
-    transform: scale(1);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
   }
 }
 
 .bite-wrap::before {
   content: '';
   position: absolute;
-  top: -0.05em;
-  right: -0.05em;
-  width: 0.08em;
-  height: 0.08em;
-  border-radius: 40%;
-  background: currentColor;
+  top: -0.08em;
+  right: 0.02em;
+  width: 0.07em;
+  height: 0.06em;
+  border-radius: 35%;
+  background: #d4a574;
   opacity: 0;
   box-shadow:
-    0.1em 0.04em 0 -0.01em currentColor,
-    -0.06em 0.12em 0 -0.015em currentColor,
-    0.14em -0.06em 0 -0.01em currentColor;
-  animation: crumbs-fly 4s ease-out infinite;
+    0.12em 0.03em 0 -0.005em #d4a574,
+    -0.04em 0.1em 0 -0.01em #c4956a,
+    0.18em -0.05em 0 -0.01em #d4a574,
+    0.06em -0.12em 0 -0.015em #c4956a,
+    0.22em 0.1em 0 -0.02em #d4a574;
+  animation: crumbs-fly 3s ease-out 3;
 }
 
 @keyframes crumbs-fly {
-  0%, 22% {
+  0%, 20% {
     opacity: 0;
-    transform: translateY(0) rotate(0deg);
+    transform: translateY(0) rotate(0deg) scale(1);
   }
-  25% {
+  23% {
     opacity: 1;
-    transform: translateY(0) rotate(0deg);
+    transform: translateY(0) rotate(0deg) scale(1);
   }
-  50% {
+  45% {
+    opacity: 0.3;
+    transform: translateY(0.4em) rotate(45deg) scale(0.6);
+  }
+  55% {
     opacity: 0;
-    transform: translateY(0.5em) rotate(60deg);
+    transform: translateY(0.6em) rotate(70deg) scale(0.3);
   }
   100% {
     opacity: 0;
@@ -217,6 +234,10 @@ body {
   .bite-text {
     animation: none;
     clip-path: none;
+    will-change: auto;
+  }
+  .bite-wrap {
+    animation: none;
   }
   .bite-wrap::before {
     animation: none;
