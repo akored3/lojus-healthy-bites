@@ -10,28 +10,17 @@ function FloatingImage({
 }) {
   const position =
     side === 'left'
-      ? 'left-2 -rotate-6 md:left-[18%] lg:left-[24%]'
-      : 'right-2 rotate-6 md:right-[18%] lg:right-[24%]'
+      ? '-left-10 -rotate-6 sm:-left-6 md:left-[18%] lg:left-[24%]'
+      : '-right-10 rotate-6 sm:-right-6 md:right-[18%] lg:right-[24%]'
 
   return (
     <div
       aria-hidden="true"
-      className={`pointer-events-none absolute top-[36%] hidden -translate-y-1/2 select-none sm:block md:top-[38%] ${position}`}
+      className={`pointer-events-none absolute top-[38%] -translate-y-1/2 select-none md:top-[38%] ${position}`}
     >
-      <div className="h-28 w-28 overflow-hidden rounded-full border-[1.5px] border-ink shadow-[2px_2px_0_var(--color-ink)] md:h-40 md:w-40 lg:h-56 lg:w-56">
+      <div className="h-24 w-24 overflow-hidden rounded-full border-[1.5px] border-ink shadow-[2px_2px_0_var(--color-ink)] sm:h-32 sm:w-32 md:h-40 md:w-40 lg:h-56 lg:w-56">
         <img src={src} alt="" className="h-full w-full object-cover" />
       </div>
-    </div>
-  )
-}
-
-function InlineImage({ src, rotate }: { src: string; rotate: string }) {
-  return (
-    <div
-      aria-hidden="true"
-      className={`h-24 w-24 overflow-hidden rounded-full border-[1px] border-ink shadow-[1px_1px_0_var(--color-ink)] ${rotate}`}
-    >
-      <img src={src} alt="" className="h-full w-full object-cover" />
     </div>
   )
 }
@@ -52,11 +41,6 @@ export function Hero() {
           <br />
           Crafted With Love<span className="text-accent-tangerine">.</span>
         </h1>
-
-        <div className="mb-6 flex items-center justify-center gap-6 sm:hidden">
-          <InlineImage src="/images/floating-juice.png" rotate="-rotate-6" />
-          <InlineImage src="/images/floating-pizza.png" rotate="rotate-6" />
-        </div>
 
         <p className="mx-auto mb-8 max-w-lg text-sm leading-relaxed text-text-body sm:text-lg">
           {BRAND.subtitle}
