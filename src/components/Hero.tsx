@@ -1,4 +1,5 @@
 import { BRAND, WHATSAPP_MESSAGES, whatsappLink } from '#/lib/brand'
+import { HeroSlider } from './HeroSlider'
 import { WhatsAppIcon } from './WhatsAppIcon'
 
 function FloatingImage({
@@ -56,6 +57,7 @@ export function Hero() {
           Order Now →
         </a>
       </div>
+      <HeroSlider />
     </section>
   )
 }
