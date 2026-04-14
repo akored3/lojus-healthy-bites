@@ -5,28 +5,24 @@ const SLIDES = [
 ]
 
 export function HeroSlider() {
-  const track = [...SLIDES, ...SLIDES]
+  const track = [...SLIDES, SLIDES[0]]
 
   return (
     <div
-      className="relative mt-12 overflow-hidden sm:mt-16"
+      className="bauhaus-card-lg relative mx-auto mt-12 aspect-[4/3] w-full max-w-md overflow-hidden sm:mt-16 sm:aspect-[16/10] sm:max-w-2xl"
       aria-label="Food gallery"
       role="region"
     >
-      <div className="hero-marquee flex w-max gap-5 sm:gap-8">
+      <div className="hero-carousel flex h-full w-[400%]">
         {track.map((slide, i) => (
-          <div
+          <img
             key={i}
-            className="bauhaus-card-lg h-48 w-64 shrink-0 sm:h-64 sm:w-80 lg:h-72 lg:w-96"
-          >
-            <img
-              src={slide.src}
-              alt={i < SLIDES.length ? slide.alt : ''}
-              aria-hidden={i >= SLIDES.length}
-              className="h-full w-full object-cover"
-              loading="lazy"
-            />
-          </div>
+            src={slide.src}
+            alt={i < SLIDES.length ? slide.alt : ''}
+            aria-hidden={i >= SLIDES.length}
+            className="h-full w-1/4 shrink-0 object-cover"
+            loading={i === 0 ? 'eager' : 'lazy'}
+          />
         ))}
       </div>
     </div>
