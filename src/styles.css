@@ -245,26 +245,6 @@ body {
   }
 }
 
-/* ——— Hero slider marquee ——— */
-
-.hero-marquee {
-  animation: hero-marquee 32s linear infinite;
-}
-.hero-marquee:hover {
-  animation-play-state: paused;
-}
-
-@keyframes hero-marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-marquee {
-    animation: none;
-  }
-}
-
 /* ——— Mobile menu reveal ——— */
 
 .icon-close {
