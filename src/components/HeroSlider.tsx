@@ -1,7 +1,7 @@
 const SLIDES = [
-  { src: '/images/fruitjuice_shot.png', alt: 'Fresh-pressed Fruit Naturel juices' },
-  { src: '/images/parfait_shot.png', alt: 'Layered fruit and yogurt parfait' },
-  { src: '/images/pizza_shot.jpg', alt: 'Wood-fired mini pizza' },
+  { src: '/images/carousel_juice.png', alt: 'Fresh-pressed Fruit Naturel juices' },
+  { src: '/images/carousel_parfait.png', alt: 'Layered fruit and yogurt parfait' },
+  { src: '/images/carousel_pizza.jpg', alt: 'Wood-fired mini pizza' },
 ]
 
 export function HeroSlider() {
