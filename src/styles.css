@@ -245,26 +245,6 @@ body {
   }
 }
 
-/* ——— Hero single-card carousel ——— */
-
-.hero-carousel {
-  animation: hero-carousel 18s infinite;
-}
-
-@keyframes hero-carousel {
-  0%, 22%   { transform: translateX(0); }
-  25%, 47%  { transform: translateX(-25%); }
-  50%, 72%  { transform: translateX(-50%); }
-  75%, 97%  { transform: translateX(-75%); }
-  100%      { transform: translateX(0); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-carousel {
-    animation: none;
-  }
-}
-
 /* ——— Mobile menu reveal ——— */
 
 .icon-close {
