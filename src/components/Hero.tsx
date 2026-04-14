@@ -11,8 +11,8 @@ function FloatingImage({
 }) {
   const position =
     side === 'left'
-      ? '-left-10 -rotate-6 sm:-left-6 md:left-[18%] lg:left-[24%]'
-      : '-right-10 rotate-6 sm:-right-6 md:right-[18%] lg:right-[24%]'
+      ? '-left-10 -rotate-6 sm:-left-6 md:left-[2%] lg:left-[6%]'
+      : '-right-10 rotate-6 sm:-right-6 md:right-[2%] lg:right-[6%]'
 
   return (
     <div
