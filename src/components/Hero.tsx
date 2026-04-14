@@ -18,7 +18,7 @@ function FloatingImage({
       aria-hidden="true"
       className={`pointer-events-none absolute top-[38%] -translate-y-1/2 select-none md:top-[38%] ${position}`}
     >
-      <div className="h-28 w-28 sm:overflow-hidden sm:rounded-full sm:border-[1.5px] sm:border-ink sm:shadow-[2px_2px_0_var(--color-ink)] md:h-52 md:w-52 md:overflow-visible md:rounded-none md:border-0 md:shadow-none lg:h-72 lg:w-72">
+      <div className="h-28 w-28 sm:overflow-hidden sm:rounded-full sm:border-[1.5px] sm:border-ink sm:shadow-[2px_2px_0_var(--color-ink)] md:h-64 md:w-64 md:overflow-visible md:rounded-none md:border-0 md:shadow-none lg:h-96 lg:w-96">
         <img
           src={src}
           alt=""
