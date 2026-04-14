@@ -9,7 +9,7 @@ export function HeroSlider() {
 
   return (
     <div
-      className="bauhaus-card-lg relative mx-auto mt-12 aspect-[4/3] w-full max-w-md overflow-hidden sm:mt-16 sm:aspect-[16/9] sm:max-w-4xl"
+      className="bauhaus-card-lg relative mx-auto mt-12 aspect-[4/3] w-full max-w-md overflow-hidden sm:mt-16 sm:aspect-[16/9] sm:max-w-3xl"
       aria-label="Food gallery"
       role="region"
     >
