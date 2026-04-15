@@ -11,19 +11,19 @@ function FloatingImage({
 }) {
   const position =
     side === 'left'
-      ? '-left-10 -rotate-6 sm:-left-6 md:left-[12%] lg:left-[18%]'
-      : '-right-10 rotate-6 sm:-right-6 md:right-[12%] lg:right-[18%]'
+      ? '-left-10 -rotate-6 sm:-left-6 lg:-left-48 xl:-left-64'
+      : '-right-10 rotate-6 sm:-right-6 lg:-right-48 xl:-right-64'
 
   return (
     <div
       aria-hidden="true"
-      className={`pointer-events-none absolute top-1/2 -translate-y-1/2 select-none ${position}`}
+      className={`pointer-events-none absolute top-1/2 -translate-y-1/2 select-none md:hidden lg:block ${position}`}
     >
-      <div className="h-28 w-28 sm:overflow-hidden sm:rounded-full sm:border-[1.5px] sm:border-ink sm:shadow-[2px_2px_0_var(--color-ink)] md:h-64 md:w-64 md:overflow-visible md:rounded-none md:border-0 md:shadow-none lg:h-96 lg:w-96">
+      <div className="h-28 w-28 sm:overflow-hidden sm:rounded-full sm:border-[1.5px] sm:border-ink sm:shadow-[2px_2px_0_var(--color-ink)] lg:h-96 lg:w-96 lg:overflow-visible lg:rounded-none lg:border-0 lg:shadow-none">
         <img
           src={src}
           alt=""
-          className="h-full w-full object-contain sm:object-cover md:object-contain"
+          className="h-full w-full object-contain sm:object-cover lg:object-contain"
         />
       </div>
     </div>
@@ -33,10 +33,10 @@ function FloatingImage({
 export function Hero() {
   return (
     <section className="relative bg-bg-warm px-4 pb-16 pt-16 sm:px-6 sm:pb-24 sm:pt-20">
-      <div className="relative">
+      <div className="relative mx-auto max-w-3xl">
         <FloatingImage src="/images/floating_fruitjuice-removebg-preview.png" side="left" />
         <FloatingImage src="/images/floating_tigernut-removebg-preview.png" side="right" />
-        <h1 className="mx-auto mb-5 max-w-3xl text-center text-3xl font-bold leading-tight text-text-dark sm:text-4xl lg:text-5xl">
+        <h1 className="mb-5 text-center text-3xl font-bold leading-tight text-text-dark sm:text-4xl lg:text-5xl">
           Fresh, Flavorful &<br />
           Guilt-Free{' '}
           <span className="bite-wrap text-accent-tangerine">
