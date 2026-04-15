@@ -1,10 +1,10 @@
 type Corner = 'tl' | 'tr' | 'bl' | 'br'
 
 const CORNER_POSITION: Record<Corner, string> = {
-  tl: 'top-6 -left-10 -rotate-6 sm:top-10 sm:-left-6 md:top-8 md:left-[4%] lg:left-[8%]',
-  tr: 'top-6 -right-10 rotate-6 sm:top-10 sm:-right-6 md:top-8 md:right-[4%] lg:right-[8%]',
-  bl: 'bottom-6 -left-10 rotate-6 sm:bottom-10 sm:-left-6 md:bottom-8 md:left-[4%] lg:left-[8%]',
-  br: 'bottom-6 -right-10 -rotate-6 sm:bottom-10 sm:-right-6 md:bottom-8 md:right-[4%] lg:right-[8%]',
+  tl: 'top-4 -left-12 -rotate-6 sm:top-8 sm:-left-16 md:-left-20 lg:-left-24',
+  tr: 'top-4 -right-12 rotate-6 sm:top-8 sm:-right-16 md:-right-20 lg:-right-24',
+  bl: 'bottom-4 -left-12 rotate-6 sm:bottom-8 sm:-left-16 md:-left-20 lg:-left-24',
+  br: 'bottom-4 -right-12 -rotate-6 sm:bottom-8 sm:-right-16 md:-right-20 lg:-right-24',
 }
 
 function MenuCornerImage({ src, corner }: { src: string; corner: Corner }) {
@@ -13,7 +13,7 @@ function MenuCornerImage({ src, corner }: { src: string; corner: Corner }) {
       aria-hidden="true"
       className={`pointer-events-none absolute select-none ${CORNER_POSITION[corner]}`}
     >
-      <div className="h-24 w-24 sm:h-28 sm:w-28 md:h-40 md:w-40 lg:h-56 lg:w-56">
+      <div className="h-28 w-28 sm:h-36 sm:w-36 md:h-52 md:w-52 lg:h-64 lg:w-64">
         <img src={src} alt="" className="h-full w-full object-contain" />
       </div>
     </div>
