@@ -27,7 +27,9 @@ function navLinkClasses(isActive: boolean, variant: 'desktop' | 'mobile') {
 export function Navbar() {
   const { activeId, atTop } = useActiveSection(SECTION_IDS)
   const isActive = (href: string) =>
-    href === '#' ? atTop : activeId === href.replace('#', '')
+    href === '#'
+      ? atTop
+      : !atTop && activeId === href.replace('#', '')
 
   return (
     <header className="fixed inset-x-0 top-0 z-[200] px-4 pt-4">
