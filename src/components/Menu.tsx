@@ -14,12 +14,14 @@ const ACCENT_BG: Record<MenuCategory['accent'], string> = {
   tangerine: 'bg-accent-tangerine',
   sky: 'bg-accent-sky',
   lemon: 'bg-accent-lemon',
+  green: 'bg-accent-green',
 }
 
 const ACCENT_DOT: Record<MenuCategory['accent'], string> = {
   tangerine: 'bg-accent-tangerine',
   sky: 'bg-accent-sky',
   lemon: 'bg-accent-lemon',
+  green: 'bg-accent-green',
 }
 
 function MenuCornerImage({ src, corner }: { src: string; corner: Corner }) {
