@@ -1,7 +1,5 @@
 import { UtensilsCrossed } from 'lucide-react'
-import { whatsappLink } from '#/lib/brand'
 import { MENU_CATEGORIES, type MenuCategory } from '#/lib/menu'
-import { WhatsAppIcon } from './WhatsAppIcon'
 
 type Corner = 'tl' | 'tr' | 'bl' | 'br'
 
@@ -13,6 +11,12 @@ const CORNER_POSITION: Record<Corner, string> = {
 }
 
 const ACCENT_BG: Record<MenuCategory['accent'], string> = {
+  tangerine: 'bg-accent-tangerine',
+  sky: 'bg-accent-sky',
+  lemon: 'bg-accent-lemon',
+}
+
+const ACCENT_DOT: Record<MenuCategory['accent'], string> = {
   tangerine: 'bg-accent-tangerine',
   sky: 'bg-accent-sky',
   lemon: 'bg-accent-lemon',
@@ -33,35 +37,31 @@ function MenuCornerImage({ src, corner }: { src: string; corner: Corner }) {
 
 function MenuCard({ category }: { category: MenuCategory }) {
   return (
-    <article className="bauhaus-card group flex flex-col overflow-hidden bg-white transition-transform duration-200 hover:-translate-y-1 hover:-rotate-1">
-      <div className={`relative aspect-[4/3] w-full border-b-[3px] border-ink ${ACCENT_BG[category.accent]}`}>
-        <img
-          src={category.image}
-          alt={category.title}
-          loading="lazy"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-      </div>
+    <article className="bauhaus-card relative flex flex-col bg-white p-6 text-center transition-transform duration-200 hover:-translate-y-1 sm:p-8">
+      <div
+        aria-hidden="true"
+        className={`absolute right-4 top-4 h-3 w-3 rotate-45 border-[2px] border-ink ${ACCENT_DOT[category.accent]}`}
+      />
 
-      <div className="flex flex-1 flex-col p-5 text-left sm:p-6">
-        <h3 className="text-2xl font-bold text-text-dark sm:text-3xl">
-          {category.title}
-        </h3>
-        <p className="mt-2 text-sm leading-relaxed text-text-body sm:text-base">
-          {category.tagline}
-        </p>
-
-        <a
-          href={whatsappLink(category.orderMessage)}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`Order ${category.title} on WhatsApp`}
-          className="bauhaus-btn mt-6 self-start bg-whatsapp text-xs text-white sm:text-sm"
+      <div className="mx-auto">
+        <span
+          className={`bauhaus-chip inline-flex items-center px-5 py-1.5 text-sm text-ink sm:text-base ${ACCENT_BG[category.accent]}`}
         >
-          <WhatsAppIcon className="h-4 w-4" />
-          Order on WhatsApp
-        </a>
+          {category.title}
+        </span>
       </div>
+
+      <ul className="mt-6 flex flex-col gap-2.5 text-sm text-text-body sm:text-base">
+        {category.variants.map((variant) => (
+          <li key={variant} className="flex items-center justify-center gap-2">
+            <span
+              aria-hidden="true"
+              className={`h-1.5 w-1.5 rounded-full ${ACCENT_DOT[category.accent]}`}
+            />
+            {variant}
+          </li>
+        ))}
+      </ul>
     </article>
   )
 }
@@ -87,7 +87,7 @@ export function Menu() {
             Our Full Menu
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-text-body sm:text-base">
-            Handcrafted parfaits, mini pizzas, and juices — every bite made fresh, just for you.
+            A handcrafted lineup of parfaits, mini pizzas, and juices — every bite made fresh, just for you.
           </p>
         </div>
 
