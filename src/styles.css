@@ -146,7 +146,7 @@ body {
 .bite-wrap {
   position: relative;
   display: inline-block;
-  animation: bite-squish 3s ease-in-out 3;
+  animation: bite-squish 9s ease-in-out infinite;
 }
 
 .bite-text {
@@ -154,7 +154,7 @@ body {
   position: relative;
   will-change: clip-path;
   clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-  animation: bite-chomp 3s ease-in-out 3;
+  animation: bite-chomp 9s ease-in-out infinite;
 }
 
 @keyframes bite-squish {
@@ -206,7 +206,7 @@ body {
     0.18em -0.05em 0 -0.01em #d4a574,
     0.06em -0.12em 0 -0.015em #c4956a,
     0.22em 0.1em 0 -0.02em #d4a574;
-  animation: crumbs-fly 3s ease-out 3;
+  animation: crumbs-fly 9s ease-out infinite;
 }
 
 @keyframes crumbs-fly {
