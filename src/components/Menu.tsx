@@ -1,10 +1,10 @@
 type Corner = 'tl' | 'tr' | 'bl' | 'br'
 
 const CORNER_POSITION: Record<Corner, string> = {
-  tl: 'top-4 left-2 -rotate-6 sm:top-8 sm:left-4 md:left-6 lg:left-8',
-  tr: 'top-4 right-2 rotate-6 sm:top-8 sm:right-4 md:right-6 lg:right-8',
-  bl: 'bottom-4 left-2 rotate-6 sm:bottom-8 sm:left-4 md:left-6 lg:left-8',
-  br: 'bottom-4 right-2 -rotate-6 sm:bottom-8 sm:right-4 md:right-6 lg:right-8',
+  tl: 'top-4 -left-12 -rotate-6 sm:top-8 sm:-left-16 md:-left-20 lg:-left-24',
+  tr: 'top-4 -right-12 rotate-6 sm:top-8 sm:-right-16 md:-right-20 lg:-right-24',
+  bl: 'bottom-4 -left-12 rotate-6 sm:bottom-8 sm:-left-16 md:-left-20 lg:-left-24',
+  br: 'bottom-4 -right-12 -rotate-6 sm:bottom-8 sm:-right-16 md:-right-20 lg:-right-24',
 }
 
 function MenuCornerImage({ src, corner }: { src: string; corner: Corner }) {
