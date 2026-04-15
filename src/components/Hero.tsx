@@ -28,7 +28,7 @@ function FloatingImage({
 
 export function Hero() {
   return (
-    <section className="relative bg-bg-warm px-4 pb-16 pt-16 sm:px-6 sm:pb-24 sm:pt-20">
+    <section className="relative bg-bg-warm px-4 pb-8 pt-16 sm:px-6 sm:pb-12 sm:pt-20">
       <div className="relative mx-auto max-w-3xl md:max-w-2xl lg:max-w-3xl">
         <FloatingImage src="/images/floating_fruitjuice-removebg-preview.png" side="left" />
         <FloatingImage src="/images/floating_tigernut-removebg-preview.png" side="right" />

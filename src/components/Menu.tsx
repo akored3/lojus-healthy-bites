@@ -103,9 +103,11 @@ export function Menu() {
 
       <div className="relative mx-auto max-w-6xl">
         <div className="text-center">
-          <span className="bauhaus-chip inline-flex items-center gap-2 bg-accent-green px-4 py-1.5 text-xs text-white sm:text-sm">
+          <span
+            aria-label="Menu"
+            className="bauhaus-chip inline-flex h-10 w-10 items-center justify-center bg-accent-green text-white"
+          >
             <UtensilsCrossed className="h-4 w-4" aria-hidden="true" />
-            Menu
           </span>
           <h2 className="mt-5 text-3xl font-bold text-text-dark sm:text-4xl lg:text-5xl">
             Our Full Menu
