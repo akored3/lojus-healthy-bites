@@ -79,7 +79,7 @@ export function Menu() {
 
       <div className="relative mx-auto max-w-6xl">
         <div className="text-center">
-          <span className="bauhaus-chip inline-flex items-center gap-2 bg-accent-tangerine px-4 py-1.5 text-xs text-white sm:text-sm">
+          <span className="bauhaus-chip inline-flex items-center gap-2 bg-accent-green px-4 py-1.5 text-xs text-white sm:text-sm">
             <UtensilsCrossed className="h-4 w-4" aria-hidden="true" />
             Menu
           </span>
