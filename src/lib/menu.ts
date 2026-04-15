@@ -12,10 +12,10 @@ export const MENU_CATEGORIES: readonly MenuCategory[] = [
     accent: 'green',
     variants: [
       'Berry Bliss',
-      'Mango Tango',
-      'Tropical Crunch',
-      'Classic Vanilla',
-      'Granola Glow',
+      'Tropical Paradise',
+      'Chocolate Banana Crunch',
+      'Apple Cinnamon Delight',
+      'Peach Almond Dream',
     ],
   },
   {
