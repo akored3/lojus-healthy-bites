@@ -1,5 +1,7 @@
+import type { CSSProperties } from 'react'
 import { UtensilsCrossed } from 'lucide-react'
 import { MENU_CATEGORIES, type MenuCategory } from '#/lib/menu'
+import { useInView } from '#/lib/useInView'
 
 type Corner = 'tl' | 'tr' | 'bl' | 'br'
 
@@ -17,12 +19,11 @@ const ACCENT_BG: Record<MenuCategory['accent'], string> = {
   green: 'bg-accent-green',
 }
 
-const ACCENT_DOT: Record<MenuCategory['accent'], string> = {
-  tangerine: 'bg-accent-tangerine',
-  sky: 'bg-accent-sky',
-  lemon: 'bg-accent-lemon',
-  green: 'bg-accent-green',
-}
+const CARD_STAGGER_MS = 160
+const PILL_OFFSET_MS = 220
+const DOT_OFFSET_MS = 320
+const ITEMS_OFFSET_MS = 420
+const ITEM_STAGGER_MS = 70
 
 function MenuCornerImage({ src, corner }: { src: string; corner: Corner }) {
   return (
@@ -37,41 +38,62 @@ function MenuCornerImage({ src, corner }: { src: string; corner: Corner }) {
   )
 }
 
-function MenuCard({ category }: { category: MenuCategory }) {
+function MenuCard({ category, index }: { category: MenuCategory; index: number }) {
+  const cardDelay = index * CARD_STAGGER_MS
+  const cardStyle = {
+    '--card-delay': `${cardDelay}ms`,
+    '--pill-delay': `${cardDelay + PILL_OFFSET_MS}ms`,
+    '--dot-delay': `${cardDelay + DOT_OFFSET_MS}ms`,
+  } as CSSProperties
+
   return (
-    <article className="bauhaus-card relative flex flex-col bg-white p-6 text-center transition-transform duration-200 hover:-translate-y-1 sm:p-8">
-      <div
+    <article
+      className="menu-card bauhaus-card relative flex flex-col bg-white p-6 text-center transition-transform duration-200 hover:-translate-y-1 sm:p-8"
+      style={cardStyle}
+    >
+      <span
         aria-hidden="true"
-        className={`absolute right-4 top-4 h-3 w-3 rotate-45 border-[2px] border-ink ${ACCENT_DOT[category.accent]}`}
+        className={`menu-dot absolute right-4 top-4 h-3 w-3 border-[2px] border-ink ${ACCENT_BG[category.accent]}`}
       />
 
       <div className="mx-auto">
         <span
-          className={`bauhaus-chip inline-flex items-center px-5 py-1.5 text-sm text-ink sm:text-base ${ACCENT_BG[category.accent]}`}
+          className={`menu-pill bauhaus-chip items-center px-5 py-1.5 text-sm text-ink sm:text-base ${ACCENT_BG[category.accent]}`}
         >
           {category.title}
         </span>
       </div>
 
       <ul className="mt-6 flex flex-col gap-2.5 text-sm text-text-body sm:text-base">
-        {category.variants.map((variant) => (
-          <li key={variant} className="flex items-center justify-center gap-2">
-            <span
-              aria-hidden="true"
-              className={`h-1.5 w-1.5 rounded-full ${ACCENT_DOT[category.accent]}`}
-            />
-            {variant}
-          </li>
-        ))}
+        {category.variants.map((variant, itemIdx) => {
+          const itemDelay = cardDelay + ITEMS_OFFSET_MS + itemIdx * ITEM_STAGGER_MS
+          return (
+            <li
+              key={variant}
+              className="menu-item flex items-center justify-center gap-2"
+              style={{ '--item-delay': `${itemDelay}ms` } as CSSProperties}
+            >
+              <span
+                aria-hidden="true"
+                className={`menu-bullet inline-block h-1.5 w-1.5 rounded-full ${ACCENT_BG[category.accent]}`}
+              />
+              {variant}
+            </li>
+          )
+        })}
       </ul>
     </article>
   )
 }
 
 export function Menu() {
+  const { ref, inView } = useInView<HTMLElement>(0.2)
+
   return (
     <section
+      ref={ref}
       id="full-menu"
+      data-menu-visible={inView}
       className="relative overflow-hidden bg-bg-cream px-4 py-20 sm:px-6 sm:py-28"
     >
       <MenuCornerImage src="/images/menu_tl.png" corner="tl" />
@@ -94,8 +116,8 @@ export function Menu() {
         </div>
 
         <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-          {MENU_CATEGORIES.map((category) => (
-            <MenuCard key={category.id} category={category} />
+          {MENU_CATEGORIES.map((category, idx) => (
+            <MenuCard key={category.id} category={category} index={idx} />
           ))}
         </div>
       </div>

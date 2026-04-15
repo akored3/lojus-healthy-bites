@@ -333,3 +333,110 @@ body {
     max-width: 220px !important;
   }
 }
+
+/* ——— Menu scroll-in reveal ——— */
+
+@media (prefers-reduced-motion: no-preference) {
+  .menu-card {
+    opacity: 0;
+    transform: translateY(28px) scale(0.94);
+  }
+  [data-menu-visible='true'] .menu-card {
+    animation: menu-card-in 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--card-delay, 0ms) both;
+  }
+
+  .menu-pill {
+    display: inline-flex;
+    opacity: 0;
+    transform: scale(0.5) rotate(-8deg);
+    transform-origin: center;
+  }
+  [data-menu-visible='true'] .menu-pill {
+    animation: menu-pill-in 650ms cubic-bezier(0.34, 1.56, 0.64, 1) var(--pill-delay, 0ms) both;
+  }
+
+  .menu-dot {
+    opacity: 0;
+    transform: rotate(0deg) scale(0);
+  }
+  [data-menu-visible='true'] .menu-dot {
+    animation: menu-dot-in 550ms cubic-bezier(0.34, 1.56, 0.64, 1) var(--dot-delay, 0ms) both;
+  }
+
+  .menu-item {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  [data-menu-visible='true'] .menu-item {
+    animation: menu-item-in 420ms cubic-bezier(0.22, 1, 0.36, 1) var(--item-delay, 0ms) both;
+  }
+
+  .menu-bullet {
+    transform: scale(0);
+  }
+  [data-menu-visible='true'] .menu-item .menu-bullet {
+    animation: menu-bullet-pop 380ms cubic-bezier(0.34, 1.56, 0.64, 1) var(--item-delay, 0ms) both;
+  }
+}
+
+@keyframes menu-card-in {
+  0% {
+    opacity: 0;
+    transform: translateY(28px) scale(0.94);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes menu-pill-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(-8deg);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.12) rotate(3deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes menu-dot-in {
+  0% {
+    opacity: 0;
+    transform: rotate(0deg) scale(0);
+  }
+  60% {
+    opacity: 1;
+    transform: rotate(60deg) scale(1.15);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(45deg) scale(1);
+  }
+}
+
+@keyframes menu-item-in {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes menu-bullet-pop {
+  0% { transform: scale(0); }
+  70% { transform: scale(1.5); }
+  100% { transform: scale(1); }
+}
