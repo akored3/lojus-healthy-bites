@@ -23,7 +23,7 @@ function MenuCornerImage({ src, corner }: { src: string; corner: Corner }) {
 export function Menu() {
   return (
     <section
-      id="menu"
+      id="full-menu"
       className="relative overflow-hidden bg-bg-cream px-4 py-20 sm:px-6 sm:py-28"
     >
       <MenuCornerImage src="/images/menu_tl.png" corner="tl" />

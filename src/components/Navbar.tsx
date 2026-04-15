@@ -1,7 +1,12 @@
 import { Menu, X } from 'lucide-react'
 import { NAV_LINKS, WHATSAPP_MESSAGES, whatsappLink } from '#/lib/brand'
+import { useActiveSection } from '#/lib/useActiveSection'
 import { Wordmark } from './Wordmark'
 import { WhatsAppIcon } from './WhatsAppIcon'
+
+const SECTION_IDS = NAV_LINKS
+  .map((l) => l.href.replace('#', ''))
+  .filter((id) => id.length > 0)
 
 const closeMobileMenu = () => {
   const cb = document.getElementById('nav-toggle') as HTMLInputElement | null
@@ -20,6 +25,10 @@ function navLinkClasses(isActive: boolean, variant: 'desktop' | 'mobile') {
 }
 
 export function Navbar() {
+  const { activeId, atTop } = useActiveSection(SECTION_IDS)
+  const isActive = (href: string) =>
+    href === '#' ? atTop : activeId === href.replace('#', '')
+
   return (
     <header className="fixed inset-x-0 top-0 z-[200] px-4 pt-4">
       <nav
@@ -31,17 +40,20 @@ export function Navbar() {
         </a>
 
         <ul className="hidden items-center gap-1 rounded-full border-[2px] border-ink bg-white px-2 py-1 shadow-[3px_3px_0_var(--color-ink)] md:flex">
-          {NAV_LINKS.map((link, i) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                aria-current={i === 0 ? 'page' : undefined}
-                className={navLinkClasses(i === 0, 'desktop')}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const active = isActive(link.href)
+            return (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  aria-current={active ? 'page' : undefined}
+                  className={navLinkClasses(active, 'desktop')}
+                >
+                  {link.label}
+                </a>
+              </li>
+            )
+          })}
         </ul>
 
         <a
@@ -65,18 +77,21 @@ export function Navbar() {
 
         <div className="mobile-panel pointer-events-none absolute inset-x-0 top-[calc(100%+0.75rem)] hidden px-4 peer-checked:pointer-events-auto peer-checked:block md:peer-checked:hidden">
           <ul className="bauhaus-card mx-auto flex max-w-6xl flex-col gap-2 bg-bg-cream p-4">
-            {NAV_LINKS.map((link, i) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={closeMobileMenu}
-                  aria-current={i === 0 ? 'page' : undefined}
-                  className={navLinkClasses(i === 0, 'mobile')}
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const active = isActive(link.href)
+              return (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    onClick={closeMobileMenu}
+                    aria-current={active ? 'page' : undefined}
+                    className={navLinkClasses(active, 'mobile')}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              )
+            })}
             <li className="mt-1 flex justify-center">
               <a
                 href={whatsappLink(WHATSAPP_MESSAGES.order)}
