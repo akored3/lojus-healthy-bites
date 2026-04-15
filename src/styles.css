@@ -144,105 +144,52 @@ body {
 /* ——— Bite effect on text ——— */
 
 .bite-wrap {
-  position: relative;
   display: inline-block;
-  animation: bite-squish 9s ease-in-out infinite;
 }
 
 .bite-text {
   display: inline-block;
-  position: relative;
-  will-change: clip-path;
-  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-  animation: bite-chomp 9s ease-in-out infinite;
+  background-image: linear-gradient(
+    to top,
+    var(--color-accent-tangerine) 0%,
+    var(--color-accent-tangerine) 50%,
+    #fcd9b8 50%,
+    #fcd9b8 100%
+  );
+  background-size: 100% 200%;
+  background-position: 0% 0%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: bite-ripen 9s ease-in-out infinite;
 }
 
-@keyframes bite-squish {
-  0%, 18% { transform: scale(1); }
-  22% { transform: scale(0.97, 1.03); }
-  26% { transform: scale(1); }
-  100% { transform: scale(1); }
-}
-
-@keyframes bite-chomp {
-  0%, 18% {
-    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+@keyframes bite-ripen {
+  0% {
+    background-position: 0% 0%;
+    text-shadow: none;
+    filter: saturate(0.7);
   }
-  22% {
-    clip-path: polygon(
-      0% 0%, 68% 0%, 70% 5%, 74% 0%, 78% 6%, 82% 1%, 86% 7%,
-      90% 2%, 93% 8%, 96% 3%, 100% 0%,
-      100% 100%, 0% 100%
-    );
-  }
-  45% {
-    clip-path: polygon(
-      0% 0%, 68% 0%, 70% 5%, 74% 0%, 78% 6%, 82% 1%, 86% 7%,
-      90% 2%, 93% 8%, 96% 3%, 100% 0%,
-      100% 100%, 0% 100%
-    );
-  }
-  60% {
-    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  50% {
+    background-position: 0% 100%;
+    text-shadow:
+      0 0 0.02em rgba(234, 179, 8, 0.55),
+      0.04em 0 0 rgba(56, 189, 248, 0.18);
+    filter: saturate(1.15);
   }
   100% {
-    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-  }
-}
-
-.bite-wrap::before {
-  content: '';
-  position: absolute;
-  top: -0.08em;
-  right: 0.02em;
-  width: 0.07em;
-  height: 0.06em;
-  border-radius: 35%;
-  background: #d4a574;
-  opacity: 0;
-  box-shadow:
-    0.12em 0.03em 0 -0.005em #d4a574,
-    -0.04em 0.1em 0 -0.01em #c4956a,
-    0.18em -0.05em 0 -0.01em #d4a574,
-    0.06em -0.12em 0 -0.015em #c4956a,
-    0.22em 0.1em 0 -0.02em #d4a574;
-  animation: crumbs-fly 9s ease-out infinite;
-}
-
-@keyframes crumbs-fly {
-  0%, 20% {
-    opacity: 0;
-    transform: translateY(0) rotate(0deg) scale(1);
-  }
-  23% {
-    opacity: 1;
-    transform: translateY(0) rotate(0deg) scale(1);
-  }
-  45% {
-    opacity: 0.3;
-    transform: translateY(0.4em) rotate(45deg) scale(0.6);
-  }
-  55% {
-    opacity: 0;
-    transform: translateY(0.6em) rotate(70deg) scale(0.3);
-  }
-  100% {
-    opacity: 0;
+    background-position: 0% 0%;
+    text-shadow: none;
+    filter: saturate(0.7);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .bite-text {
     animation: none;
-    clip-path: none;
-    will-change: auto;
-  }
-  .bite-wrap {
-    animation: none;
-  }
-  .bite-wrap::before {
-    animation: none;
-    display: none;
+    background-position: 0% 100%;
+    filter: saturate(1);
   }
 }
 
