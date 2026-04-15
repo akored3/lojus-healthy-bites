@@ -1,3 +1,4 @@
+import { UtensilsCrossed } from 'lucide-react'
 import { whatsappLink } from '#/lib/brand'
 import { MENU_CATEGORIES, type MenuCategory } from '#/lib/menu'
 import { WhatsAppIcon } from './WhatsAppIcon'
@@ -78,7 +79,11 @@ export function Menu() {
 
       <div className="relative mx-auto max-w-6xl">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-text-dark sm:text-4xl lg:text-5xl">
+          <span className="bauhaus-chip inline-flex items-center gap-2 bg-accent-tangerine px-4 py-1.5 text-xs text-white sm:text-sm">
+            <UtensilsCrossed className="h-4 w-4" aria-hidden="true" />
+            Menu
+          </span>
+          <h2 className="mt-5 text-3xl font-bold text-text-dark sm:text-4xl lg:text-5xl">
             Our Full Menu
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-text-body sm:text-base">
