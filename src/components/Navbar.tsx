@@ -62,7 +62,7 @@ export function Navbar() {
           href={whatsappLink(WHATSAPP_MESSAGES.order)}
           target="_blank"
           rel="noopener noreferrer"
-          className="bauhaus-btn hidden bg-whatsapp text-xs text-white lg:inline-flex"
+          className="bauhaus-btn hidden bg-whatsapp text-xs text-white md:inline-flex"
         >
           Order on WhatsApp
         </a>
