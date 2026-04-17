@@ -3,13 +3,24 @@ import { UtensilsCrossed } from 'lucide-react'
 import { MENU_CATEGORIES, type MenuCategory } from '#/lib/menu'
 import { useInView } from '#/lib/useInView'
 
-type Corner = 'tl' | 'tr' | 'bl' | 'br'
+type Corner = 'tl' | 'tr' | 'bl' | 'br' | 'ml' | 'mr'
 
 const CORNER_POSITION: Record<Corner, string> = {
   tl: 'top-4 -left-12 -rotate-6 sm:top-8 sm:-left-16 md:-left-20 lg:-left-24',
   tr: 'top-4 -right-12 rotate-6 sm:top-8 sm:-right-16 md:-right-20 lg:-right-24',
   bl: 'bottom-4 -left-12 rotate-6 sm:bottom-8 sm:-left-16 md:-left-20 lg:-left-24',
   br: 'bottom-4 -right-12 -rotate-6 sm:bottom-8 sm:-right-16 md:-right-20 lg:-right-24',
+  ml: 'top-[32%] -left-8 rotate-6 hidden sm:block md:-left-12 lg:-left-16',
+  mr: 'top-[34%] -right-8 -rotate-6 hidden sm:block md:-right-12 lg:-right-16',
+}
+
+const CORNER_SIZE: Record<Corner, string> = {
+  tl: 'h-28 w-28 sm:h-36 sm:w-36 md:h-52 md:w-52 lg:h-64 lg:w-64',
+  tr: 'h-28 w-28 sm:h-36 sm:w-36 md:h-52 md:w-52 lg:h-64 lg:w-64',
+  bl: 'h-28 w-28 sm:h-36 sm:w-36 md:h-52 md:w-52 lg:h-64 lg:w-64',
+  br: 'h-28 w-28 sm:h-36 sm:w-36 md:h-52 md:w-52 lg:h-64 lg:w-64',
+  ml: 'h-24 w-24 md:h-32 md:w-32 lg:h-40 lg:w-40',
+  mr: 'h-24 w-24 md:h-32 md:w-32 lg:h-40 lg:w-40',
 }
 
 const ACCENT_BG: Record<MenuCategory['accent'], string> = {
@@ -31,7 +42,7 @@ function MenuCornerImage({ src, corner }: { src: string; corner: Corner }) {
       aria-hidden="true"
       className={`pointer-events-none absolute select-none ${CORNER_POSITION[corner]}`}
     >
-      <div className="h-28 w-28 sm:h-36 sm:w-36 md:h-52 md:w-52 lg:h-64 lg:w-64">
+      <div className={CORNER_SIZE[corner]}>
         <img src={src} alt="" className="h-full w-full object-contain" />
       </div>
     </div>
@@ -98,6 +109,8 @@ export function Menu() {
     >
       <MenuCornerImage src="/images/menu_tl.png" corner="tl" />
       <MenuCornerImage src="/images/menu_tr.png" corner="tr" />
+      <MenuCornerImage src="/images/menu_ml.png" corner="ml" />
+      <MenuCornerImage src="/images/menu_mr.png" corner="mr" />
       <MenuCornerImage src="/images/menu_bl.png" corner="bl" />
       <MenuCornerImage src="/images/menu_br.png" corner="br" />
 
