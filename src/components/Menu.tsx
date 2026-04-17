@@ -6,21 +6,21 @@ import { useInView } from '#/lib/useInView'
 type Corner = 'tl' | 'tr' | 'bl' | 'br' | 'ml' | 'mr'
 
 const CORNER_POSITION: Record<Corner, string> = {
-  tl: 'top-4 -left-12 -rotate-6 sm:top-8 sm:-left-16 md:-left-20 lg:-left-24',
-  tr: 'top-4 -right-12 rotate-6 sm:top-8 sm:-right-16 md:-right-20 lg:-right-24',
-  bl: 'bottom-4 -left-12 rotate-6 sm:bottom-8 sm:-left-16 md:-left-20 lg:-left-24',
-  br: 'bottom-4 -right-12 -rotate-6 sm:bottom-8 sm:-right-16 md:-right-20 lg:-right-24',
-  ml: 'top-[32%] -left-8 rotate-6 hidden sm:block md:-left-12 lg:-left-16',
-  mr: 'top-[34%] -right-8 -rotate-6 hidden sm:block md:-right-12 lg:-right-16',
+  tl: 'top-3 -left-14 -rotate-6',
+  tr: 'top-4 -right-14 rotate-6',
+  bl: 'bottom-16 -left-14 rotate-6 hidden md:block',
+  br: 'bottom-10 -right-14 -rotate-6 hidden md:block',
+  ml: 'top-[31%] -left-10 rotate-6 hidden sm:block',
+  mr: 'top-[34%] -right-10 -rotate-6 hidden sm:block',
 }
 
 const CORNER_SIZE: Record<Corner, string> = {
-  tl: 'h-28 w-28 sm:h-36 sm:w-36 md:h-52 md:w-52 lg:h-64 lg:w-64',
-  tr: 'h-28 w-28 sm:h-36 sm:w-36 md:h-52 md:w-52 lg:h-64 lg:w-64',
-  bl: 'h-28 w-28 sm:h-36 sm:w-36 md:h-52 md:w-52 lg:h-64 lg:w-64',
-  br: 'h-28 w-28 sm:h-36 sm:w-36 md:h-52 md:w-52 lg:h-64 lg:w-64',
-  ml: 'h-24 w-24 md:h-32 md:w-32 lg:h-40 lg:w-40',
-  mr: 'h-24 w-24 md:h-32 md:w-32 lg:h-40 lg:w-40',
+  tl: 'h-36 w-36 sm:h-40 sm:w-40 md:h-44 md:w-44',
+  tr: 'h-36 w-36 sm:h-40 sm:w-40 md:h-44 md:w-44',
+  bl: 'h-32 w-32 lg:h-36 lg:w-36',
+  br: 'h-32 w-32 lg:h-36 lg:w-36',
+  ml: 'h-28 w-28 md:h-32 md:w-32',
+  mr: 'h-28 w-28 md:h-32 md:w-32',
 }
 
 const ACCENT_BG: Record<MenuCategory['accent'], string> = {
@@ -59,7 +59,7 @@ function MenuCard({ category, index }: { category: MenuCategory; index: number }
 
   return (
     <article
-      className="menu-card bauhaus-card relative flex flex-col bg-white p-6 text-center transition-transform duration-200 hover:-translate-y-1 sm:p-8"
+      className="menu-card bauhaus-card relative mx-auto flex w-full max-w-sm flex-col bg-white p-5 text-center transition-transform duration-200 hover:-translate-y-1 sm:p-6"
       style={cardStyle}
     >
       <span
@@ -130,7 +130,7 @@ export function Menu() {
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+        <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3 lg:gap-6">
           {MENU_CATEGORIES.map((category, idx) => (
             <MenuCard key={category.id} category={category} index={idx} />
           ))}
