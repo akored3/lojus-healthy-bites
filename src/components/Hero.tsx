@@ -2,13 +2,7 @@ import { BRAND, WHATSAPP_MESSAGES, whatsappLink } from '#/lib/brand'
 import { HeroSlider } from './HeroSlider'
 import { WhatsAppIcon } from './WhatsAppIcon'
 
-function FloatingImage({
-  src,
-  side,
-}: {
-  src: string
-  side: 'left' | 'right'
-}) {
+function FloatingImage({ src, side }: { src: string; side: 'left' | 'right' }) {
   const position =
     side === 'left'
       ? '-left-10 -rotate-6 sm:-left-14 md:-left-20 lg:-left-48 xl:-left-64'
@@ -28,10 +22,16 @@ function FloatingImage({
 
 export function Hero() {
   return (
-    <section className="relative bg-bg-warm px-4 pb-8 pt-16 sm:px-6 sm:pb-12 sm:pt-20">
+    <section className="relative bg-bg-butter px-4 pb-8 pt-16 sm:px-6 sm:pb-12 sm:pt-20">
       <div className="relative mx-auto max-w-3xl md:max-w-2xl lg:max-w-3xl">
-        <FloatingImage src="/images/floating_fruitjuice-removebg-preview.png" side="left" />
-        <FloatingImage src="/images/floating_tigernut-removebg-preview.png" side="right" />
+        <FloatingImage
+          src="/images/floating_fruitjuice-removebg-preview.png"
+          side="left"
+        />
+        <FloatingImage
+          src="/images/floating_tigernut-removebg-preview.png"
+          side="right"
+        />
         <h1 className="mb-5 text-center text-3xl font-bold leading-tight text-text-dark sm:text-4xl lg:text-5xl">
           Fresh, Flavorful &<br />
           Guilt-Free{' '}

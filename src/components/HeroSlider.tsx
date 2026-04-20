@@ -1,6 +1,12 @@
 const SLIDES = [
-  { src: '/images/carousel_juice.png', alt: 'Fresh-pressed Fruit Naturel juices' },
-  { src: '/images/carousel_parfait.png', alt: 'Layered fruit and yogurt parfait' },
+  {
+    src: '/images/carousel_juice.png',
+    alt: 'Fresh-pressed Fruit Naturel juices',
+  },
+  {
+    src: '/images/carousel_parfait.png',
+    alt: 'Layered fruit and yogurt parfait',
+  },
   { src: '/images/carousel_pizza.jpg', alt: 'Wood-fired mini pizza' },
 ]
 

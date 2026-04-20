@@ -4,9 +4,9 @@ import { useActiveSection } from '#/lib/useActiveSection'
 import { Wordmark } from './Wordmark'
 import { WhatsAppIcon } from './WhatsAppIcon'
 
-const SECTION_IDS = NAV_LINKS
-  .map((l) => l.href.replace('#', ''))
-  .filter((id) => id.length > 0)
+const SECTION_IDS = NAV_LINKS.map((l) => l.href.replace('#', '')).filter(
+  (id) => id.length > 0,
+)
 
 const closeMobileMenu = () => {
   const cb = document.getElementById('nav-toggle') as HTMLInputElement | null
@@ -27,9 +27,7 @@ function navLinkClasses(isActive: boolean, variant: 'desktop' | 'mobile') {
 export function Navbar() {
   const { activeId, atTop } = useActiveSection(SECTION_IDS)
   const isActive = (href: string) =>
-    href === '#'
-      ? atTop
-      : !atTop && activeId === href.replace('#', '')
+    href === '#' ? atTop : !atTop && activeId === href.replace('#', '')
 
   return (
     <header className="fixed inset-x-0 top-0 z-[200] px-4 pt-4">
@@ -37,7 +35,11 @@ export function Navbar() {
         aria-label="Primary"
         className="mx-auto flex max-w-6xl items-center justify-between gap-4 rounded-full border-[3px] border-ink bg-bg-cream px-4 py-2 shadow-[6px_6px_0_var(--color-ink)] sm:px-5"
       >
-        <a href="#" className="flex items-center gap-2" aria-label="Loju's Healthy Bites home">
+        <a
+          href="#"
+          className="flex items-center gap-2"
+          aria-label="Loju's Healthy Bites home"
+        >
           <Wordmark size="sm" />
         </a>
 
@@ -67,7 +69,12 @@ export function Navbar() {
           Order on WhatsApp
         </a>
 
-        <input id="nav-toggle" type="checkbox" className="peer sr-only" aria-hidden="true" />
+        <input
+          id="nav-toggle"
+          type="checkbox"
+          className="peer sr-only"
+          aria-hidden="true"
+        />
         <label
           htmlFor="nav-toggle"
           className="nav-toggle-label inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border-[2.5px] border-ink bg-white shadow-[3px_3px_0_var(--color-ink)] md:hidden"

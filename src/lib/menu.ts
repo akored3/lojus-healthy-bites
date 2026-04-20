@@ -9,19 +9,22 @@ export const MENU_CATEGORIES: readonly MenuCategory[] = [
   {
     id: 'parfaits',
     title: 'Parfaits',
-    accent: 'green',
+    accent: 'tangerine',
     variants: [
       'Berry Bliss',
       'Tropical Paradise',
       'Chocolate Banana Crunch',
       'Apple Cinnamon Delight',
       'Peach Almond Dream',
+      'Mango Coconut Crunch',
+      'Honey Granola Swirl',
+      'Vanilla Berry Layer',
     ],
   },
   {
     id: 'mini-pizzas',
     title: 'Mini Pizzas',
-    accent: 'sky',
+    accent: 'lemon',
     variants: [
       'Margherita',
       'BBQ Chicken',
@@ -33,13 +36,16 @@ export const MENU_CATEGORIES: readonly MenuCategory[] = [
   {
     id: 'juices',
     title: 'Juices & Smoothies',
-    accent: 'lemon',
+    accent: 'sky',
     variants: [
       'Tigernut',
       'Fruit Naturel',
       'Green Detox',
       'Mango Smoothie',
       'Berry Blast',
+      'Watermelon Cooler',
+      'Pineapple Ginger',
+      'Carrot Orange Zing',
     ],
   },
 ]

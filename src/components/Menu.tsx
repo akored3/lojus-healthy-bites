@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react'
 import { UtensilsCrossed } from 'lucide-react'
-import { MENU_CATEGORIES, type MenuCategory } from '#/lib/menu'
+import { MENU_CATEGORIES  } from '#/lib/menu'
+import type {MenuCategory} from '#/lib/menu';
 import { useInView } from '#/lib/useInView'
 
 type Corner = 'tl' | 'tr' | 'bl' | 'br' | 'ml' | 'mr'
@@ -30,6 +31,13 @@ const ACCENT_BG: Record<MenuCategory['accent'], string> = {
   green: 'bg-accent-green',
 }
 
+const CARD_BG: Record<MenuCategory['accent'], string> = {
+  tangerine: 'bg-bg-tangerine',
+  sky: 'bg-sky-light',
+  lemon: 'bg-bg-lemon',
+  green: 'bg-bg-mint',
+}
+
 const CARD_STAGGER_MS = 160
 const PILL_OFFSET_MS = 220
 const DOT_OFFSET_MS = 320
@@ -49,7 +57,15 @@ function MenuCornerImage({ src, corner }: { src: string; corner: Corner }) {
   )
 }
 
-function MenuCard({ category, index }: { category: MenuCategory; index: number }) {
+function MenuCard({
+  category,
+  index,
+  isCompact,
+}: {
+  category: MenuCategory
+  index: number
+  isCompact: boolean
+}) {
   const cardDelay = index * CARD_STAGGER_MS
   const cardStyle = {
     '--card-delay': `${cardDelay}ms`,
@@ -57,9 +73,13 @@ function MenuCard({ category, index }: { category: MenuCategory; index: number }
     '--dot-delay': `${cardDelay + DOT_OFFSET_MS}ms`,
   } as CSSProperties
 
+  const sizeClasses = isCompact
+    ? 'max-w-[17rem] self-start p-4 sm:p-5'
+    : 'max-w-sm p-5 sm:p-6'
+
   return (
     <article
-      className="menu-card bauhaus-card relative mx-auto flex w-full max-w-sm flex-col bg-white p-5 text-center transition-transform duration-200 hover:-translate-y-1 sm:p-6"
+      className={`menu-card bauhaus-card relative mx-auto flex w-full flex-col text-center transition-transform duration-200 hover:-translate-y-1 ${CARD_BG[category.accent]} ${sizeClasses}`}
       style={cardStyle}
     >
       <span
@@ -75,24 +95,27 @@ function MenuCard({ category, index }: { category: MenuCategory; index: number }
         </span>
       </div>
 
-      <ul className="mt-6 flex flex-col gap-2.5 text-sm text-text-body sm:text-base">
-        {category.variants.map((variant, itemIdx) => {
-          const itemDelay = cardDelay + ITEMS_OFFSET_MS + itemIdx * ITEM_STAGGER_MS
-          return (
-            <li
-              key={variant}
-              className="menu-item flex items-center justify-center gap-2"
-              style={{ '--item-delay': `${itemDelay}ms` } as CSSProperties}
-            >
-              <span
-                aria-hidden="true"
-                className={`menu-bullet inline-block h-1.5 w-1.5 rounded-full ${ACCENT_BG[category.accent]}`}
-              />
-              {variant}
-            </li>
-          )
-        })}
-      </ul>
+      <div className="bauhaus-card mt-6 bg-white p-4 sm:p-5">
+        <ul className="flex flex-col gap-2.5 text-sm text-text-body sm:text-base">
+          {category.variants.map((variant, itemIdx) => {
+            const itemDelay =
+              cardDelay + ITEMS_OFFSET_MS + itemIdx * ITEM_STAGGER_MS
+            return (
+              <li
+                key={variant}
+                className="menu-item flex items-center justify-center gap-2"
+                style={{ '--item-delay': `${itemDelay}ms` } as CSSProperties}
+              >
+                <span
+                  aria-hidden="true"
+                  className={`menu-bullet inline-block h-1.5 w-1.5 rounded-full ${ACCENT_BG[category.accent]}`}
+                />
+                {variant}
+              </li>
+            )
+          })}
+        </ul>
+      </div>
     </article>
   )
 }
@@ -105,7 +128,7 @@ export function Menu() {
       ref={ref}
       id="full-menu"
       data-menu-visible={inView}
-      className="relative overflow-hidden bg-bg-cream px-4 py-20 sm:px-6 sm:py-28"
+      className="relative overflow-hidden bg-bg-mint px-4 py-20 sm:px-6 sm:py-28"
     >
       <MenuCornerImage src="/images/menu_tl.png" corner="tl" />
       <MenuCornerImage src="/images/menu_tr.png" corner="tr" />
@@ -118,7 +141,7 @@ export function Menu() {
         <div className="text-center">
           <span
             aria-label="Menu"
-            className="bauhaus-chip inline-flex h-10 w-10 items-center justify-center bg-accent-green text-white"
+            className="bauhaus-chip inline-flex h-10 w-10 items-center justify-center bg-accent-tangerine text-white"
           >
             <UtensilsCrossed className="h-4 w-4" aria-hidden="true" />
           </span>
@@ -126,13 +149,19 @@ export function Menu() {
             Our Full Menu
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-text-body sm:text-base">
-            A handcrafted lineup of parfaits, mini pizzas, and juices — every bite made fresh, just for you.
+            A handcrafted lineup of parfaits, mini pizzas, and juices — every
+            bite made fresh, just for you.
           </p>
         </div>
 
         <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3 lg:gap-6">
           {MENU_CATEGORIES.map((category, idx) => (
-            <MenuCard key={category.id} category={category} index={idx} />
+            <MenuCard
+              key={category.id}
+              category={category}
+              index={idx}
+              isCompact={idx === 1}
+            />
           ))}
         </div>
       </div>
