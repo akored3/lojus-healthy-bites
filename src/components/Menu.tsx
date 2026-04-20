@@ -60,11 +60,9 @@ function MenuCornerImage({ src, corner }: { src: string; corner: Corner }) {
 function MenuCard({
   category,
   index,
-  isCompact,
 }: {
   category: MenuCategory
   index: number
-  isCompact: boolean
 }) {
   const cardDelay = index * CARD_STAGGER_MS
   const cardStyle = {
@@ -73,13 +71,9 @@ function MenuCard({
     '--dot-delay': `${cardDelay + DOT_OFFSET_MS}ms`,
   } as CSSProperties
 
-  const sizeClasses = isCompact
-    ? 'max-w-[17rem] self-start p-4 sm:p-5'
-    : 'max-w-sm p-5 sm:p-6'
-
   return (
     <article
-      className={`menu-card bauhaus-card relative mx-auto flex w-full flex-col text-center transition-transform duration-200 hover:-translate-y-1 ${CARD_BG[category.accent]} ${sizeClasses}`}
+      className={`menu-card bauhaus-card relative mx-auto flex w-full max-w-sm flex-col self-start p-5 text-center transition-transform duration-200 hover:-translate-y-1 sm:p-6 ${CARD_BG[category.accent]}`}
       style={cardStyle}
     >
       <span
@@ -156,12 +150,7 @@ export function Menu() {
 
         <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3 lg:gap-6">
           {MENU_CATEGORIES.map((category, idx) => (
-            <MenuCard
-              key={category.id}
-              category={category}
-              index={idx}
-              isCompact={idx === 1}
-            />
+            <MenuCard key={category.id} category={category} index={idx} />
           ))}
         </div>
       </div>
