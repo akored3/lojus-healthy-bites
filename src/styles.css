@@ -3,28 +3,28 @@
 @theme {
   --font-sans: 'Comfortaa', ui-sans-serif, system-ui, sans-serif;
 
-  --color-bg-warm: #faf3e0;
-  --color-bg-cream: #f9f1dc;
-  --color-bg-butter: #f4dfb0;
-  --color-bg-mint: #e7cfa5;
-  --color-bg-lemon: #f5e6a1;
-  --color-bg-tangerine: #ffd9b8;
+  --color-bg-warm: #fbf4e6;
+  --color-bg-cream: #faf2e0;
+  --color-bg-butter: #f9ead5;
+  --color-bg-mint: #f2dde3;
+  --color-bg-lemon: #f5e5a8;
+  --color-bg-tangerine: #ffddc2;
 
   --color-text-dark: #1a1a1a;
   --color-text-body: #525c4a;
   --color-text-menu: #2d3525;
 
-  --color-accent-lemon: #d4a017;
-  --color-accent-tangerine: #e85d2f;
-  --color-accent-green: #4a7c3a;
+  --color-accent-lemon: #c68e17;
+  --color-accent-tangerine: #d94a1f;
+  --color-accent-green: #3d6b2f;
   --color-accent-emerald: #059669;
   --color-accent-amber: #d97706;
   --color-accent-orange: #ea580c;
   --color-accent-cobalt: #2563eb;
 
-  --color-accent-sky: #3a8fbc;
-  --color-sky-light: #d4e4ee;
-  --color-bg-rose: #dde5cf;
+  --color-accent-sky: #2d5f6b;
+  --color-sky-light: #d9e7e8;
+  --color-bg-rose: #e8dfd0;
 
   --color-whatsapp: #25d366;
   --color-ink: #1a1a1a;
