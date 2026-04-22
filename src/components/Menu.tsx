@@ -86,7 +86,7 @@ function MenuCard({
 
   return (
     <article
-      className={`menu-card bauhaus-card relative mx-auto flex w-full max-w-[320px] flex-col self-start p-4 text-center transition-transform duration-200 hover:-translate-y-1 sm:max-w-sm sm:p-6 ${CARD_BG[category.accent]}`}
+      className={`menu-card bauhaus-card relative mx-auto flex w-full max-w-sm flex-col self-start p-5 text-center transition-transform duration-200 hover:-translate-y-1 sm:p-6 ${CARD_BG[category.accent]}`}
       style={cardStyle}
     >
       <span
