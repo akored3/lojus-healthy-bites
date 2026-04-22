@@ -117,7 +117,7 @@ function MenuCard({
                   type="button"
                   onClick={() => onSelect(variant, category.accent)}
                   aria-label={`View ${variant.name}`}
-                  className={`group flex w-full items-center justify-center gap-2 rounded-md px-2 py-1.5 transition-colors duration-200 focus-visible:outline-none ${ROW_HOVER_BG[category.accent]}`}
+                  className={`group flex w-full cursor-pointer items-center justify-center gap-2 rounded-md px-2 py-2 transition-colors duration-200 focus-visible:outline-none ${ROW_HOVER_BG[category.accent]}`}
                 >
                   <span
                     aria-hidden="true"
@@ -181,9 +181,9 @@ function MenuItemModal({
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full border-[2px] border-ink bg-white transition-transform hover:-translate-y-0.5"
+          className="absolute right-3 top-3 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border-[2px] border-ink bg-white transition-transform hover:-translate-y-0.5"
         >
-          <X className="h-4 w-4" aria-hidden="true" />
+          <X className="h-5 w-5" aria-hidden="true" />
         </button>
 
         <span
