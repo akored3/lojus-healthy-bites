@@ -1,9 +1,11 @@
+import { useEffect, useState } from 'react'
 import type { CSSProperties } from 'react'
-import { ArrowRight, UtensilsCrossed } from 'lucide-react'
+import { UtensilsCrossed, X } from 'lucide-react'
 import { MENU_CATEGORIES } from '#/lib/menu'
-import type { MenuCategory } from '#/lib/menu'
+import type { MenuCategory, MenuVariant } from '#/lib/menu'
 import { orderItemMessage, whatsappLink } from '#/lib/brand'
 import { useInView } from '#/lib/useInView'
+import { WhatsAppIcon } from './WhatsAppIcon'
 
 type Corner = 'tl' | 'tr' | 'bl' | 'br' | 'ml' | 'mr'
 
@@ -61,9 +63,11 @@ function MenuCornerImage({ src, corner }: { src: string; corner: Corner }) {
 function MenuCard({
   category,
   index,
+  onSelect,
 }: {
   category: MenuCategory
   index: number
+  onSelect: (variant: MenuVariant, accent: MenuCategory['accent']) => void
 }) {
   const cardDelay = index * CARD_STAGGER_MS
   const cardStyle = {
@@ -90,8 +94,8 @@ function MenuCard({
         </span>
       </div>
 
-      <div className="bauhaus-card mt-6 bg-white p-3 sm:p-4">
-        <ul className="flex flex-col">
+      <div className="bauhaus-card mt-6 bg-white p-4 sm:p-5">
+        <ul className="flex flex-col gap-2.5 text-sm text-text-body sm:text-base">
           {category.variants.map((variant, itemIdx) => {
             const itemDelay =
               cardDelay + ITEMS_OFFSET_MS + itemIdx * ITEM_STAGGER_MS
@@ -101,26 +105,18 @@ function MenuCard({
                 className="menu-item"
                 style={{ '--item-delay': `${itemDelay}ms` } as CSSProperties}
               >
-                <a
-                  href={whatsappLink(orderItemMessage(variant.name))}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Order ${variant.name} on WhatsApp`}
-                  className="group flex items-center gap-3 rounded-lg px-2 py-2 text-left transition-colors hover:bg-black/5 focus-visible:bg-black/5 focus-visible:outline-none"
+                <button
+                  type="button"
+                  onClick={() => onSelect(variant, category.accent)}
+                  aria-label={`View ${variant.name}`}
+                  className="flex w-full items-center justify-center gap-2 rounded-md px-2 py-1 transition-colors hover:bg-black/5 focus-visible:bg-black/5 focus-visible:outline-none"
                 >
-                  <div className="min-w-0 flex-1">
-                    <div className="text-sm font-bold text-text-dark sm:text-base">
-                      {variant.name}
-                    </div>
-                    <div className="mt-0.5 text-xs leading-snug text-text-body/80 sm:text-[13px]">
-                      {variant.blurb}
-                    </div>
-                  </div>
-                  <ArrowRight
+                  <span
                     aria-hidden="true"
-                    className="h-4 w-4 shrink-0 text-text-body transition-transform group-hover:translate-x-0.5"
+                    className={`menu-bullet inline-block h-1.5 w-1.5 rounded-full ${ACCENT_BG[category.accent]}`}
                   />
-                </a>
+                  {variant.name}
+                </button>
               </li>
             )
           })}
@@ -130,8 +126,88 @@ function MenuCard({
   )
 }
 
+function MenuItemModal({
+  variant,
+  accent,
+  onClose,
+}: {
+  variant: MenuVariant
+  accent: MenuCategory['accent']
+  onClose: () => void
+}) {
+  useEffect(() => {
+    function handleEsc(e: KeyboardEvent) {
+      if (e.key === 'Escape') onClose()
+    }
+    window.addEventListener('keydown', handleEsc)
+    const prevOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      window.removeEventListener('keydown', handleEsc)
+      document.body.style.overflow = prevOverflow
+    }
+  }, [onClose])
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="menu-item-modal-title"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+    >
+      <div
+        aria-hidden="true"
+        onClick={onClose}
+        className="absolute inset-0 bg-black/40"
+      />
+      <div
+        className={`relative w-full max-w-sm bauhaus-card p-6 text-center sm:p-8 ${CARD_BG[accent]}`}
+      >
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close"
+          className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full border-[2px] border-ink bg-white transition-transform hover:-translate-y-0.5"
+        >
+          <X className="h-4 w-4" aria-hidden="true" />
+        </button>
+
+        <span
+          aria-hidden="true"
+          className={`inline-block h-3 w-3 border-[2px] border-ink ${ACCENT_BG[accent]}`}
+        />
+        <h3
+          id="menu-item-modal-title"
+          className="mt-4 text-2xl font-bold text-text-dark sm:text-3xl"
+        >
+          {variant.name}
+        </h3>
+        <p className="mx-auto mt-3 max-w-xs text-sm leading-relaxed text-text-body sm:text-base">
+          {variant.blurb}
+        </p>
+
+        <div className="mt-8 flex justify-end">
+          <a
+            href={whatsappLink(orderItemMessage(variant.name))}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bauhaus-btn bg-whatsapp text-sm text-white sm:text-base"
+          >
+            <WhatsAppIcon className="h-5 w-5" />
+            Order Now →
+          </a>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export function Menu() {
   const { ref, inView } = useInView<HTMLElement>(0.2)
+  const [selected, setSelected] = useState<{
+    variant: MenuVariant
+    accent: MenuCategory['accent']
+  } | null>(null)
 
   return (
     <section
@@ -166,10 +242,23 @@ export function Menu() {
 
         <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3 lg:gap-6">
           {MENU_CATEGORIES.map((category, idx) => (
-            <MenuCard key={category.id} category={category} index={idx} />
+            <MenuCard
+              key={category.id}
+              category={category}
+              index={idx}
+              onSelect={(variant, accent) => setSelected({ variant, accent })}
+            />
           ))}
         </div>
       </div>
+
+      {selected && (
+        <MenuItemModal
+          variant={selected.variant}
+          accent={selected.accent}
+          onClose={() => setSelected(null)}
+        />
+      )}
     </section>
   )
 }
