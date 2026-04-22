@@ -12,10 +12,10 @@ type Corner = 'tl' | 'tr' | 'bl' | 'br' | 'ml' | 'mr'
 const CORNER_POSITION: Record<Corner, string> = {
   tl: 'top-3 -left-14 -rotate-6',
   tr: 'top-4 -right-14 rotate-6',
-  bl: 'bottom-16 -left-14 rotate-6 hidden md:block',
-  br: 'bottom-10 -right-14 -rotate-6 hidden md:block',
-  ml: 'top-[31%] -left-10 rotate-6 hidden sm:block',
-  mr: 'top-[34%] -right-10 -rotate-6 hidden sm:block',
+  bl: 'bottom-16 -left-14 rotate-6',
+  br: 'bottom-10 -right-14 -rotate-6',
+  ml: 'top-[31%] -left-10 rotate-6',
+  mr: 'top-[34%] -right-10 -rotate-6',
 }
 
 const CORNER_SIZE: Record<Corner, string> = {
