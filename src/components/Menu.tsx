@@ -1,7 +1,8 @@
 import type { CSSProperties } from 'react'
-import { UtensilsCrossed } from 'lucide-react'
-import { MENU_CATEGORIES  } from '#/lib/menu'
-import type {MenuCategory} from '#/lib/menu';
+import { ArrowRight, UtensilsCrossed } from 'lucide-react'
+import { MENU_CATEGORIES } from '#/lib/menu'
+import type { MenuCategory } from '#/lib/menu'
+import { orderItemMessage, whatsappLink } from '#/lib/brand'
 import { useInView } from '#/lib/useInView'
 
 type Corner = 'tl' | 'tr' | 'bl' | 'br' | 'ml' | 'mr'
@@ -89,22 +90,37 @@ function MenuCard({
         </span>
       </div>
 
-      <div className="bauhaus-card mt-6 bg-white p-4 sm:p-5">
-        <ul className="flex flex-col gap-2.5 text-sm text-text-body sm:text-base">
+      <div className="bauhaus-card mt-6 bg-white p-3 sm:p-4">
+        <ul className="flex flex-col">
           {category.variants.map((variant, itemIdx) => {
             const itemDelay =
               cardDelay + ITEMS_OFFSET_MS + itemIdx * ITEM_STAGGER_MS
             return (
               <li
-                key={variant}
-                className="menu-item flex items-center justify-center gap-2"
+                key={variant.name}
+                className="menu-item"
                 style={{ '--item-delay': `${itemDelay}ms` } as CSSProperties}
               >
-                <span
-                  aria-hidden="true"
-                  className={`menu-bullet inline-block h-1.5 w-1.5 rounded-full ${ACCENT_BG[category.accent]}`}
-                />
-                {variant}
+                <a
+                  href={whatsappLink(orderItemMessage(variant.name))}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Order ${variant.name} on WhatsApp`}
+                  className="group flex items-center gap-3 rounded-lg px-2 py-2 text-left transition-colors hover:bg-black/5 focus-visible:bg-black/5 focus-visible:outline-none"
+                >
+                  <div className="min-w-0 flex-1">
+                    <div className="text-sm font-bold text-text-dark sm:text-base">
+                      {variant.name}
+                    </div>
+                    <div className="mt-0.5 text-xs leading-snug text-text-body/80 sm:text-[13px]">
+                      {variant.blurb}
+                    </div>
+                  </div>
+                  <ArrowRight
+                    aria-hidden="true"
+                    className="h-4 w-4 shrink-0 text-text-body transition-transform group-hover:translate-x-0.5"
+                  />
+                </a>
               </li>
             )
           })}

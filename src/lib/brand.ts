@@ -26,3 +26,7 @@ export const WHATSAPP_MESSAGES = {
   reviews: 'Hi, I saw your reviews and I want to order.',
   fab: "Hi, I would like to place an order. Please share today's menu.",
 } as const
+
+export function orderItemMessage(itemName: string): string {
+  return `Hi Loju's! I'd like to order one ${itemName}.`
+}
