@@ -41,6 +41,14 @@ const CARD_BG: Record<MenuCategory['accent'], string> = {
   green: 'bg-bg-mint',
 }
 
+const ROW_HOVER_BG: Record<MenuCategory['accent'], string> = {
+  tangerine:
+    'hover:bg-accent-tangerine/10 focus-visible:bg-accent-tangerine/10',
+  sky: 'hover:bg-accent-sky/10 focus-visible:bg-accent-sky/10',
+  lemon: 'hover:bg-accent-lemon/15 focus-visible:bg-accent-lemon/15',
+  green: 'hover:bg-accent-green/10 focus-visible:bg-accent-green/10',
+}
+
 const CARD_STAGGER_MS = 160
 const PILL_OFFSET_MS = 220
 const DOT_OFFSET_MS = 320
@@ -109,13 +117,19 @@ function MenuCard({
                   type="button"
                   onClick={() => onSelect(variant, category.accent)}
                   aria-label={`View ${variant.name}`}
-                  className="flex w-full items-center justify-center gap-2 rounded-md px-2 py-1 transition-colors hover:bg-black/5 focus-visible:bg-black/5 focus-visible:outline-none"
+                  className={`group flex w-full items-center justify-center gap-2 rounded-md px-2 py-1.5 transition-colors duration-200 focus-visible:outline-none ${ROW_HOVER_BG[category.accent]}`}
                 >
                   <span
                     aria-hidden="true"
-                    className={`menu-bullet inline-block h-1.5 w-1.5 rounded-full ${ACCENT_BG[category.accent]}`}
+                    className={`menu-bullet inline-block h-1.5 w-1.5 rounded-full transition-transform duration-200 motion-reduce:transition-none group-hover:scale-[1.7] group-focus-visible:scale-[1.7] ${ACCENT_BG[category.accent]}`}
                   />
-                  {variant.name}
+                  <span className="relative inline-block">
+                    {variant.name}
+                    <span
+                      aria-hidden="true"
+                      className={`pointer-events-none absolute -bottom-0.5 left-0 h-[2px] w-full origin-left scale-x-0 transition-transform duration-200 ease-out motion-reduce:transition-none group-hover:scale-x-100 group-focus-visible:scale-x-100 ${ACCENT_BG[category.accent]}`}
+                    />
+                  </span>
                 </button>
               </li>
             )
