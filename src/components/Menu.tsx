@@ -103,7 +103,7 @@ function MenuCard({
       </div>
 
       <div className="bauhaus-card mt-6 bg-white p-4 sm:p-5">
-        <ul className="flex flex-col gap-2.5 text-sm text-text-body sm:text-base">
+        <ul className="scrollbar-hide flex max-h-60 flex-col gap-2.5 overflow-y-auto text-sm text-text-body sm:max-h-none sm:overflow-visible sm:text-base">
           {category.variants.map((variant, itemIdx) => {
             const itemDelay =
               cardDelay + ITEMS_OFFSET_MS + itemIdx * ITEM_STAGGER_MS
