@@ -38,13 +38,7 @@ export function Hero() {
             <p className="mx-auto mt-5 max-w-lg text-sm leading-relaxed text-text-body sm:text-lg md:mx-0">
               {BRAND.subtitle}
             </p>
-            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row md:justify-start">
-              <a
-                href="#full-menu"
-                className="bauhaus-btn bg-white text-sm text-ink sm:text-base"
-              >
-                View Menu
-              </a>
+            <div className="mt-8 flex justify-center md:justify-start">
               <a
                 href={whatsappLink(WHATSAPP_MESSAGES.order)}
                 target="_blank"
