@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react'
 import { ArrowRight, Heart, Sparkles } from 'lucide-react'
-import { WHY_US_ITEMS  } from '#/lib/why-us'
-import type {WhyUsItem} from '#/lib/why-us';
+import { WHY_US_ITEMS } from '#/lib/why-us'
+import type { WhyUsItem } from '#/lib/why-us'
 import { useInView } from '#/lib/useInView'
 
 const CARD_BG: Record<WhyUsItem['accent'], string> = {
@@ -41,7 +41,7 @@ function WhyUsCard({ item, index }: { item: WhyUsItem; index: number }) {
 
   return (
     <article
-      className={`whyus-card bauhaus-card relative flex flex-col items-center gap-5 p-6 text-center transition-transform duration-200 hover:-translate-y-1 sm:p-8 md:items-center md:gap-8 md:p-10 md:text-left ${reverse} ${CARD_BG[item.accent]}`}
+      className={`whyus-card bauhaus-card relative flex flex-col items-center gap-5 p-4 text-center transition-transform duration-200 hover:-translate-y-1 sm:p-6 md:items-center md:gap-8 md:p-8 md:text-left ${reverse} ${CARD_BG[item.accent]}`}
       style={cardStyle}
     >
       <Heart
