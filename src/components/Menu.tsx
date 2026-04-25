@@ -123,14 +123,14 @@ function MenuCard({
                     aria-hidden="true"
                     className={`menu-bullet inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full transition-transform duration-200 motion-reduce:transition-none group-hover:scale-[1.7] group-focus-visible:scale-[1.7] ${ACCENT_BG[category.accent]}`}
                   />
-                  <span className="relative inline-block text-left">
+                  <span className="relative min-w-0 flex-1 text-left">
                     {variant.name}
                     <span
                       aria-hidden="true"
                       className={`pointer-events-none absolute -bottom-0.5 left-0 h-[2px] w-full origin-left scale-x-0 transition-transform duration-200 ease-out motion-reduce:transition-none group-hover:scale-x-100 group-focus-visible:scale-x-100 ${ACCENT_BG[category.accent]}`}
                     />
                   </span>
-                  <span className="ml-auto flex-shrink-0 text-xs font-bold tabular-nums text-text-dark sm:text-sm">
+                  <span className="flex-shrink-0 text-xs font-bold tabular-nums text-accent-green sm:text-sm">
                     {formatPrice(variant.price)}
                   </span>
                 </button>
@@ -202,7 +202,7 @@ function MenuItemModal({
         <p className="mx-auto mt-3 max-w-xs text-sm leading-relaxed text-text-body sm:text-base">
           {variant.blurb}
         </p>
-        <p className="mt-4 text-2xl font-bold tabular-nums text-text-dark sm:text-3xl">
+        <p className="mt-4 text-2xl font-bold tabular-nums text-accent-green sm:text-3xl">
           {formatPrice(variant.price)}
         </p>
 
