@@ -27,6 +27,7 @@ export const WHATSAPP_MESSAGES = {
   fab: "Hi, I would like to place an order. Please share today's menu.",
 } as const
 
-export function orderItemMessage(itemName: string): string {
-  return `Hi Loju's! I'd like to order one ${itemName}.`
+export function orderItemMessage(itemName: string, price?: number): string {
+  const priceTag = price ? ` (₦${price.toLocaleString('en-NG')})` : ''
+  return `Hi Loju's! I'd like to order one ${itemName}${priceTag}.`
 }

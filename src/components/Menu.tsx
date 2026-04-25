@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { CSSProperties } from 'react'
 import { UtensilsCrossed, X } from 'lucide-react'
-import { MENU_CATEGORIES } from '#/lib/menu'
+import { MENU_CATEGORIES, formatPrice } from '#/lib/menu'
 import type { MenuCategory, MenuVariant } from '#/lib/menu'
 import { orderItemMessage, whatsappLink } from '#/lib/brand'
 import { useInView } from '#/lib/useInView'
@@ -116,19 +116,22 @@ function MenuCard({
                 <button
                   type="button"
                   onClick={() => onSelect(variant, category.accent)}
-                  aria-label={`View ${variant.name}`}
-                  className={`group flex w-full cursor-pointer items-center justify-center gap-2 rounded-md px-2 py-2 transition-colors duration-200 focus-visible:outline-none ${ROW_HOVER_BG[category.accent]}`}
+                  aria-label={`View ${variant.name}, ${formatPrice(variant.price)}`}
+                  className={`group flex w-full cursor-pointer items-center gap-2 rounded-md px-2 py-2 transition-colors duration-200 focus-visible:outline-none ${ROW_HOVER_BG[category.accent]}`}
                 >
                   <span
                     aria-hidden="true"
-                    className={`menu-bullet inline-block h-1.5 w-1.5 rounded-full transition-transform duration-200 motion-reduce:transition-none group-hover:scale-[1.7] group-focus-visible:scale-[1.7] ${ACCENT_BG[category.accent]}`}
+                    className={`menu-bullet inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full transition-transform duration-200 motion-reduce:transition-none group-hover:scale-[1.7] group-focus-visible:scale-[1.7] ${ACCENT_BG[category.accent]}`}
                   />
-                  <span className="relative inline-block">
+                  <span className="relative inline-block text-left">
                     {variant.name}
                     <span
                       aria-hidden="true"
                       className={`pointer-events-none absolute -bottom-0.5 left-0 h-[2px] w-full origin-left scale-x-0 transition-transform duration-200 ease-out motion-reduce:transition-none group-hover:scale-x-100 group-focus-visible:scale-x-100 ${ACCENT_BG[category.accent]}`}
                     />
+                  </span>
+                  <span className="ml-auto flex-shrink-0 text-xs font-bold tabular-nums text-text-dark sm:text-sm">
+                    {formatPrice(variant.price)}
                   </span>
                 </button>
               </li>
@@ -199,10 +202,13 @@ function MenuItemModal({
         <p className="mx-auto mt-3 max-w-xs text-sm leading-relaxed text-text-body sm:text-base">
           {variant.blurb}
         </p>
+        <p className="mt-4 text-2xl font-bold tabular-nums text-text-dark sm:text-3xl">
+          {formatPrice(variant.price)}
+        </p>
 
         <div className="mt-8 flex justify-end">
           <a
-            href={whatsappLink(orderItemMessage(variant.name))}
+            href={whatsappLink(orderItemMessage(variant.name, variant.price))}
             target="_blank"
             rel="noopener noreferrer"
             className="bauhaus-btn bg-whatsapp text-sm text-white sm:text-base"
