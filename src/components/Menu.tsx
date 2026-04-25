@@ -86,7 +86,7 @@ function MenuCard({
 
   return (
     <article
-      className={`menu-card bauhaus-card relative mx-auto flex w-full max-w-sm flex-col self-start p-5 text-center transition-transform duration-200 hover:-translate-y-1 sm:p-6 ${CARD_BG[category.accent]}`}
+      className={`menu-card bauhaus-card relative mx-auto flex w-full max-w-sm flex-col self-start p-5 text-center transition-transform duration-200 hover:-translate-y-1 sm:p-6 md:p-4 lg:p-6 ${CARD_BG[category.accent]}`}
       style={cardStyle}
     >
       <span
@@ -96,14 +96,14 @@ function MenuCard({
 
       <div className="mx-auto">
         <span
-          className={`menu-pill bauhaus-chip items-center px-5 py-1.5 text-sm text-ink sm:text-base ${ACCENT_BG[category.accent]}`}
+          className={`menu-pill bauhaus-chip items-center px-5 py-1.5 text-sm text-ink sm:text-base md:px-3 md:py-1 md:text-xs lg:px-5 lg:py-1.5 lg:text-base ${ACCENT_BG[category.accent]}`}
         >
           {category.title}
         </span>
       </div>
 
-      <div className="bauhaus-card mt-6 bg-white p-4 sm:p-5">
-        <ul className="scrollbar-hide flex max-h-60 flex-col gap-2.5 overflow-y-auto text-sm text-text-body sm:max-h-none sm:overflow-visible sm:text-base">
+      <div className="bauhaus-card mt-6 bg-white p-4 sm:p-5 md:p-3 lg:p-5">
+        <ul className="scrollbar-hide flex max-h-60 flex-col gap-2.5 overflow-y-auto text-sm text-text-body sm:max-h-none sm:overflow-visible sm:text-base md:gap-1.5 md:text-xs lg:gap-2.5 lg:text-sm xl:text-base">
           {category.variants.map((variant, itemIdx) => {
             const itemDelay =
               cardDelay + ITEMS_OFFSET_MS + itemIdx * ITEM_STAGGER_MS
@@ -117,7 +117,7 @@ function MenuCard({
                   type="button"
                   onClick={() => onSelect(variant, category.accent)}
                   aria-label={`View ${variant.name}, ${formatPrice(variant.price)}`}
-                  className={`group flex w-full cursor-pointer items-center gap-2 rounded-md px-2 py-2 transition-colors duration-200 focus-visible:outline-none ${ROW_HOVER_BG[category.accent]}`}
+                  className={`group flex w-full cursor-pointer items-center gap-2 rounded-md px-2 py-2 transition-colors duration-200 focus-visible:outline-none md:gap-1.5 md:px-1 md:py-1 lg:gap-2 lg:px-2 lg:py-2 ${ROW_HOVER_BG[category.accent]}`}
                 >
                   <span
                     aria-hidden="true"
@@ -130,7 +130,7 @@ function MenuCard({
                       className={`pointer-events-none absolute -bottom-0.5 left-0 h-[2px] w-full origin-left scale-x-0 transition-transform duration-200 ease-out motion-reduce:transition-none group-hover:scale-x-100 group-focus-visible:scale-x-100 ${ACCENT_BG[category.accent]}`}
                     />
                   </span>
-                  <span className="flex-shrink-0 text-xs font-bold tabular-nums text-accent-green sm:text-sm">
+                  <span className="flex-shrink-0 text-xs font-bold tabular-nums text-accent-green sm:text-sm md:text-[10px] lg:text-xs xl:text-sm">
                     {formatPrice(variant.price)}
                   </span>
                 </button>
@@ -260,7 +260,7 @@ export function Menu() {
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-5 lg:grid-cols-3 lg:gap-6">
+        <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-4 lg:gap-6">
           {MENU_CATEGORIES.map((category, idx) => (
             <MenuCard
               key={category.id}
