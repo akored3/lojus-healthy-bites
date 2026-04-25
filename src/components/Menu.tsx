@@ -260,7 +260,7 @@ export function Menu() {
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3 lg:gap-6">
+        <div className="mt-14 grid grid-cols-1 gap-5 lg:grid-cols-3 lg:gap-6">
           {MENU_CATEGORIES.map((category, idx) => (
             <MenuCard
               key={category.id}
