@@ -3,6 +3,7 @@ import { Navbar } from '#/components/Navbar'
 import { Hero } from '#/components/Hero'
 import { Menu } from '#/components/Menu'
 import { WhyUs } from '#/components/WhyUs'
+import { Testimonials } from '#/components/Testimonials'
 
 export const Route = createFileRoute('/')({ component: App })
 
@@ -14,6 +15,7 @@ function App() {
         <Hero />
         <Menu />
         <WhyUs />
+        <Testimonials />
       </main>
     </>
   )
