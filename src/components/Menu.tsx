@@ -170,7 +170,7 @@ function MenuItemModal({
       role="dialog"
       aria-modal="true"
       aria-labelledby="menu-item-modal-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 z-[300] flex items-center justify-center p-4"
     >
       <div
         aria-hidden="true"
