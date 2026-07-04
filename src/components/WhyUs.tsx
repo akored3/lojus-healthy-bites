@@ -92,6 +92,24 @@ export function WhyUs() {
       data-whyus-visible={inView}
       className="relative overflow-hidden border-t-[3px] border-ink bg-band-basil px-4 py-20 sm:px-6 sm:py-28"
     >
+      <FloatingSprite
+        src="/images/floating_pineapple.webp"
+        width={320}
+        height={480}
+        className="right-0 top-[30%] w-14 rotate-6 sm:w-16 md:right-[6%] md:top-16 md:w-20"
+      />
+      <FloatingSprite
+        src="/images/floating_milkshake.webp"
+        width={320}
+        height={480}
+        className="left-0 top-[55%] w-14 -rotate-6 sm:w-16 lg:left-[3%] lg:top-[38%]"
+      />
+      <FloatingSprite
+        src="/images/floating_orangejuice.webp"
+        width={320}
+        height={568}
+        className="bottom-32 right-0 w-14 rotate-12 sm:w-16 md:bottom-12 md:right-[4%] md:w-20"
+      />
       <div className="relative mx-auto max-w-4xl">
         <SectionHeader
           icon={Sparkles}
@@ -102,25 +120,7 @@ export function WhyUs() {
           onDark
         />
 
-        <div className="relative mt-14 flex flex-col gap-6 sm:gap-8">
-          <FloatingSprite
-            src="/images/floating_pineapple.webp"
-            width={320}
-            height={480}
-            className="-right-2 -top-9 w-14 rotate-6 sm:w-16 md:-right-8 md:-top-10 lg:-right-12 lg:w-20"
-          />
-          <FloatingSprite
-            src="/images/floating_milkshake.webp"
-            width={320}
-            height={480}
-            className="-left-2 top-[31%] w-14 -rotate-6 sm:w-16 md:-left-8 lg:-left-12 lg:w-20"
-          />
-          <FloatingSprite
-            src="/images/floating_orangejuice.webp"
-            width={320}
-            height={568}
-            className="-bottom-10 -right-2 w-14 rotate-12 sm:w-16 md:-bottom-12 md:-right-8 lg:-right-14 lg:w-20"
-          />
+        <div className="mt-14 flex flex-col gap-6 sm:gap-8">
           {WHY_US_ITEMS.map((item, idx) => (
             <WhyUsCard key={item.id} item={item} index={idx} />
           ))}
