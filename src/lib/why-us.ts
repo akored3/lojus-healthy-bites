@@ -29,7 +29,7 @@ export const WHY_US_ITEMS: readonly WhyUsItem[] = [
     id: 'whatsapp',
     title: 'Order on WhatsApp',
     description: "Skip the queue. Tap, send, and we'll get it to you fast.",
-    accent: 'pink',
+    accent: 'green',
     image: '/images/whyus_delivery.webp',
   },
 ]

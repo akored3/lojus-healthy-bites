@@ -21,8 +21,8 @@ function navLinkClasses(isActive: boolean, variant: 'desktop' | 'mobile') {
       : 'mobile-link block rounded-full border-[2px] px-4 py-2 text-center text-sm font-bold transition-colors'
 
   return isActive
-    ? `${base} border-ink bg-accent-pink text-white shadow-[2px_2px_0_var(--color-ink)]`
-    : `${base} border-transparent text-text-menu hover:border-ink hover:bg-pink-light`
+    ? `${base} border-ink bg-accent-green text-white shadow-[2px_2px_0_var(--color-ink)]`
+    : `${base} border-transparent text-text-menu hover:border-ink hover:bg-bg-sage`
 }
 
 export function Navbar() {

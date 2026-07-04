@@ -2,24 +2,10 @@ import type { CSSProperties } from 'react'
 import { Quote, Star } from 'lucide-react'
 import { TESTIMONIALS } from '#/lib/testimonials'
 import type { Testimonial } from '#/lib/testimonials'
-import { CARD_BG as BASE_CARD_BG } from '#/lib/accents'
+import { ACCENT_BG, CARD_BG, ON_ACCENT_TEXT } from '#/lib/accents'
 import { useInView } from '#/lib/useInView'
 import { SectionHeader } from './SectionHeader'
 import { SpritePlaceholder } from './SpritePlaceholder'
-
-const CARD_BG: Record<Testimonial['accent'], string> = {
-  ...BASE_CARD_BG,
-  green: 'bg-bg-sage',
-  rose: 'bg-bg-blush',
-}
-
-const QUOTE_COLOR: Record<Testimonial['accent'], string> = {
-  tangerine: 'bg-accent-tangerine text-white',
-  pink: 'bg-accent-pink text-white',
-  lemon: 'bg-accent-lemon text-ink',
-  green: 'bg-accent-green text-white',
-  rose: 'bg-accent-tangerine text-white',
-}
 
 const CARD_STAGGER_MS = 140
 const QUOTE_OFFSET_MS = 180
@@ -71,7 +57,7 @@ function TestimonialCard({
     >
       <span
         aria-hidden="true"
-        className={`testimonial-quote bauhaus-chip absolute -left-3 -top-3 h-10 w-10 ${QUOTE_COLOR[item.accent]} ${tilt}`}
+        className={`testimonial-quote bauhaus-chip absolute -left-3 -top-3 h-10 w-10 ${ACCENT_BG[item.accent]} ${ON_ACCENT_TEXT[item.accent]} ${tilt}`}
       >
         <Quote className="h-4 w-4" />
       </span>
@@ -102,25 +88,25 @@ export function Testimonials() {
       id="testimonials"
       data-testimonials-visible={inView}
       aria-labelledby="testimonials-heading"
-      className="relative overflow-hidden border-y-[3px] border-ink bg-accent-tangerine px-4 py-20 sm:px-6 sm:py-28"
+      className="relative overflow-hidden border-y-[3px] border-ink bg-bg-cream px-4 py-20 sm:px-6 sm:py-28"
     >
       <SpritePlaceholder
         label="T1"
-        className="left-[5%] top-14 hidden h-16 w-16 -rotate-6 border-ink/50 bg-white/30 text-ink/70 md:flex"
+        className="left-[5%] top-14 hidden h-16 w-16 -rotate-6 border-ink/40 bg-bg-sage/60 text-ink/60 md:flex"
       />
       <SpritePlaceholder
         label="T2"
-        className="right-[5%] top-20 hidden h-20 w-20 rotate-6 border-ink/50 bg-white/30 text-ink/70 md:flex"
+        className="right-[5%] top-20 hidden h-20 w-20 rotate-6 border-ink/40 bg-bg-sage/60 text-ink/60 md:flex"
       />
       <SpritePlaceholder
         label="T3"
-        className="bottom-8 left-[12%] hidden h-14 w-14 rotate-12 border-ink/50 bg-white/30 text-ink/70 lg:flex"
+        className="bottom-8 left-[12%] hidden h-14 w-14 rotate-12 border-ink/40 bg-bg-sage/60 text-ink/60 lg:flex"
       />
       <div className="relative mx-auto max-w-6xl">
         <SectionHeader
           icon={Quote}
-          chipClass="bg-accent-pink text-white"
-          tickClass="bg-accent-lemon"
+          chipClass="bg-accent-green text-white"
+          tickClass="bg-accent-pink"
           title="Loved by Lagos"
           subtitle="Real people, real bites, real reviews."
           headingId="testimonials-heading"

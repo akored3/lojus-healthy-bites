@@ -11,5 +11,12 @@ export const CARD_BG: Record<Accent, string> = {
   tangerine: 'bg-bg-tangerine',
   pink: 'bg-pink-light',
   lemon: 'bg-bg-lemon',
-  green: 'bg-bg-blush',
+  green: 'bg-bg-sage',
+}
+
+export const ON_ACCENT_TEXT: Record<Accent, string> = {
+  tangerine: 'text-ink',
+  pink: 'text-white',
+  lemon: 'text-ink',
+  green: 'text-white',
 }

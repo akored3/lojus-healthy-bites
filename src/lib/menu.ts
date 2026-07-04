@@ -64,7 +64,7 @@ export const MENU_CATEGORIES: readonly MenuCategory[] = [
   {
     id: 'mini-pizzas',
     title: 'Mini Pizzas',
-    accent: 'lemon',
+    accent: 'green',
     variants: [
       {
         name: 'Margherita',
