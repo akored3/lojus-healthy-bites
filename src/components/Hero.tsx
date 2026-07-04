@@ -1,8 +1,32 @@
 import { BRAND, WHATSAPP_MESSAGES } from '#/lib/brand'
 import { HeroSlider } from './HeroSlider'
-import { SpritePlaceholder } from './SpritePlaceholder'
 import { WhatsAppCta } from './WhatsAppCta'
 import { WhatsAppIcon } from './WhatsAppIcon'
+
+function FloatingSprite({
+  src,
+  width,
+  height,
+  className,
+}: {
+  src: string
+  width: number
+  height: number
+  className: string
+}) {
+  return (
+    <img
+      src={src}
+      alt=""
+      aria-hidden="true"
+      width={width}
+      height={height}
+      loading="lazy"
+      decoding="async"
+      className={`pointer-events-none absolute h-auto select-none drop-shadow-[3px_4px_0_rgba(26,26,26,0.18)] ${className}`}
+    />
+  )
+}
 
 function FloatingImage({
   src,
@@ -42,13 +66,17 @@ function FloatingImage({
 export function Hero() {
   return (
     <section className="relative bg-bg-butter px-4 pb-8 pt-16 sm:px-6 sm:pb-12 sm:pt-20">
-      <SpritePlaceholder
-        label="P1"
-        className="left-[7%] top-6 hidden h-20 w-20 -rotate-6 border-ink/40 bg-white/40 text-ink/60 md:flex lg:h-24 lg:w-24"
+      <FloatingSprite
+        src="/images/floating_chickenboard.webp"
+        width={320}
+        height={320}
+        className="left-[7%] top-6 hidden w-16 -rotate-6 md:block lg:w-20"
       />
-      <SpritePlaceholder
-        label="P2"
-        className="right-[6%] top-8 hidden h-16 w-16 rotate-12 border-ink/40 bg-white/40 text-ink/60 md:flex lg:h-20 lg:w-20"
+      <FloatingSprite
+        src="/images/floating_burgers.webp"
+        width={320}
+        height={320}
+        className="right-[6%] top-8 hidden w-16 rotate-12 md:block lg:w-20"
       />
       <div className="relative mx-auto max-w-3xl md:max-w-2xl lg:max-w-3xl">
         <FloatingImage
@@ -75,9 +103,11 @@ export function Hero() {
       </div>
 
       <div className="relative mx-auto max-w-3xl text-center">
-        <SpritePlaceholder
-          label="P5"
-          className="left-[2%] top-0 hidden h-16 w-16 rotate-6 border-ink/40 bg-white/40 text-ink/60 lg:flex"
+        <FloatingSprite
+          src="/images/floating_steak.webp"
+          width={320}
+          height={485}
+          className="left-[2%] top-0 hidden w-16 rotate-6 lg:block"
         />
         <p className="mx-auto mb-8 max-w-lg text-sm leading-relaxed text-text-body sm:text-lg">
           {BRAND.subtitle}
@@ -92,13 +122,17 @@ export function Hero() {
         </WhatsAppCta>
       </div>
       <div className="relative mt-16 sm:mt-24">
-        <SpritePlaceholder
-          label="P3"
-          className="-top-7 left-[5%] z-10 flex h-16 w-16 -rotate-6 border-ink/40 bg-white/60 text-ink/60 sm:-top-10 sm:h-20 sm:w-20 lg:h-24 lg:w-24"
+        <FloatingSprite
+          src="/images/floating_fries.webp"
+          width={320}
+          height={641}
+          className="-top-7 left-[5%] z-10 w-14 -rotate-6 sm:-top-10 sm:w-16 lg:w-20"
         />
-        <SpritePlaceholder
-          label="P4"
-          className="-bottom-6 right-[4%] z-10 flex h-16 w-16 rotate-6 border-ink/40 bg-white/60 text-ink/60 sm:-bottom-8 sm:h-20 sm:w-20"
+        <FloatingSprite
+          src="/images/floating_pizza.webp"
+          width={320}
+          height={320}
+          className="-bottom-6 right-[4%] z-10 w-16 rotate-6 sm:-bottom-8 sm:w-20"
         />
         <HeroSlider />
       </div>
