@@ -29,6 +29,7 @@ const AUTHOR_OFFSET_MS = 440
 function StarRow({ rating, delayMs }: { rating: number; delayMs: number }) {
   return (
     <div
+      role="img"
       className="testimonial-stars flex gap-1"
       aria-label={`${rating} out of 5 stars`}
     >
@@ -105,7 +106,7 @@ export function Testimonials() {
       <div className="relative mx-auto max-w-6xl">
         <div className="text-center">
           <span
-            aria-label="Testimonials"
+            aria-hidden="true"
             className="bauhaus-chip inline-flex h-10 w-10 items-center justify-center bg-accent-tangerine text-white"
           >
             <Quote className="h-4 w-4" aria-hidden="true" />

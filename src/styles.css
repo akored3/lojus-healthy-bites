@@ -200,6 +200,11 @@ body {
   animation: hero-carousel 18s infinite;
 }
 
+.hero-carousel:hover,
+.hero-carousel:focus-within {
+  animation-play-state: paused;
+}
+
 @keyframes hero-carousel {
   0%,
   22% {

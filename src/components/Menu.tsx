@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
 import { UtensilsCrossed, X } from 'lucide-react'
 import { MENU_CATEGORIES, formatPrice } from '#/lib/menu'
@@ -152,21 +152,43 @@ function MenuItemModal({
   accent: MenuCategory['accent']
   onClose: () => void
 }) {
+  const dialogRef = useRef<HTMLDivElement>(null)
+  const closeRef = useRef<HTMLButtonElement>(null)
+
   useEffect(() => {
-    function handleEsc(e: KeyboardEvent) {
+    const trigger = document.activeElement as HTMLElement | null
+    closeRef.current?.focus()
+
+    function handleKey(e: KeyboardEvent) {
       if (e.key === 'Escape') onClose()
+      if (e.key !== 'Tab') return
+      const focusables =
+        dialogRef.current?.querySelectorAll<HTMLElement>('button, a[href]')
+      if (!focusables?.length) return
+      const first = focusables[0]
+      const last = focusables[focusables.length - 1]
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault()
+        first.focus()
+      }
     }
-    window.addEventListener('keydown', handleEsc)
+
+    window.addEventListener('keydown', handleKey)
     const prevOverflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
     return () => {
-      window.removeEventListener('keydown', handleEsc)
+      window.removeEventListener('keydown', handleKey)
       document.body.style.overflow = prevOverflow
+      trigger?.focus()
     }
   }, [onClose])
 
   return (
     <div
+      ref={dialogRef}
       role="dialog"
       aria-modal="true"
       aria-labelledby="menu-item-modal-title"
@@ -181,6 +203,7 @@ function MenuItemModal({
         className={`relative w-full max-w-sm bauhaus-card p-6 text-center sm:p-8 ${CARD_BG[accent]}`}
       >
         <button
+          ref={closeRef}
           type="button"
           onClick={onClose}
           aria-label="Close"
@@ -246,7 +269,7 @@ export function Menu() {
       <div className="relative mx-auto max-w-6xl">
         <div className="text-center">
           <span
-            aria-label="Menu"
+            aria-hidden="true"
             className="bauhaus-chip inline-flex h-10 w-10 items-center justify-center bg-accent-tangerine text-white"
           >
             <UtensilsCrossed className="h-4 w-4" aria-hidden="true" />

@@ -91,7 +91,7 @@ export function WhyUs() {
       <div className="relative mx-auto max-w-4xl">
         <div className="text-center">
           <span
-            aria-label="Why us"
+            aria-hidden="true"
             className="bauhaus-chip inline-flex h-10 w-10 items-center justify-center bg-accent-pink text-ink"
           >
             <Sparkles className="h-4 w-4" aria-hidden="true" />

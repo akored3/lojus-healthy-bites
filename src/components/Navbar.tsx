@@ -73,12 +73,11 @@ export function Navbar() {
           id="nav-toggle"
           type="checkbox"
           className="peer sr-only"
-          aria-hidden="true"
+          aria-label="Toggle navigation menu"
         />
         <label
           htmlFor="nav-toggle"
-          className="nav-toggle-label inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border-[2.5px] border-ink bg-white shadow-[3px_3px_0_var(--color-ink)] md:hidden"
-          aria-label="Toggle navigation menu"
+          className="nav-toggle-label inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border-[2.5px] border-ink bg-white shadow-[3px_3px_0_var(--color-ink)] peer-focus-visible:ring-2 peer-focus-visible:ring-ink peer-focus-visible:ring-offset-2 md:hidden"
         >
           <Menu className="icon-menu h-5 w-5" aria-hidden="true" />
           <X className="icon-close h-5 w-5" aria-hidden="true" />
