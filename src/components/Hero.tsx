@@ -65,7 +65,7 @@ function FloatingImage({
 
 export function Hero() {
   return (
-    <section className="relative bg-bg-butter px-4 pb-8 pt-16 sm:px-6 sm:pb-12 sm:pt-20">
+    <section className="relative bg-bg-butter px-4 pb-8 pt-16 sm:px-6 sm:pb-16 sm:pt-20">
       <FloatingSprite
         src="/images/floating_chickenboard.webp"
         width={320}
@@ -121,18 +121,18 @@ export function Hero() {
           Order Now →
         </WhatsAppCta>
       </div>
-      <div className="relative mt-16 sm:mt-24">
+      <div className="relative mx-auto mt-16 max-w-md sm:mt-24 sm:max-w-4xl lg:max-w-5xl xl:max-w-6xl">
         <FloatingSprite
           src="/images/floating_fries.webp"
           width={320}
           height={641}
-          className="-top-14 left-[5%] z-10 hidden w-16 -rotate-6 sm:block lg:-top-20 lg:w-20"
+          className="-top-[6.5rem] left-[4%] z-10 hidden w-16 -rotate-6 sm:block lg:-top-[8.5rem] lg:w-20"
         />
         <FloatingSprite
           src="/images/floating_pizza.webp"
           width={320}
           height={320}
-          className="-bottom-8 right-[4%] z-10 hidden w-16 rotate-6 sm:block sm:w-20"
+          className="-bottom-14 right-[3%] z-10 hidden w-16 rotate-6 sm:block sm:w-20"
         />
         <HeroSlider />
       </div>
