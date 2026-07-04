@@ -126,13 +126,13 @@ export function Hero() {
           src="/images/floating_fries.webp"
           width={320}
           height={641}
-          className="-top-7 left-[5%] z-10 w-14 -rotate-6 sm:-top-10 sm:w-16 lg:w-20"
+          className="-top-14 left-[5%] z-10 hidden w-16 -rotate-6 sm:block lg:-top-20 lg:w-20"
         />
         <FloatingSprite
           src="/images/floating_pizza.webp"
           width={320}
           height={320}
-          className="-bottom-6 right-[4%] z-10 w-16 rotate-6 sm:-bottom-8 sm:w-20"
+          className="-bottom-8 right-[4%] z-10 hidden w-16 rotate-6 sm:block sm:w-20"
         />
         <HeroSlider />
       </div>
