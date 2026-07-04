@@ -3,7 +3,6 @@
 @theme {
   --font-sans: 'Comfortaa', ui-sans-serif, system-ui, sans-serif;
 
-  --color-bg-warm: #fffaf0;
   --color-bg-cream: #fff7e6;
   --color-bg-butter: #fffcf3;
   --color-bg-blush: #fde4e4;
@@ -17,10 +16,6 @@
   --color-accent-lemon: #f4c430;
   --color-accent-tangerine: #ff6b35;
   --color-accent-green: #5ca04c;
-  --color-accent-emerald: #059669;
-  --color-accent-amber: #d97706;
-  --color-accent-orange: #ea580c;
-  --color-accent-cobalt: #2563eb;
 
   --color-accent-pink: #ec4899;
   --color-pink-light: #ffd1e8;
@@ -125,12 +120,6 @@ body {
   box-shadow: 3px 3px 0 #1a1a1a;
   font-weight: 700;
   font-family: 'Comfortaa', cursive;
-}
-
-@utility bauhaus-halftone {
-  background-image: radial-gradient(circle, #1a1a1a 1px, transparent 1px);
-  background-size: 12px 12px;
-  pointer-events: none;
 }
 
 /* Hide scrollbar (for horizontally-scrolling testimonial/gallery rows) */
