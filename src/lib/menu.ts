@@ -68,19 +68,31 @@ export const MENU_CATEGORIES: readonly MenuCategory[] = [
     title: 'Mini Pizzas',
     accent: 'lemon',
     variants: [
-      { name: 'Margherita', blurb: 'Tomato, mozzarella, fresh basil', price: 3000 },
+      {
+        name: 'Margherita',
+        blurb: 'Tomato, mozzarella, fresh basil',
+        price: 3000,
+      },
       {
         name: 'BBQ Chicken',
         blurb: 'Grilled chicken, BBQ sauce, red onion, mozzarella',
         price: 3800,
       },
-      { name: 'Pepperoni', blurb: 'Pepperoni, tomato, mozzarella, oregano', price: 3500 },
+      {
+        name: 'Pepperoni',
+        blurb: 'Pepperoni, tomato, mozzarella, oregano',
+        price: 3500,
+      },
       {
         name: 'Veggie Supreme',
         blurb: 'Peppers, mushrooms, onion, olives, mozzarella',
         price: 3500,
       },
-      { name: 'Four Cheese', blurb: 'Mozzarella, cheddar, parmesan, feta', price: 3500 },
+      {
+        name: 'Four Cheese',
+        blurb: 'Mozzarella, cheddar, parmesan, feta',
+        price: 3500,
+      },
     ],
   },
   {
@@ -88,14 +100,46 @@ export const MENU_CATEGORIES: readonly MenuCategory[] = [
     title: 'Juices & Smoothies',
     accent: 'sky',
     variants: [
-      { name: 'Tigernut', blurb: 'Fresh-pressed tigernut, dates, coconut', price: 2000 },
-      { name: 'Fruit Naturel', blurb: 'Orange, apple, pineapple, lime', price: 1800 },
-      { name: 'Green Detox', blurb: 'Cucumber, apple, celery, ginger, lemon', price: 2200 },
-      { name: 'Mango Smoothie', blurb: 'Mango, banana, yogurt, honey', price: 2200 },
-      { name: 'Berry Blast', blurb: 'Mixed berries, banana, almond milk', price: 2500 },
-      { name: 'Watermelon Cooler', blurb: 'Watermelon, lime, mint', price: 1800 },
-      { name: 'Pineapple Ginger', blurb: 'Pineapple, ginger, lime', price: 2000 },
-      { name: 'Carrot Orange Zing', blurb: 'Carrot, orange, ginger', price: 2000 },
+      {
+        name: 'Tigernut',
+        blurb: 'Fresh-pressed tigernut, dates, coconut',
+        price: 2000,
+      },
+      {
+        name: 'Fruit Naturel',
+        blurb: 'Orange, apple, pineapple, lime',
+        price: 1800,
+      },
+      {
+        name: 'Green Detox',
+        blurb: 'Cucumber, apple, celery, ginger, lemon',
+        price: 2200,
+      },
+      {
+        name: 'Mango Smoothie',
+        blurb: 'Mango, banana, yogurt, honey',
+        price: 2200,
+      },
+      {
+        name: 'Berry Blast',
+        blurb: 'Mixed berries, banana, almond milk',
+        price: 2500,
+      },
+      {
+        name: 'Watermelon Cooler',
+        blurb: 'Watermelon, lime, mint',
+        price: 1800,
+      },
+      {
+        name: 'Pineapple Ginger',
+        blurb: 'Pineapple, ginger, lime',
+        price: 2000,
+      },
+      {
+        name: 'Carrot Orange Zing',
+        blurb: 'Carrot, orange, ginger',
+        price: 2000,
+      },
     ],
   },
 ]
