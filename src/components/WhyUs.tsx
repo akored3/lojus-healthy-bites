@@ -6,14 +6,14 @@ import { useInView } from '#/lib/useInView'
 
 const CARD_BG: Record<WhyUsItem['accent'], string> = {
   tangerine: 'bg-bg-tangerine',
-  sky: 'bg-sky-light',
+  pink: 'bg-pink-light',
   lemon: 'bg-bg-lemon',
-  green: 'bg-bg-mint',
+  green: 'bg-bg-blush',
 }
 
 const HEART_COLOR: Record<WhyUsItem['accent'], string> = {
   tangerine: 'text-accent-tangerine',
-  sky: 'text-accent-sky',
+  pink: 'text-accent-pink',
   lemon: 'text-accent-lemon',
   green: 'text-accent-green',
 }
@@ -86,13 +86,13 @@ export function WhyUs() {
       ref={ref}
       id="about"
       data-whyus-visible={inView}
-      className="relative overflow-hidden bg-bg-rose px-4 py-20 sm:px-6 sm:py-28"
+      className="relative overflow-hidden bg-bg-sage px-4 py-20 sm:px-6 sm:py-28"
     >
       <div className="relative mx-auto max-w-4xl">
         <div className="text-center">
           <span
             aria-label="Why us"
-            className="bauhaus-chip inline-flex h-10 w-10 items-center justify-center bg-accent-sky text-ink"
+            className="bauhaus-chip inline-flex h-10 w-10 items-center justify-center bg-accent-pink text-ink"
           >
             <Sparkles className="h-4 w-4" aria-hidden="true" />
           </span>

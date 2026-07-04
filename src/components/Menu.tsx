@@ -29,22 +29,22 @@ const CORNER_SIZE: Record<Corner, string> = {
 
 const ACCENT_BG: Record<MenuCategory['accent'], string> = {
   tangerine: 'bg-accent-tangerine',
-  sky: 'bg-accent-sky',
+  pink: 'bg-accent-pink',
   lemon: 'bg-accent-lemon',
   green: 'bg-accent-green',
 }
 
 const CARD_BG: Record<MenuCategory['accent'], string> = {
   tangerine: 'bg-bg-tangerine',
-  sky: 'bg-sky-light',
+  pink: 'bg-pink-light',
   lemon: 'bg-bg-lemon',
-  green: 'bg-bg-mint',
+  green: 'bg-bg-blush',
 }
 
 const ROW_HOVER_BG: Record<MenuCategory['accent'], string> = {
   tangerine:
     'hover:bg-accent-tangerine/10 focus-visible:bg-accent-tangerine/10',
-  sky: 'hover:bg-accent-sky/10 focus-visible:bg-accent-sky/10',
+  pink: 'hover:bg-accent-pink/10 focus-visible:bg-accent-pink/10',
   lemon: 'hover:bg-accent-lemon/15 focus-visible:bg-accent-lemon/15',
   green: 'hover:bg-accent-green/10 focus-visible:bg-accent-green/10',
 }
@@ -234,7 +234,7 @@ export function Menu() {
       ref={ref}
       id="full-menu"
       data-menu-visible={inView}
-      className="relative overflow-hidden bg-bg-mint px-8 py-20 sm:px-6 sm:py-28"
+      className="relative overflow-hidden bg-bg-blush px-8 py-20 sm:px-6 sm:py-28"
     >
       <MenuCornerImage src="/images/menu_tl.png" corner="tl" />
       <MenuCornerImage src="/images/menu_tr.png" corner="tr" />

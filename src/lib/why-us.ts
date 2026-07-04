@@ -2,7 +2,7 @@ export type WhyUsItem = {
   id: string
   title: string
   description: string
-  accent: 'tangerine' | 'sky' | 'lemon' | 'green'
+  accent: 'tangerine' | 'pink' | 'lemon' | 'green'
   image: string
 }
 
@@ -27,7 +27,7 @@ export const WHY_US_ITEMS: readonly WhyUsItem[] = [
     id: 'whatsapp',
     title: 'Order on WhatsApp',
     description: "Skip the queue. Tap, send, and we'll get it to you fast.",
-    accent: 'sky',
+    accent: 'pink',
     image: '/images/whyus_delivery.jpg',
   },
 ]

@@ -6,15 +6,15 @@ import { useInView } from '#/lib/useInView'
 
 const CARD_BG: Record<Testimonial['accent'], string> = {
   tangerine: 'bg-bg-tangerine',
-  sky: 'bg-sky-light',
+  pink: 'bg-pink-light',
   lemon: 'bg-bg-lemon',
-  green: 'bg-bg-rose',
-  rose: 'bg-bg-mint',
+  green: 'bg-bg-sage',
+  rose: 'bg-bg-blush',
 }
 
 const QUOTE_COLOR: Record<Testimonial['accent'], string> = {
   tangerine: 'bg-accent-tangerine text-white',
-  sky: 'bg-accent-sky text-white',
+  pink: 'bg-accent-pink text-white',
   lemon: 'bg-accent-lemon text-ink',
   green: 'bg-accent-green text-white',
   rose: 'bg-accent-tangerine text-white',

@@ -4,7 +4,7 @@ export type Testimonial = {
   name: string
   location: string
   rating: 1 | 2 | 3 | 4 | 5
-  accent: 'tangerine' | 'sky' | 'lemon' | 'green' | 'rose'
+  accent: 'tangerine' | 'pink' | 'lemon' | 'green' | 'rose'
 }
 
 export const TESTIMONIALS: readonly Testimonial[] = [
@@ -24,7 +24,7 @@ export const TESTIMONIALS: readonly Testimonial[] = [
     name: 'Tunde A.',
     location: 'Victoria Island',
     rating: 5,
-    accent: 'sky',
+    accent: 'pink',
   },
   {
     id: 'chinaza',

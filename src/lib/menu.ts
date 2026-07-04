@@ -7,7 +7,7 @@ export type MenuVariant = {
 export type MenuCategory = {
   id: string
   title: string
-  accent: 'tangerine' | 'sky' | 'lemon' | 'green'
+  accent: 'tangerine' | 'pink' | 'lemon' | 'green'
   variants: readonly MenuVariant[]
 }
 
@@ -98,7 +98,7 @@ export const MENU_CATEGORIES: readonly MenuCategory[] = [
   {
     id: 'juices',
     title: 'Juices & Smoothies',
-    accent: 'sky',
+    accent: 'pink',
     variants: [
       {
         name: 'Tigernut',
