@@ -1,10 +1,12 @@
+import type { Accent } from './accents'
+
 export type Testimonial = {
   id: string
   quote: string
   name: string
   location: string
   rating: 1 | 2 | 3 | 4 | 5
-  accent: 'tangerine' | 'pink' | 'lemon' | 'green' | 'rose'
+  accent: Accent | 'rose'
 }
 
 export const TESTIMONIALS: readonly Testimonial[] = [

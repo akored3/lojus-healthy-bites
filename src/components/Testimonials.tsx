@@ -2,12 +2,12 @@ import type { CSSProperties } from 'react'
 import { Quote, Star } from 'lucide-react'
 import { TESTIMONIALS } from '#/lib/testimonials'
 import type { Testimonial } from '#/lib/testimonials'
+import { CARD_BG as BASE_CARD_BG } from '#/lib/accents'
 import { useInView } from '#/lib/useInView'
+import { SectionHeader } from './SectionHeader'
 
 const CARD_BG: Record<Testimonial['accent'], string> = {
-  tangerine: 'bg-bg-tangerine',
-  pink: 'bg-pink-light',
-  lemon: 'bg-bg-lemon',
+  ...BASE_CARD_BG,
   green: 'bg-bg-sage',
   rose: 'bg-bg-blush',
 }
@@ -104,23 +104,13 @@ export function Testimonials() {
       className="relative overflow-hidden bg-bg-lemon px-4 py-20 sm:px-6 sm:py-28"
     >
       <div className="relative mx-auto max-w-6xl">
-        <div className="text-center">
-          <span
-            aria-hidden="true"
-            className="bauhaus-chip inline-flex h-10 w-10 items-center justify-center bg-accent-tangerine text-white"
-          >
-            <Quote className="h-4 w-4" aria-hidden="true" />
-          </span>
-          <h2
-            id="testimonials-heading"
-            className="mt-5 text-3xl font-bold text-text-dark sm:text-4xl lg:text-5xl"
-          >
-            Loved by Lagos
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-text-body sm:text-base">
-            Real people, real bites, real reviews.
-          </p>
-        </div>
+        <SectionHeader
+          icon={Quote}
+          chipClass="bg-accent-tangerine text-white"
+          title="Loved by Lagos"
+          subtitle="Real people, real bites, real reviews."
+          headingId="testimonials-heading"
+        />
 
         <div className="mt-12 -mx-4 sm:-mx-6">
           <div className="scrollbar-hide flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-6 pt-4 sm:px-6">

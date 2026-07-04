@@ -1,10 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
 import { UtensilsCrossed, X } from 'lucide-react'
-import { MENU_CATEGORIES, formatPrice } from '#/lib/menu'
+import { MENU_CATEGORIES } from '#/lib/menu'
 import type { MenuCategory, MenuVariant } from '#/lib/menu'
-import { orderItemMessage, whatsappLink } from '#/lib/brand'
+import { formatPrice, orderItemMessage } from '#/lib/brand'
+import { ACCENT_BG, CARD_BG } from '#/lib/accents'
 import { useInView } from '#/lib/useInView'
+import { SectionHeader } from './SectionHeader'
+import { WhatsAppCta } from './WhatsAppCta'
 import { WhatsAppIcon } from './WhatsAppIcon'
 
 type Corner = 'tl' | 'tr' | 'bl' | 'br' | 'ml' | 'mr'
@@ -25,20 +28,6 @@ const CORNER_SIZE: Record<Corner, string> = {
   br: 'h-32 w-32 lg:h-36 lg:w-36',
   ml: 'h-28 w-28 md:h-32 md:w-32',
   mr: 'h-28 w-28 md:h-32 md:w-32',
-}
-
-const ACCENT_BG: Record<MenuCategory['accent'], string> = {
-  tangerine: 'bg-accent-tangerine',
-  pink: 'bg-accent-pink',
-  lemon: 'bg-accent-lemon',
-  green: 'bg-accent-green',
-}
-
-const CARD_BG: Record<MenuCategory['accent'], string> = {
-  tangerine: 'bg-bg-tangerine',
-  pink: 'bg-pink-light',
-  lemon: 'bg-bg-lemon',
-  green: 'bg-bg-blush',
 }
 
 const ROW_HOVER_BG: Record<MenuCategory['accent'], string> = {
@@ -248,15 +237,13 @@ function MenuItemModal({
         </p>
 
         <div className="mt-8 flex justify-end">
-          <a
-            href={whatsappLink(orderItemMessage(variant.name, variant.price))}
-            target="_blank"
-            rel="noopener noreferrer"
+          <WhatsAppCta
+            message={orderItemMessage(variant.name, variant.price)}
             className="bauhaus-btn bg-whatsapp text-sm text-white sm:text-base"
           >
             <WhatsAppIcon className="h-5 w-5" />
             Order Now →
-          </a>
+          </WhatsAppCta>
         </div>
       </div>
     </div>
@@ -315,21 +302,12 @@ export function Menu() {
       />
 
       <div className="relative mx-auto max-w-6xl">
-        <div className="text-center">
-          <span
-            aria-hidden="true"
-            className="bauhaus-chip inline-flex h-10 w-10 items-center justify-center bg-accent-tangerine text-white"
-          >
-            <UtensilsCrossed className="h-4 w-4" aria-hidden="true" />
-          </span>
-          <h2 className="mt-5 text-3xl font-bold text-text-dark sm:text-4xl lg:text-5xl">
-            Our Full Menu
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-text-body sm:text-base">
-            A handcrafted lineup of parfaits, mini pizzas, and juices — every
-            bite made fresh, just for you.
-          </p>
-        </div>
+        <SectionHeader
+          icon={UtensilsCrossed}
+          chipClass="bg-accent-tangerine text-white"
+          title="Our Full Menu"
+          subtitle="A handcrafted lineup of parfaits, mini pizzas, and juices — every bite made fresh, just for you."
+        />
 
         <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-4 lg:gap-6">
           {MENU_CATEGORIES.map((category, idx) => (

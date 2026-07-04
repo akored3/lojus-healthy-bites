@@ -1,8 +1,10 @@
+import type { Accent } from './accents'
+
 export type WhyUsItem = {
   id: string
   title: string
   description: string
-  accent: 'tangerine' | 'pink' | 'lemon' | 'green'
+  accent: Accent
   image: string
 }
 

@@ -1,3 +1,5 @@
+import type { Accent } from './accents'
+
 export type MenuVariant = {
   name: string
   blurb: string
@@ -7,12 +9,8 @@ export type MenuVariant = {
 export type MenuCategory = {
   id: string
   title: string
-  accent: 'tangerine' | 'pink' | 'lemon' | 'green'
+  accent: Accent
   variants: readonly MenuVariant[]
-}
-
-export function formatPrice(price: number): string {
-  return `₦${price.toLocaleString('en-NG')}`
 }
 
 export const MENU_CATEGORIES: readonly MenuCategory[] = [

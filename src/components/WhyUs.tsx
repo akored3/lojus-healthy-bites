@@ -2,14 +2,9 @@ import type { CSSProperties } from 'react'
 import { ArrowRight, Heart, Sparkles } from 'lucide-react'
 import { WHY_US_ITEMS } from '#/lib/why-us'
 import type { WhyUsItem } from '#/lib/why-us'
+import { CARD_BG } from '#/lib/accents'
 import { useInView } from '#/lib/useInView'
-
-const CARD_BG: Record<WhyUsItem['accent'], string> = {
-  tangerine: 'bg-bg-tangerine',
-  pink: 'bg-pink-light',
-  lemon: 'bg-bg-lemon',
-  green: 'bg-bg-blush',
-}
+import { SectionHeader } from './SectionHeader'
 
 const HEART_COLOR: Record<WhyUsItem['accent'], string> = {
   tangerine: 'text-accent-tangerine',
@@ -97,20 +92,12 @@ export function WhyUs() {
       className="relative overflow-hidden bg-bg-sage px-4 py-20 sm:px-6 sm:py-28"
     >
       <div className="relative mx-auto max-w-4xl">
-        <div className="text-center">
-          <span
-            aria-hidden="true"
-            className="bauhaus-chip inline-flex h-10 w-10 items-center justify-center bg-accent-pink text-ink"
-          >
-            <Sparkles className="h-4 w-4" aria-hidden="true" />
-          </span>
-          <h2 className="mt-5 text-3xl font-bold text-text-dark sm:text-4xl lg:text-5xl">
-            Why Loju's?
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-text-body sm:text-base">
-            Real food, made by hand, delivered the moment you tap.
-          </p>
-        </div>
+        <SectionHeader
+          icon={Sparkles}
+          chipClass="bg-accent-pink text-ink"
+          title="Why Loju's?"
+          subtitle="Real food, made by hand, delivered the moment you tap."
+        />
 
         <div className="mt-14 flex flex-col gap-6 sm:gap-8">
           {WHY_US_ITEMS.map((item, idx) => (

@@ -1,5 +1,6 @@
-import { BRAND, WHATSAPP_MESSAGES, whatsappLink } from '#/lib/brand'
+import { BRAND, WHATSAPP_MESSAGES } from '#/lib/brand'
 import { HeroSlider } from './HeroSlider'
+import { WhatsAppCta } from './WhatsAppCta'
 import { WhatsAppIcon } from './WhatsAppIcon'
 
 function FloatingImage({
@@ -69,15 +70,13 @@ export function Hero() {
           {BRAND.subtitle}
         </p>
 
-        <a
-          href={whatsappLink(WHATSAPP_MESSAGES.order)}
-          target="_blank"
-          rel="noopener noreferrer"
+        <WhatsAppCta
+          message={WHATSAPP_MESSAGES.order}
           className="bauhaus-btn bg-whatsapp text-sm text-white sm:text-base"
         >
           <WhatsAppIcon className="h-5 w-5" />
           Order Now →
-        </a>
+        </WhatsAppCta>
       </div>
       <div className="mt-16 sm:mt-24">
         <HeroSlider />

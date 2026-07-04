@@ -1,7 +1,8 @@
 import { Menu, X } from 'lucide-react'
-import { NAV_LINKS, WHATSAPP_MESSAGES, whatsappLink } from '#/lib/brand'
+import { NAV_LINKS, WHATSAPP_MESSAGES } from '#/lib/brand'
 import { useActiveSection } from '#/lib/useActiveSection'
 import { Wordmark } from './Wordmark'
+import { WhatsAppCta } from './WhatsAppCta'
 import { WhatsAppIcon } from './WhatsAppIcon'
 
 const SECTION_IDS = NAV_LINKS.map((l) => l.href.replace('#', '')).filter(
@@ -60,14 +61,12 @@ export function Navbar() {
           })}
         </ul>
 
-        <a
-          href={whatsappLink(WHATSAPP_MESSAGES.order)}
-          target="_blank"
-          rel="noopener noreferrer"
+        <WhatsAppCta
+          message={WHATSAPP_MESSAGES.order}
           className="bauhaus-btn hidden bg-whatsapp text-xs text-white md:inline-flex"
         >
           Order on WhatsApp
-        </a>
+        </WhatsAppCta>
 
         <input
           id="nav-toggle"
@@ -101,10 +100,8 @@ export function Navbar() {
               )
             })}
             <li className="mt-1 flex justify-center">
-              <a
-                href={whatsappLink(WHATSAPP_MESSAGES.order)}
-                target="_blank"
-                rel="noopener noreferrer"
+              <WhatsAppCta
+                message={WHATSAPP_MESSAGES.order}
                 onClick={closeMobileMenu}
                 aria-label="Order on WhatsApp"
                 className="mobile-cta group relative flex h-12 items-center justify-start gap-2 overflow-hidden rounded-full border-[2.5px] border-ink bg-whatsapp pl-[0.875rem] font-bold text-white"
@@ -113,7 +110,7 @@ export function Navbar() {
                 <span className="mobile-cta-text inline-block whitespace-nowrap pr-2 text-sm">
                   Order on WhatsApp
                 </span>
-              </a>
+              </WhatsAppCta>
             </li>
           </ul>
         </div>
