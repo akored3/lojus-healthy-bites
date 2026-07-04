@@ -3,6 +3,27 @@ import { HeroSlider } from './HeroSlider'
 import { WhatsAppCta } from './WhatsAppCta'
 import { WhatsAppIcon } from './WhatsAppIcon'
 
+function FloatingSprite({
+  src,
+  className,
+}: {
+  src: string
+  className: string
+}) {
+  return (
+    <img
+      src={src}
+      alt=""
+      aria-hidden="true"
+      width={400}
+      height={400}
+      loading="lazy"
+      decoding="async"
+      className={`pointer-events-none absolute select-none object-contain drop-shadow-[3px_4px_0_rgba(26,26,26,0.18)] ${className}`}
+    />
+  )
+}
+
 function FloatingImage({
   src,
   side,
@@ -53,6 +74,14 @@ export function Hero() {
         aria-hidden="true"
         className="absolute right-24 top-24 hidden h-4 w-4 rounded-full border-2 border-ink bg-accent-lemon md:block"
       />
+      <FloatingSprite
+        src="/images/menu_bl.webp"
+        className="left-[7%] top-6 hidden h-20 w-20 -rotate-6 md:block lg:h-24 lg:w-24"
+      />
+      <FloatingSprite
+        src="/images/menu_br.webp"
+        className="right-[6%] top-8 z-10 hidden h-16 w-16 rotate-12 md:block lg:h-20 lg:w-20"
+      />
       <div className="relative mx-auto max-w-3xl md:max-w-2xl lg:max-w-3xl">
         <FloatingImage
           src="/images/floating_fruitjuice.webp"
@@ -90,7 +119,11 @@ export function Hero() {
           Order Now →
         </WhatsAppCta>
       </div>
-      <div className="mt-16 sm:mt-24">
+      <div className="relative mt-16 sm:mt-24">
+        <FloatingSprite
+          src="/images/menu_ml.webp"
+          className="-top-7 left-[5%] z-10 h-16 w-16 -rotate-6 sm:-top-10 sm:h-20 sm:w-20 lg:h-24 lg:w-24"
+        />
         <HeroSlider />
       </div>
     </section>
