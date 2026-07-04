@@ -80,7 +80,7 @@ function TestimonialCard({
         delayMs={index * CARD_STAGGER_MS + STARS_OFFSET_MS}
       />
 
-      <p className="testimonial-text flex-1 text-sm leading-relaxed text-text-dark sm:text-base">
+      <p className="testimonial-text font-display flex-1 text-base font-medium italic leading-relaxed text-text-dark sm:text-lg">
         &ldquo;{item.quote}&rdquo;
       </p>
 
@@ -101,12 +101,13 @@ export function Testimonials() {
       id="testimonials"
       data-testimonials-visible={inView}
       aria-labelledby="testimonials-heading"
-      className="relative overflow-hidden bg-bg-lemon px-4 py-20 sm:px-6 sm:py-28"
+      className="relative overflow-hidden border-y-[3px] border-ink bg-accent-tangerine px-4 py-20 sm:px-6 sm:py-28"
     >
       <div className="relative mx-auto max-w-6xl">
         <SectionHeader
           icon={Quote}
-          chipClass="bg-accent-tangerine text-white"
+          chipClass="bg-accent-pink text-white"
+          tickClass="bg-accent-lemon"
           title="Loved by Lagos"
           subtitle="Real people, real bites, real reviews."
           headingId="testimonials-heading"
@@ -119,7 +120,7 @@ export function Testimonials() {
             ))}
           </div>
         </div>
-        <p className="mt-6 text-center text-xs text-text-body sm:text-sm">
+        <p className="mt-6 text-center text-xs font-bold text-ink/70 sm:text-sm">
           Swipe to see more &rarr;
         </p>
       </div>

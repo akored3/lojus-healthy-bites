@@ -225,7 +225,7 @@ function MenuItemModal({
         />
         <h3
           id="menu-item-modal-title"
-          className="mt-4 text-2xl font-bold text-text-dark sm:text-3xl"
+          className="font-display mt-4 text-2xl font-bold tracking-tight text-text-dark sm:text-3xl"
         >
           {variant.name}
         </h3>
@@ -262,7 +262,7 @@ export function Menu() {
       ref={ref}
       id="full-menu"
       data-menu-visible={inView}
-      className="relative overflow-hidden bg-bg-blush px-8 py-20 sm:px-6 sm:py-28"
+      className="relative overflow-hidden border-t-[3px] border-ink bg-band-mango px-8 py-20 sm:px-6 sm:py-28"
     >
       <MenuCornerImage
         src="/images/menu_tl.webp"
@@ -305,6 +305,7 @@ export function Menu() {
         <SectionHeader
           icon={UtensilsCrossed}
           chipClass="bg-accent-tangerine text-white"
+          tickClass="bg-accent-tangerine"
           title="Our Full Menu"
           subtitle="A handcrafted lineup of parfaits, mini pizzas, and juices — every bite made fresh, just for you."
         />

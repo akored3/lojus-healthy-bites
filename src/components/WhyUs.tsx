@@ -2,7 +2,7 @@ import type { CSSProperties } from 'react'
 import { ArrowRight, Heart, Sparkles } from 'lucide-react'
 import { WHY_US_ITEMS } from '#/lib/why-us'
 import type { WhyUsItem } from '#/lib/why-us'
-import { CARD_BG } from '#/lib/accents'
+import { ACCENT_BG, CARD_BG } from '#/lib/accents'
 import { useInView } from '#/lib/useInView'
 import { SectionHeader } from './SectionHeader'
 
@@ -46,7 +46,7 @@ function WhyUsCard({ item, index }: { item: WhyUsItem; index: number }) {
 
       <div className="whyus-image-wrap flex-shrink-0">
         <div
-          className={`bauhaus-card h-32 w-32 overflow-hidden bg-white p-0 sm:h-40 sm:w-40 ${tilt}`}
+          className={`bauhaus-card h-32 w-32 p-1.5 sm:h-40 sm:w-40 ${ACCENT_BG[item.accent]} ${tilt}`}
         >
           <img
             src={item.image}
@@ -55,13 +55,13 @@ function WhyUsCard({ item, index }: { item: WhyUsItem; index: number }) {
             height={400}
             loading="lazy"
             decoding="async"
-            className="h-full w-full object-cover"
+            className="h-full w-full rounded-[1rem] border-[2px] border-ink object-cover"
           />
         </div>
       </div>
 
       <div className="flex-1">
-        <h3 className="whyus-title text-xl font-bold text-text-dark sm:text-2xl">
+        <h3 className="whyus-title font-display text-xl font-bold tracking-tight text-text-dark sm:text-2xl">
           {item.title}
         </h3>
         <p className="whyus-desc mt-2 max-w-xl text-sm leading-relaxed text-text-body sm:text-base">
@@ -89,14 +89,16 @@ export function WhyUs() {
       ref={ref}
       id="about"
       data-whyus-visible={inView}
-      className="relative overflow-hidden bg-bg-sage px-4 py-20 sm:px-6 sm:py-28"
+      className="relative overflow-hidden border-t-[3px] border-ink bg-band-basil px-4 py-20 sm:px-6 sm:py-28"
     >
       <div className="relative mx-auto max-w-4xl">
         <SectionHeader
           icon={Sparkles}
-          chipClass="bg-accent-pink text-ink"
+          chipClass="bg-accent-pink text-white"
+          tickClass="bg-accent-lemon"
           title="Why Loju's?"
           subtitle="Real food, made by hand, delivered the moment you tap."
+          onDark
         />
 
         <div className="mt-14 flex flex-col gap-6 sm:gap-8">

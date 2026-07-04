@@ -54,7 +54,7 @@ export function Hero() {
           width={640}
           height={353}
         />
-        <h1 className="mb-5 text-center text-3xl font-bold leading-tight text-text-dark sm:text-4xl lg:text-5xl">
+        <h1 className="font-display mb-5 text-center text-4xl font-bold leading-tight tracking-tight text-text-dark sm:text-5xl lg:text-6xl">
           Fresh, Flavorful &<br />
           Guilt-Free{' '}
           <span className="bite-wrap text-accent-tangerine">
