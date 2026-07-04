@@ -5,6 +5,7 @@ import type { WhyUsItem } from '#/lib/why-us'
 import { ACCENT_BG, CARD_BG } from '#/lib/accents'
 import { useInView } from '#/lib/useInView'
 import { SectionHeader } from './SectionHeader'
+import { SpritePlaceholder } from './SpritePlaceholder'
 
 const HEART_COLOR: Record<WhyUsItem['accent'], string> = {
   tangerine: 'text-accent-tangerine',
@@ -91,13 +92,17 @@ export function WhyUs() {
       data-whyus-visible={inView}
       className="relative overflow-hidden border-t-[3px] border-ink bg-band-basil px-4 py-20 sm:px-6 sm:py-28"
     >
-      <div
-        aria-hidden="true"
-        className="bauhaus-halftone absolute -left-6 bottom-12 h-40 w-40 text-bg-cream/25"
+      <SpritePlaceholder
+        label="W1"
+        className="right-[6%] top-16 hidden h-20 w-20 rotate-6 border-bg-cream/60 bg-bg-cream/10 text-bg-cream/80 md:flex"
       />
-      <div
-        aria-hidden="true"
-        className="absolute -right-4 top-16 h-16 w-16 rounded-full border-[3px] border-bg-cream/40"
+      <SpritePlaceholder
+        label="W2"
+        className="left-[3%] top-[38%] hidden h-16 w-16 -rotate-6 border-bg-cream/60 bg-bg-cream/10 text-bg-cream/80 lg:flex"
+      />
+      <SpritePlaceholder
+        label="W3"
+        className="bottom-12 right-[4%] hidden h-20 w-20 rotate-12 border-bg-cream/60 bg-bg-cream/10 text-bg-cream/80 md:flex"
       />
       <div className="relative mx-auto max-w-4xl">
         <SectionHeader

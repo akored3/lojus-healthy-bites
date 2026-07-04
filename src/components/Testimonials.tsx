@@ -5,6 +5,7 @@ import type { Testimonial } from '#/lib/testimonials'
 import { CARD_BG as BASE_CARD_BG } from '#/lib/accents'
 import { useInView } from '#/lib/useInView'
 import { SectionHeader } from './SectionHeader'
+import { SpritePlaceholder } from './SpritePlaceholder'
 
 const CARD_BG: Record<Testimonial['accent'], string> = {
   ...BASE_CARD_BG,
@@ -103,13 +104,17 @@ export function Testimonials() {
       aria-labelledby="testimonials-heading"
       className="relative overflow-hidden border-y-[3px] border-ink bg-accent-tangerine px-4 py-20 sm:px-6 sm:py-28"
     >
-      <div
-        aria-hidden="true"
-        className="bauhaus-halftone absolute -right-8 top-14 h-36 w-36 rotate-6 text-ink/15"
+      <SpritePlaceholder
+        label="T1"
+        className="left-[5%] top-14 hidden h-16 w-16 -rotate-6 border-ink/50 bg-white/30 text-ink/70 md:flex"
       />
-      <div
-        aria-hidden="true"
-        className="bauhaus-halftone absolute -left-6 bottom-10 h-28 w-28 text-ink/10"
+      <SpritePlaceholder
+        label="T2"
+        className="right-[5%] top-20 hidden h-20 w-20 rotate-6 border-ink/50 bg-white/30 text-ink/70 md:flex"
+      />
+      <SpritePlaceholder
+        label="T3"
+        className="bottom-8 left-[12%] hidden h-14 w-14 rotate-12 border-ink/50 bg-white/30 text-ink/70 lg:flex"
       />
       <div className="relative mx-auto max-w-6xl">
         <SectionHeader

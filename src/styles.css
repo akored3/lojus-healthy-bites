@@ -126,16 +126,6 @@ body {
   font-family: 'Comfortaa', cursive;
 }
 
-@utility bauhaus-halftone {
-  background-image: radial-gradient(
-    circle,
-    currentColor 1.5px,
-    transparent 1.5px
-  );
-  background-size: 14px 14px;
-  pointer-events: none;
-}
-
 /* Hide scrollbar (for horizontally-scrolling testimonial/gallery rows) */
 @utility scrollbar-hide {
   scrollbar-width: none;
