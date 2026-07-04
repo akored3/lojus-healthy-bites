@@ -55,14 +55,32 @@ const DOT_OFFSET_MS = 320
 const ITEMS_OFFSET_MS = 420
 const ITEM_STAGGER_MS = 70
 
-function MenuCornerImage({ src, corner }: { src: string; corner: Corner }) {
+function MenuCornerImage({
+  src,
+  corner,
+  width,
+  height,
+}: {
+  src: string
+  corner: Corner
+  width: number
+  height: number
+}) {
   return (
     <div
       aria-hidden="true"
       className={`pointer-events-none absolute select-none ${CORNER_POSITION[corner]}`}
     >
       <div className={CORNER_SIZE[corner]}>
-        <img src={src} alt="" className="h-full w-full object-contain" />
+        <img
+          src={src}
+          alt=""
+          width={width}
+          height={height}
+          loading="lazy"
+          decoding="async"
+          className="h-full w-full object-contain"
+        />
       </div>
     </div>
   )
@@ -259,12 +277,42 @@ export function Menu() {
       data-menu-visible={inView}
       className="relative overflow-hidden bg-bg-blush px-8 py-20 sm:px-6 sm:py-28"
     >
-      <MenuCornerImage src="/images/menu_tl.png" corner="tl" />
-      <MenuCornerImage src="/images/menu_tr.png" corner="tr" />
-      <MenuCornerImage src="/images/menu_ml.png" corner="ml" />
-      <MenuCornerImage src="/images/menu_mr.png" corner="mr" />
-      <MenuCornerImage src="/images/menu_bl.png" corner="bl" />
-      <MenuCornerImage src="/images/menu_br.png" corner="br" />
+      <MenuCornerImage
+        src="/images/menu_tl.webp"
+        corner="tl"
+        width={400}
+        height={600}
+      />
+      <MenuCornerImage
+        src="/images/menu_tr.webp"
+        corner="tr"
+        width={400}
+        height={400}
+      />
+      <MenuCornerImage
+        src="/images/menu_ml.webp"
+        corner="ml"
+        width={400}
+        height={400}
+      />
+      <MenuCornerImage
+        src="/images/menu_mr.webp"
+        corner="mr"
+        width={400}
+        height={571}
+      />
+      <MenuCornerImage
+        src="/images/menu_bl.webp"
+        corner="bl"
+        width={400}
+        height={400}
+      />
+      <MenuCornerImage
+        src="/images/menu_br.webp"
+        corner="br"
+        width={400}
+        height={400}
+      />
 
       <div className="relative mx-auto max-w-6xl">
         <div className="text-center">

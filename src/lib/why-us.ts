@@ -13,7 +13,7 @@ export const WHY_US_ITEMS: readonly WhyUsItem[] = [
     description:
       'Sourced daily from local markets. Nothing frozen, nothing processed.',
     accent: 'green',
-    image: '/images/whyus_ingredients.jpg',
+    image: '/images/whyus_ingredients.webp',
   },
   {
     id: 'handcrafted',
@@ -28,6 +28,6 @@ export const WHY_US_ITEMS: readonly WhyUsItem[] = [
     title: 'Order on WhatsApp',
     description: "Skip the queue. Tap, send, and we'll get it to you fast.",
     accent: 'pink',
-    image: '/images/whyus_delivery.jpg',
+    image: '/images/whyus_delivery.webp',
   },
 ]

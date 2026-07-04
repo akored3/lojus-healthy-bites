@@ -1,13 +1,22 @@
 const SLIDES = [
   {
-    src: '/images/carousel_juice.png',
+    src: '/images/carousel_juice.webp',
     alt: 'Fresh-pressed Fruit Naturel juices',
+    width: 1536,
+    height: 1024,
   },
   {
-    src: '/images/carousel_parfait.png',
+    src: '/images/carousel_parfait.webp',
     alt: 'Layered fruit and yogurt parfait',
+    width: 1536,
+    height: 1024,
   },
-  { src: '/images/carousel_pizza.jpg', alt: 'Wood-fired mini pizza' },
+  {
+    src: '/images/carousel_pizza.webp',
+    alt: 'Wood-fired mini pizza',
+    width: 600,
+    height: 424,
+  },
 ]
 
 export function HeroSlider() {
@@ -26,8 +35,11 @@ export function HeroSlider() {
             src={slide.src}
             alt={i < SLIDES.length ? slide.alt : ''}
             aria-hidden={i >= SLIDES.length}
+            width={slide.width}
+            height={slide.height}
             className="h-full w-1/4 shrink-0 object-cover"
             loading={i === 0 ? 'eager' : 'lazy'}
+            decoding="async"
           />
         ))}
       </div>

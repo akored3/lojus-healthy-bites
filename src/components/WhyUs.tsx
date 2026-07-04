@@ -53,7 +53,15 @@ function WhyUsCard({ item, index }: { item: WhyUsItem; index: number }) {
         <div
           className={`bauhaus-card h-32 w-32 overflow-hidden bg-white p-0 sm:h-40 sm:w-40 ${tilt}`}
         >
-          <img src={item.image} alt="" className="h-full w-full object-cover" />
+          <img
+            src={item.image}
+            alt=""
+            width={400}
+            height={400}
+            loading="lazy"
+            decoding="async"
+            className="h-full w-full object-cover"
+          />
         </div>
       </div>
 

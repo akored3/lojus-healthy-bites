@@ -2,7 +2,17 @@ import { BRAND, WHATSAPP_MESSAGES, whatsappLink } from '#/lib/brand'
 import { HeroSlider } from './HeroSlider'
 import { WhatsAppIcon } from './WhatsAppIcon'
 
-function FloatingImage({ src, side }: { src: string; side: 'left' | 'right' }) {
+function FloatingImage({
+  src,
+  side,
+  width,
+  height,
+}: {
+  src: string
+  side: 'left' | 'right'
+  width: number
+  height: number
+}) {
   const position =
     side === 'left'
       ? '-left-10 -rotate-6 sm:-left-14 md:-left-20 lg:-left-48 xl:-left-64'
@@ -14,7 +24,14 @@ function FloatingImage({ src, side }: { src: string; side: 'left' | 'right' }) {
       className={`pointer-events-none absolute top-1/2 -translate-y-1/2 select-none ${position}`}
     >
       <div className="h-20 w-20 rounded-full border-2 border-ink bg-white shadow-[4px_4px_0_#1a1a1a] sm:h-28 sm:w-28 md:h-36 md:w-36 lg:h-64 lg:w-64 xl:h-80 xl:w-80">
-        <img src={src} alt="" className="h-full w-full object-contain" />
+        <img
+          src={src}
+          alt=""
+          width={width}
+          height={height}
+          decoding="async"
+          className="h-full w-full object-contain"
+        />
       </div>
     </div>
   )
@@ -25,12 +42,16 @@ export function Hero() {
     <section className="relative bg-bg-butter px-4 pb-8 pt-16 sm:px-6 sm:pb-12 sm:pt-20">
       <div className="relative mx-auto max-w-3xl md:max-w-2xl lg:max-w-3xl">
         <FloatingImage
-          src="/images/floating_fruitjuice-removebg-preview.png"
+          src="/images/floating_fruitjuice.webp"
           side="left"
+          width={640}
+          height={380}
         />
         <FloatingImage
-          src="/images/floating_tigernut-removebg-preview.png"
+          src="/images/floating_tigernut.webp"
           side="right"
+          width={640}
+          height={353}
         />
         <h1 className="mb-5 text-center text-3xl font-bold leading-tight text-text-dark sm:text-4xl lg:text-5xl">
           Fresh, Flavorful &<br />
