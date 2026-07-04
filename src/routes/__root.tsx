@@ -2,6 +2,7 @@ import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 
 import appCss from '../styles.css?url'
 import { BRAND } from '#/lib/brand'
+import { RESTAURANT_SCHEMA } from '#/lib/schema'
 
 const TITLE = "Loju's Healthy Bites — Fresh, Flavorful & Guilt-Free Bites"
 const DESCRIPTION =
@@ -72,6 +73,12 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(RESTAURANT_SCHEMA).replace(/</g, '\\u003c'),
+          }}
+        />
       </head>
       <body>
         <a href="#main-content" className="skip-link">
