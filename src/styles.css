@@ -127,7 +127,11 @@ body {
 }
 
 @utility bauhaus-halftone {
-  background-image: radial-gradient(circle, currentColor 1.5px, transparent 1.5px);
+  background-image: radial-gradient(
+    circle,
+    currentColor 1.5px,
+    transparent 1.5px
+  );
   background-size: 14px 14px;
   pointer-events: none;
 }

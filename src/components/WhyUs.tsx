@@ -91,6 +91,14 @@ export function WhyUs() {
       data-whyus-visible={inView}
       className="relative overflow-hidden border-t-[3px] border-ink bg-band-basil px-4 py-20 sm:px-6 sm:py-28"
     >
+      <div
+        aria-hidden="true"
+        className="bauhaus-halftone absolute -left-6 bottom-12 h-40 w-40 text-bg-cream/25"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute -right-4 top-16 h-16 w-16 rounded-full border-[3px] border-bg-cream/40"
+      />
       <div className="relative mx-auto max-w-4xl">
         <SectionHeader
           icon={Sparkles}

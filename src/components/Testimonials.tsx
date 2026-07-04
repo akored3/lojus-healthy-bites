@@ -103,6 +103,14 @@ export function Testimonials() {
       aria-labelledby="testimonials-heading"
       className="relative overflow-hidden border-y-[3px] border-ink bg-accent-tangerine px-4 py-20 sm:px-6 sm:py-28"
     >
+      <div
+        aria-hidden="true"
+        className="bauhaus-halftone absolute -right-8 top-14 h-36 w-36 rotate-6 text-ink/15"
+      />
+      <div
+        aria-hidden="true"
+        className="bauhaus-halftone absolute -left-6 bottom-10 h-28 w-28 text-ink/10"
+      />
       <div className="relative mx-auto max-w-6xl">
         <SectionHeader
           icon={Quote}

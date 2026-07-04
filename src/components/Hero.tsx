@@ -41,6 +41,18 @@ function FloatingImage({
 export function Hero() {
   return (
     <section className="relative bg-bg-butter px-4 pb-8 pt-16 sm:px-6 sm:pb-12 sm:pt-20">
+      <div
+        aria-hidden="true"
+        className="bauhaus-halftone absolute left-6 top-10 hidden h-24 w-36 text-ink/20 md:block"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute right-12 top-12 hidden h-10 w-10 rounded-full border-[3px] border-ink md:block"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute right-24 top-24 hidden h-4 w-4 rounded-full border-2 border-ink bg-accent-lemon md:block"
+      />
       <div className="relative mx-auto max-w-3xl md:max-w-2xl lg:max-w-3xl">
         <FloatingImage
           src="/images/floating_fruitjuice.webp"
