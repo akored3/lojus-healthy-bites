@@ -4,8 +4,8 @@ import { WHY_US_ITEMS } from '#/lib/why-us'
 import type { WhyUsItem } from '#/lib/why-us'
 import { ACCENT_BG, CARD_BG } from '#/lib/accents'
 import { useInView } from '#/lib/useInView'
+import { FloatingSprite } from './FloatingSprite'
 import { SectionHeader } from './SectionHeader'
-import { SpritePlaceholder } from './SpritePlaceholder'
 
 const HEART_COLOR: Record<WhyUsItem['accent'], string> = {
   tangerine: 'text-accent-tangerine',
@@ -92,18 +92,6 @@ export function WhyUs() {
       data-whyus-visible={inView}
       className="relative overflow-hidden border-t-[3px] border-ink bg-band-basil px-4 py-20 sm:px-6 sm:py-28"
     >
-      <SpritePlaceholder
-        label="W1"
-        className="right-[6%] top-16 hidden h-20 w-20 rotate-6 border-bg-cream/60 bg-bg-cream/10 text-bg-cream/80 md:flex"
-      />
-      <SpritePlaceholder
-        label="W2"
-        className="left-[3%] top-[38%] hidden h-16 w-16 -rotate-6 border-bg-cream/60 bg-bg-cream/10 text-bg-cream/80 lg:flex"
-      />
-      <SpritePlaceholder
-        label="W3"
-        className="bottom-12 right-[4%] hidden h-20 w-20 rotate-12 border-bg-cream/60 bg-bg-cream/10 text-bg-cream/80 md:flex"
-      />
       <div className="relative mx-auto max-w-4xl">
         <SectionHeader
           icon={Sparkles}
@@ -114,7 +102,25 @@ export function WhyUs() {
           onDark
         />
 
-        <div className="mt-14 flex flex-col gap-6 sm:gap-8">
+        <div className="relative mt-14 flex flex-col gap-6 sm:gap-8">
+          <FloatingSprite
+            src="/images/floating_pineapple.webp"
+            width={320}
+            height={480}
+            className="-right-2 -top-9 w-14 rotate-6 sm:w-16 md:-right-8 md:-top-10 lg:-right-12 lg:w-20"
+          />
+          <FloatingSprite
+            src="/images/floating_milkshake.webp"
+            width={320}
+            height={480}
+            className="-left-2 top-[31%] w-14 -rotate-6 sm:w-16 md:-left-8 lg:-left-12 lg:w-20"
+          />
+          <FloatingSprite
+            src="/images/floating_orangejuice.webp"
+            width={320}
+            height={568}
+            className="-bottom-10 -right-2 w-14 rotate-12 sm:w-16 md:-bottom-12 md:-right-8 lg:-right-14 lg:w-20"
+          />
           {WHY_US_ITEMS.map((item, idx) => (
             <WhyUsCard key={item.id} item={item} index={idx} />
           ))}
