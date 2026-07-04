@@ -1,6 +1,7 @@
 export const BRAND = {
   name: "Loju's Healthy Bites",
   short: "Loju's",
+  url: 'https://lojus-healthy-bites.vercel.app',
   tagline: 'Fresh, Flavorful & Guilt-Free Bites.',
   subtitle:
     'Parfaits, mini pizzas, fresh juices, and wholesome fast food, crafted with love and delivered with care.',

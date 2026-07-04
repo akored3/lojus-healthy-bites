@@ -1,6 +1,12 @@
 import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 
 import appCss from '../styles.css?url'
+import { BRAND } from '#/lib/brand'
+
+const TITLE = "Loju's Healthy Bites — Fresh, Flavorful & Guilt-Free Bites"
+const DESCRIPTION =
+  "Loju's Healthy Bites — parfaits, mini pizzas, fresh juices, and wholesome fast food crafted with love. Order on WhatsApp for pickup or delivery."
+const OG_IMAGE = `${BRAND.url}/og.jpg`
 
 export const Route = createRootRoute({
   head: () => ({
@@ -10,17 +16,39 @@ export const Route = createRootRoute({
         name: 'viewport',
         content: 'width=device-width, initial-scale=1.0, viewport-fit=cover',
       },
-      { name: 'theme-color', content: '#eab308' },
+      { name: 'theme-color', content: '#f4c430' },
       { name: 'robots', content: 'index, follow' },
-      { title: "Loju's Healthy Bites — Fresh, Flavorful & Guilt-Free Bites" },
+      { title: TITLE },
+      { name: 'description', content: DESCRIPTION },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:site_name', content: BRAND.name },
+      { property: 'og:title', content: TITLE },
+      { property: 'og:description', content: DESCRIPTION },
+      { property: 'og:url', content: `${BRAND.url}/` },
+      { property: 'og:image', content: OG_IMAGE },
+      { property: 'og:image:width', content: '1200' },
+      { property: 'og:image:height', content: '630' },
       {
-        name: 'description',
-        content:
-          "Loju's Healthy Bites — parfaits, mini pizzas, fresh juices, and wholesome fast food crafted with love. Order on WhatsApp for pickup or delivery.",
+        property: 'og:image:alt',
+        content: "Layered fruit and yogurt parfaits from Loju's Healthy Bites",
       },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: TITLE },
+      { name: 'twitter:description', content: DESCRIPTION },
+      { name: 'twitter:image', content: OG_IMAGE },
     ],
     links: [
       { rel: 'stylesheet', href: appCss },
+      { rel: 'canonical', href: `${BRAND.url}/` },
+      { rel: 'icon', href: '/favicon.ico', sizes: '32x32' },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '192x192',
+        href: '/logo192.png',
+      },
+      { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+      { rel: 'manifest', href: '/manifest.json' },
       {
         rel: 'preconnect',
         href: 'https://fonts.googleapis.com',
