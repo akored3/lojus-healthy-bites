@@ -114,15 +114,15 @@ export function WhyUs() {
         className="bottom-32 right-0 w-14 rotate-12 sm:w-16 md:bottom-12 md:right-[4%] md:w-20"
       />
       <SpritePlaceholder
-        label="W1"
+        label="W4"
         className="left-[4%] top-16 hidden h-20 w-16 -rotate-6 border-bg-cream/50 bg-bg-cream/10 text-bg-cream/80 md:flex"
       />
       <SpritePlaceholder
-        label="W2"
+        label="W6"
         className="right-0 top-[55%] hidden h-24 w-16 rotate-6 border-bg-cream/50 bg-bg-cream/10 text-bg-cream/80 lg:right-[2%] lg:flex"
       />
       <SpritePlaceholder
-        label="W3"
+        label="W5"
         className="bottom-10 left-[6%] hidden h-16 w-16 rotate-12 border-bg-cream/50 bg-bg-cream/10 text-bg-cream/80 md:flex"
       />
       <div className="relative mx-auto max-w-4xl">
