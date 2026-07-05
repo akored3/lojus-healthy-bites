@@ -36,7 +36,7 @@ export function SectionHeader({
         className={`mx-auto mt-3 block h-1.5 w-14 rounded-full border-[2px] border-ink ${tickClass}`}
       />
       <p
-        className={`mx-auto mt-4 max-w-xl text-sm leading-relaxed sm:text-base ${onDark ? 'text-bg-cream/85' : 'text-text-menu'}`}
+        className={`mx-auto mt-4 max-w-xl text-sm leading-relaxed sm:text-base ${onDark ? 'text-bg-cream' : 'text-text-menu'}`}
       >
         {subtitle}
       </p>

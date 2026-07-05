@@ -10,7 +10,8 @@
   --color-bg-tangerine: #ffe8d1;
 
   --color-band-sage: #d7e8bd;
-  --color-band-basil: #2b6b2f;
+  /* keeps >=4.5:1 with full-strength cream text — don't lighten past #458450 */
+  --color-band-basil: #3a7d44;
 
   --color-text-dark: #1a1a1a;
   --color-text-body: #525c4a;
