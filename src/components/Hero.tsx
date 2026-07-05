@@ -70,7 +70,7 @@ export function Hero() {
         <h1 className="font-display mb-5 text-center text-4xl font-bold leading-tight tracking-tight text-text-dark sm:text-5xl lg:text-6xl">
           Fresh, Flavorful &<br />
           Guilt-Free{' '}
-          <span className="bite-wrap text-accent-tangerine">
+          <span className="bite-wrap">
             <span className="sr-only">Bites &amp; Drinks</span>
             <span className="swap-word swap-word--bites" aria-hidden="true">
               Bites
