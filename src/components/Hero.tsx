@@ -71,7 +71,13 @@ export function Hero() {
           Fresh, Flavorful &<br />
           Guilt-Free{' '}
           <span className="bite-wrap text-accent-tangerine">
-            <span className="bite-text">Bites</span>
+            <span className="sr-only">Bites &amp; Drinks</span>
+            <span className="swap-word swap-word--bites" aria-hidden="true">
+              Bites
+            </span>
+            <span className="swap-word swap-word--drinks" aria-hidden="true">
+              Drinks
+            </span>
           </span>
           <br />
           Crafted With Love<span className="text-accent-green">.</span>

@@ -135,14 +135,22 @@ body {
   display: none;
 }
 
-/* ——— Bite effect on text ——— */
+/* ——— Bites ⇄ Drinks slot-roll in the hero headline ——— */
 
+/* padding + negative margin widen the clip window so italic overshoot survives */
 .bite-wrap {
-  display: inline-block;
+  display: inline-grid;
+  justify-items: center;
+  overflow: hidden;
+  padding: 0.12em 0.18em;
+  margin: -0.12em -0.18em;
 }
 
-.bite-text {
-  display: inline-block;
+.swap-word {
+  grid-area: 1 / 1;
+}
+
+.swap-word--bites {
   background-image: linear-gradient(
     to top,
     var(--color-accent-tangerine) 0%,
@@ -156,7 +164,15 @@ body {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  animation: bite-ripen 9s ease-in-out infinite;
+  animation:
+    bite-ripen 10s ease-in-out infinite,
+    swap-bites 10s infinite;
+}
+
+.swap-word--drinks {
+  color: var(--color-accent-green);
+  transform: translateY(120%);
+  animation: swap-drinks 10s infinite;
 }
 
 @keyframes bite-ripen {
@@ -165,13 +181,15 @@ body {
     text-shadow: none;
     filter: saturate(0.7);
   }
-  50% {
+  34%,
+  46% {
     background-position: 0% 100%;
     text-shadow:
       0 0 0.02em rgba(234, 179, 8, 0.55),
       0.04em 0 0 rgba(56, 189, 248, 0.18);
     filter: saturate(1.15);
   }
+  54%,
   100% {
     background-position: 0% 0%;
     text-shadow: none;
@@ -179,11 +197,78 @@ body {
   }
 }
 
+/* opacity gates the off-screen sweep back below the clip window */
+@keyframes swap-bites {
+  0%,
+  56% {
+    transform: translateY(0);
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.4);
+  }
+  64% {
+    transform: translateY(-120%);
+    opacity: 1;
+  }
+  66% {
+    transform: translateY(-120%);
+    opacity: 0;
+  }
+  68%,
+  88% {
+    transform: translateY(120%);
+    opacity: 0;
+  }
+  90% {
+    transform: translateY(120%);
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.34, 1.45, 0.64, 1);
+  }
+  98%,
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes swap-drinks {
+  0%,
+  56% {
+    transform: translateY(120%);
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.34, 1.45, 0.64, 1);
+  }
+  64%,
+  90% {
+    transform: translateY(0);
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.4);
+  }
+  96% {
+    transform: translateY(-120%);
+    opacity: 1;
+  }
+  97% {
+    transform: translateY(-120%);
+    opacity: 0;
+  }
+  99% {
+    transform: translateY(120%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(120%);
+    opacity: 1;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .bite-text {
+  .swap-word--bites {
     animation: none;
     background-position: 0% 100%;
     filter: saturate(1);
+  }
+  .swap-word--drinks {
+    animation: none;
   }
 }
 
