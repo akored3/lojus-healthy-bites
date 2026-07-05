@@ -17,7 +17,8 @@
   --color-text-menu: #2d3525;
 
   --color-accent-lemon: #f4c430;
-  --color-accent-tangerine: #ff6b35;
+  /* keeps >=3:1 on cream/butter/white so tangerine works as large text + focus underline */
+  --color-accent-tangerine: #eb5a1e;
   --color-accent-green: #35793a;
 
   --color-accent-pink: #d6336c;
@@ -146,8 +147,8 @@ body {
     to top,
     var(--color-accent-tangerine) 0%,
     var(--color-accent-tangerine) 50%,
-    #fcd9b8 50%,
-    #fcd9b8 100%
+    var(--color-accent-green) 50%,
+    var(--color-accent-green) 100%
   );
   background-size: 100% 200%;
   background-position: 0% 0%;

@@ -63,7 +63,7 @@ export function Navbar() {
 
         <WhatsAppCta
           message={WHATSAPP_MESSAGES.order}
-          className="bauhaus-btn hidden bg-whatsapp text-xs text-white md:inline-flex"
+          className="bauhaus-btn hidden bg-whatsapp text-xs text-ink md:inline-flex"
         >
           Order on WhatsApp
         </WhatsAppCta>
@@ -104,7 +104,7 @@ export function Navbar() {
                 message={WHATSAPP_MESSAGES.order}
                 onClick={closeMobileMenu}
                 aria-label="Order on WhatsApp"
-                className="mobile-cta group relative flex h-12 items-center justify-start gap-2 overflow-hidden rounded-full border-[2.5px] border-ink bg-whatsapp pl-[0.875rem] font-bold text-white"
+                className="mobile-cta group relative flex h-12 items-center justify-start gap-2 overflow-hidden rounded-full border-[2.5px] border-ink bg-whatsapp pl-[0.875rem] font-bold text-ink"
               >
                 <WhatsAppIcon className="h-5 w-5 shrink-0" />
                 <span className="mobile-cta-text inline-block whitespace-nowrap pr-2 text-sm">

@@ -91,7 +91,7 @@ export function Hero() {
 
         <WhatsAppCta
           message={WHATSAPP_MESSAGES.order}
-          className="bauhaus-btn bg-whatsapp text-sm text-white sm:text-base"
+          className="bauhaus-btn bg-whatsapp text-sm text-ink sm:text-base"
         >
           <WhatsAppIcon className="h-5 w-5" />
           Order Now →

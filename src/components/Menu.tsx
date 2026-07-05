@@ -239,7 +239,7 @@ function MenuItemModal({
         <div className="mt-8 flex justify-end">
           <WhatsAppCta
             message={orderItemMessage(variant.name, variant.price)}
-            className="bauhaus-btn bg-whatsapp text-sm text-white sm:text-base"
+            className="bauhaus-btn bg-whatsapp text-sm text-ink sm:text-base"
           >
             <WhatsAppIcon className="h-5 w-5" />
             Order Now →

@@ -23,7 +23,7 @@ function StarRow({ rating, delayMs }: { rating: number; delayMs: number }) {
       {Array.from({ length: 5 }, (_, i) => (
         <Star
           key={i}
-          className={`h-4 w-4 ${i < rating ? 'fill-accent-lemon text-accent-lemon' : 'text-text-body/30'}`}
+          className={`h-4 w-4 ${i < rating ? 'fill-accent-lemon text-ink' : 'text-ink/50'}`}
           style={{ '--star-delay': `${delayMs + i * 60}ms` } as CSSProperties}
           aria-hidden="true"
         />
