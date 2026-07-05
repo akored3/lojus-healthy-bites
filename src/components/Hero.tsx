@@ -1,8 +1,48 @@
+import { useEffect, useState } from 'react'
+import { AnimatePresence, motion } from 'motion/react'
 import { BRAND, WHATSAPP_MESSAGES } from '#/lib/brand'
 import { FloatingSprite } from './FloatingSprite'
 import { HeroSlider } from './HeroSlider'
 import { WhatsAppCta } from './WhatsAppCta'
 import { WhatsAppIcon } from './WhatsAppIcon'
+
+const SWAP_WORDS = [
+  { text: 'Bites', color: 'text-accent-tangerine' },
+  { text: 'Drinks', color: 'text-accent-green' },
+] as const
+
+function SwapWord() {
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    const id = setInterval(
+      () => setIndex((i) => (i + 1) % SWAP_WORDS.length),
+      3200,
+    )
+    return () => clearInterval(id)
+  }, [])
+
+  const word = SWAP_WORDS[index]
+
+  return (
+    <span className="bite-wrap">
+      <span className="sr-only">Bites &amp; Drinks</span>
+      <AnimatePresence initial={false}>
+        <motion.span
+          key={word.text}
+          aria-hidden="true"
+          className={`swap-word ${word.color}`}
+          initial={{ y: '0.6em', opacity: 0, filter: 'blur(8px)' }}
+          animate={{ y: '0em', opacity: 1, filter: 'blur(0px)' }}
+          exit={{ y: '-0.6em', opacity: 0, filter: 'blur(8px)' }}
+          transition={{ type: 'spring', stiffness: 320, damping: 30 }}
+        >
+          {word.text}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  )
+}
 
 function FloatingImage({
   src,
@@ -69,16 +109,7 @@ export function Hero() {
         />
         <h1 className="font-display mb-5 text-center text-4xl font-bold leading-tight tracking-tight text-text-dark sm:text-5xl lg:text-6xl">
           Fresh, Flavorful &<br />
-          Guilt-Free{' '}
-          <span className="bite-wrap">
-            <span className="sr-only">Bites &amp; Drinks</span>
-            <span className="swap-word swap-word--bites" aria-hidden="true">
-              Bites
-            </span>
-            <span className="swap-word swap-word--drinks" aria-hidden="true">
-              Drinks
-            </span>
-          </span>
+          Guilt-Free <SwapWord />
           <br />
           Crafted With Love<span className="text-accent-green">.</span>
         </h1>

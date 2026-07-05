@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { MotionConfig } from 'motion/react'
 import { Navbar } from '#/components/Navbar'
 import { Hero } from '#/components/Hero'
 import { Menu } from '#/components/Menu'
@@ -9,7 +10,7 @@ export const Route = createFileRoute('/')({ component: App })
 
 function App() {
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <Navbar />
       <main id="main-content" className="pt-24">
         <Hero />
@@ -17,6 +18,6 @@ function App() {
         <WhyUs />
         <Testimonials />
       </main>
-    </>
+    </MotionConfig>
   )
 }

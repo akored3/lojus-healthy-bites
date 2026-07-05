@@ -1,32 +1,36 @@
-import type { CSSProperties } from 'react'
+import { motion } from 'motion/react'
 import { Quote, Star } from 'lucide-react'
 import { TESTIMONIALS } from '#/lib/testimonials'
 import type { Testimonial } from '#/lib/testimonials'
 import { ACCENT_BG, CARD_BG, ON_ACCENT_TEXT } from '#/lib/accents'
-import { useInView } from '#/lib/useInView'
+import { fadeUp, popIn, riseIn, VIEWPORT_ONCE } from '#/lib/reveal'
 import { SectionHeader } from './SectionHeader'
 import { SpritePlaceholder } from './SpritePlaceholder'
 
-const CARD_STAGGER_MS = 140
-const QUOTE_OFFSET_MS = 180
-const STARS_OFFSET_MS = 260
-const TEXT_OFFSET_MS = 340
-const AUTHOR_OFFSET_MS = 440
+const CARD_STAGGER = 0.14
+const QUOTE_OFFSET = 0.18
+const STARS_OFFSET = 0.26
+const STAR_STAGGER = 0.06
+const TEXT_OFFSET = 0.34
+const AUTHOR_OFFSET = 0.44
 
-function StarRow({ rating, delayMs }: { rating: number; delayMs: number }) {
+function StarRow({ rating, delay }: { rating: number; delay: number }) {
   return (
     <div
       role="img"
-      className="testimonial-stars flex gap-1"
+      className="flex gap-1"
       aria-label={`${rating} out of 5 stars`}
     >
       {Array.from({ length: 5 }, (_, i) => (
-        <Star
+        <motion.span
           key={i}
-          className={`h-4 w-4 ${i < rating ? 'fill-accent-lemon text-ink' : 'text-ink/50'}`}
-          style={{ '--star-delay': `${delayMs + i * 60}ms` } as CSSProperties}
+          variants={popIn(delay + i * STAR_STAGGER)}
           aria-hidden="true"
-        />
+        >
+          <Star
+            className={`h-4 w-4 ${i < rating ? 'fill-accent-lemon text-ink' : 'text-ink/50'}`}
+          />
+        </motion.span>
       ))}
     </div>
   )
@@ -39,54 +43,50 @@ function TestimonialCard({
   item: Testimonial
   index: number
 }) {
-  const cardDelay = index * CARD_STAGGER_MS
-  const cardStyle = {
-    '--card-delay': `${cardDelay}ms`,
-    '--quote-delay': `${cardDelay + QUOTE_OFFSET_MS}ms`,
-    '--stars-delay': `${cardDelay + STARS_OFFSET_MS}ms`,
-    '--text-delay': `${cardDelay + TEXT_OFFSET_MS}ms`,
-    '--author-delay': `${cardDelay + AUTHOR_OFFSET_MS}ms`,
-  } as CSSProperties
-
+  const cardDelay = index * CARD_STAGGER
   const tilt = index % 2 === 0 ? '-rotate-2' : 'rotate-2'
 
   return (
-    <article
-      className={`testimonial-card bauhaus-card relative flex w-[78%] shrink-0 snap-start flex-col gap-4 p-6 transition-transform duration-200 hover:-translate-y-1 sm:w-[55%] md:w-[calc((100%-3rem)/3)] md:p-7 ${CARD_BG[item.accent]}`}
-      style={cardStyle}
+    <motion.article
+      initial="hidden"
+      whileInView="show"
+      viewport={VIEWPORT_ONCE}
+      variants={riseIn(cardDelay)}
+      whileHover={{ y: -5 }}
+      className={`bauhaus-card relative flex w-[78%] shrink-0 snap-start flex-col gap-4 p-6 sm:w-[55%] md:w-[calc((100%-3rem)/3)] md:p-7 ${CARD_BG[item.accent]}`}
     >
-      <span
+      <motion.span
         aria-hidden="true"
-        className={`testimonial-quote bauhaus-chip absolute -left-3 -top-3 h-10 w-10 ${ACCENT_BG[item.accent]} ${ON_ACCENT_TEXT[item.accent]} ${tilt}`}
+        variants={popIn(cardDelay + QUOTE_OFFSET)}
+        className={`bauhaus-chip absolute -left-3 -top-3 h-10 w-10 ${ACCENT_BG[item.accent]} ${ON_ACCENT_TEXT[item.accent]} ${tilt}`}
       >
         <Quote className="h-4 w-4" />
-      </span>
+      </motion.span>
 
-      <StarRow
-        rating={item.rating}
-        delayMs={index * CARD_STAGGER_MS + STARS_OFFSET_MS}
-      />
+      <StarRow rating={item.rating} delay={cardDelay + STARS_OFFSET} />
 
-      <p className="testimonial-text font-display flex-1 text-base font-medium italic leading-relaxed text-text-dark sm:text-lg">
+      <motion.p
+        variants={fadeUp(cardDelay + TEXT_OFFSET)}
+        className="font-display flex-1 text-base font-medium italic leading-relaxed text-text-dark sm:text-lg"
+      >
         &ldquo;{item.quote}&rdquo;
-      </p>
+      </motion.p>
 
-      <footer className="testimonial-author border-t-2 border-dashed border-ink/20 pt-3">
+      <motion.footer
+        variants={fadeUp(cardDelay + AUTHOR_OFFSET)}
+        className="border-t-2 border-dashed border-ink/20 pt-3"
+      >
         <p className="text-sm font-bold text-text-dark">{item.name}</p>
         <p className="text-xs text-text-body">{item.location}</p>
-      </footer>
-    </article>
+      </motion.footer>
+    </motion.article>
   )
 }
 
 export function Testimonials() {
-  const { ref, inView } = useInView<HTMLElement>(0.1)
-
   return (
     <section
-      ref={ref}
       id="testimonials"
-      data-testimonials-visible={inView}
       aria-labelledby="testimonials-heading"
       className="relative overflow-hidden border-y-[3px] border-ink bg-bg-cream px-4 py-20 sm:px-6 sm:py-28"
     >

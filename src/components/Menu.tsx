@@ -1,11 +1,17 @@
 import { useEffect, useRef, useState } from 'react'
-import type { CSSProperties } from 'react'
+import { AnimatePresence, motion } from 'motion/react'
 import { UtensilsCrossed, X } from 'lucide-react'
 import { MENU_CATEGORIES } from '#/lib/menu'
 import type { MenuCategory, MenuVariant } from '#/lib/menu'
 import { formatPrice, orderItemMessage } from '#/lib/brand'
 import { ACCENT_BG, CARD_BG, ON_ACCENT_TEXT } from '#/lib/accents'
-import { useInView } from '#/lib/useInView'
+import {
+  popIn,
+  riseIn,
+  slideIn,
+  SPRING_SOFT,
+  VIEWPORT_ONCE,
+} from '#/lib/reveal'
 import { SectionHeader } from './SectionHeader'
 import { WhatsAppCta } from './WhatsAppCta'
 import { WhatsAppIcon } from './WhatsAppIcon'
@@ -38,11 +44,11 @@ const ROW_HOVER_BG: Record<MenuCategory['accent'], string> = {
   green: 'hover:bg-accent-green/10 focus-visible:bg-accent-green/10',
 }
 
-const CARD_STAGGER_MS = 160
-const PILL_OFFSET_MS = 220
-const DOT_OFFSET_MS = 320
-const ITEMS_OFFSET_MS = 420
-const ITEM_STAGGER_MS = 70
+const CARD_STAGGER = 0.12
+const PILL_OFFSET = 0.18
+const DOT_OFFSET = 0.28
+const ITEMS_OFFSET = 0.34
+const ITEM_STAGGER = 0.06
 
 function MenuCornerImage({
   src,
@@ -84,51 +90,48 @@ function MenuCard({
   index: number
   onSelect: (variant: MenuVariant, accent: MenuCategory['accent']) => void
 }) {
-  const cardDelay = index * CARD_STAGGER_MS
-  const cardStyle = {
-    '--card-delay': `${cardDelay}ms`,
-    '--pill-delay': `${cardDelay + PILL_OFFSET_MS}ms`,
-    '--dot-delay': `${cardDelay + DOT_OFFSET_MS}ms`,
-  } as CSSProperties
+  const cardDelay = index * CARD_STAGGER
 
   return (
-    <article
-      className={`menu-card bauhaus-card relative mx-auto flex w-full max-w-sm flex-col self-start p-5 text-center transition-transform duration-200 hover:-translate-y-1 sm:p-6 md:p-4 lg:p-6 ${CARD_BG[category.accent]}`}
-      style={cardStyle}
+    <motion.article
+      initial="hidden"
+      whileInView="show"
+      viewport={VIEWPORT_ONCE}
+      variants={riseIn(cardDelay)}
+      whileHover={{ y: -5 }}
+      className={`bauhaus-card relative mx-auto flex w-full max-w-sm flex-col self-start p-5 text-center sm:p-6 md:p-4 lg:p-6 ${CARD_BG[category.accent]}`}
     >
-      <span
+      <motion.span
         aria-hidden="true"
-        className={`menu-dot absolute right-4 top-4 h-3 w-3 border-[2px] border-ink ${ACCENT_BG[category.accent]}`}
+        variants={popIn(cardDelay + DOT_OFFSET, 45)}
+        className={`absolute right-4 top-4 h-3 w-3 border-[2px] border-ink ${ACCENT_BG[category.accent]}`}
       />
 
       <div className="mx-auto">
-        <span
-          className={`menu-pill bauhaus-chip items-center px-5 py-1.5 text-sm sm:text-base md:px-3 md:py-1 md:text-xs lg:px-5 lg:py-1.5 lg:text-base ${ACCENT_BG[category.accent]} ${ON_ACCENT_TEXT[category.accent]}`}
+        <motion.span
+          variants={popIn(cardDelay + PILL_OFFSET, 0, 0.5)}
+          className={`bauhaus-chip items-center px-5 py-1.5 text-sm sm:text-base md:px-3 md:py-1 md:text-xs lg:px-5 lg:py-1.5 lg:text-base ${ACCENT_BG[category.accent]} ${ON_ACCENT_TEXT[category.accent]}`}
         >
           {category.title}
-        </span>
+        </motion.span>
       </div>
 
       <div className="bauhaus-card mt-6 bg-white p-4 sm:p-5 md:p-3 lg:p-5">
         <ul className="scrollbar-hide flex max-h-60 flex-col gap-2.5 overflow-y-auto text-sm text-text-body sm:max-h-none sm:overflow-visible sm:text-base md:gap-1.5 md:text-xs lg:gap-2.5 lg:text-sm xl:text-base">
           {category.variants.map((variant, itemIdx) => {
-            const itemDelay =
-              cardDelay + ITEMS_OFFSET_MS + itemIdx * ITEM_STAGGER_MS
+            const itemDelay = cardDelay + ITEMS_OFFSET + itemIdx * ITEM_STAGGER
             return (
-              <li
-                key={variant.name}
-                className="menu-item"
-                style={{ '--item-delay': `${itemDelay}ms` } as CSSProperties}
-              >
+              <motion.li key={variant.name} variants={slideIn(itemDelay)}>
                 <button
                   type="button"
                   onClick={() => onSelect(variant, category.accent)}
                   aria-label={`View ${variant.name}, ${formatPrice(variant.price)}`}
                   className={`group flex w-full cursor-pointer items-center gap-2 rounded-md px-2 py-2 transition-colors duration-200 focus-visible:outline-none md:gap-1.5 md:px-1 md:py-1 lg:gap-2 lg:px-2 lg:py-2 ${ROW_HOVER_BG[category.accent]}`}
                 >
-                  <span
+                  <motion.span
                     aria-hidden="true"
-                    className={`menu-bullet inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full transition-transform duration-200 motion-reduce:transition-none group-hover:scale-[1.7] group-focus-visible:scale-[1.7] ${ACCENT_BG[category.accent]}`}
+                    variants={popIn(itemDelay)}
+                    className={`inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full transition-transform duration-200 motion-reduce:transition-none group-hover:scale-[1.7] group-focus-visible:scale-[1.7] ${ACCENT_BG[category.accent]}`}
                   />
                   <span className="relative min-w-0 flex-1 text-left">
                     {variant.name}
@@ -141,12 +144,12 @@ function MenuCard({
                     {formatPrice(variant.price)}
                   </span>
                 </button>
-              </li>
+              </motion.li>
             )
           })}
         </ul>
       </div>
-    </article>
+    </motion.article>
   )
 }
 
@@ -201,12 +204,24 @@ function MenuItemModal({
       aria-labelledby="menu-item-modal-title"
       className="fixed inset-0 z-[300] flex items-center justify-center p-4"
     >
-      <div
+      <motion.div
         aria-hidden="true"
         onClick={onClose}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
         className="absolute inset-0 bg-black/40"
       />
-      <div
+      <motion.div
+        initial={{ opacity: 0, y: 24, scale: 0.94 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{
+          opacity: 0,
+          y: 12,
+          scale: 0.97,
+          transition: { duration: 0.15 },
+        }}
+        transition={SPRING_SOFT}
         className={`relative w-full max-w-sm bauhaus-card p-6 text-center sm:p-8 ${CARD_BG[accent]}`}
       >
         <button
@@ -245,13 +260,12 @@ function MenuItemModal({
             Order Now →
           </WhatsAppCta>
         </div>
-      </div>
+      </motion.div>
     </div>
   )
 }
 
 export function Menu() {
-  const { ref, inView } = useInView<HTMLElement>(0.2)
   const [selected, setSelected] = useState<{
     variant: MenuVariant
     accent: MenuCategory['accent']
@@ -259,9 +273,7 @@ export function Menu() {
 
   return (
     <section
-      ref={ref}
       id="full-menu"
-      data-menu-visible={inView}
       className="relative overflow-hidden border-t-[3px] border-ink bg-band-sage px-8 py-20 sm:px-6 sm:py-28"
     >
       <MenuCornerImage
@@ -322,13 +334,15 @@ export function Menu() {
         </div>
       </div>
 
-      {selected && (
-        <MenuItemModal
-          variant={selected.variant}
-          accent={selected.accent}
-          onClose={() => setSelected(null)}
-        />
-      )}
+      <AnimatePresence>
+        {selected && (
+          <MenuItemModal
+            variant={selected.variant}
+            accent={selected.accent}
+            onClose={() => setSelected(null)}
+          />
+        )}
+      </AnimatePresence>
     </section>
   )
 }

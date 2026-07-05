@@ -1,9 +1,9 @@
-import type { CSSProperties } from 'react'
+import { motion } from 'motion/react'
 import { ArrowRight, Heart, Sparkles } from 'lucide-react'
 import { WHY_US_ITEMS } from '#/lib/why-us'
 import type { WhyUsItem } from '#/lib/why-us'
 import { ACCENT_BG, CARD_BG } from '#/lib/accents'
-import { useInView } from '#/lib/useInView'
+import { fadeUp, popIn, riseIn, VIEWPORT_ONCE } from '#/lib/reveal'
 import { FloatingSprite } from './FloatingSprite'
 import { SectionHeader } from './SectionHeader'
 
@@ -14,38 +14,37 @@ const HEART_COLOR: Record<WhyUsItem['accent'], string> = {
   green: 'text-accent-green',
 }
 
-const CARD_STAGGER_MS = 200
-const IMAGE_OFFSET_MS = 240
-const HEART_OFFSET_MS = 320
-const TITLE_OFFSET_MS = 380
-const DESC_OFFSET_MS = 460
-const CTA_OFFSET_MS = 560
+const IMAGE_OFFSET = 0.24
+const HEART_OFFSET = 0.32
+const TITLE_OFFSET = 0.38
+const DESC_OFFSET = 0.46
+const CTA_OFFSET = 0.56
 
 function WhyUsCard({ item, index }: { item: WhyUsItem; index: number }) {
-  const cardDelay = index * CARD_STAGGER_MS
-  const cardStyle = {
-    '--card-delay': `${cardDelay}ms`,
-    '--image-delay': `${cardDelay + IMAGE_OFFSET_MS}ms`,
-    '--heart-delay': `${cardDelay + HEART_OFFSET_MS}ms`,
-    '--title-delay': `${cardDelay + TITLE_OFFSET_MS}ms`,
-    '--desc-delay': `${cardDelay + DESC_OFFSET_MS}ms`,
-    '--cta-delay': `${cardDelay + CTA_OFFSET_MS}ms`,
-  } as CSSProperties
-
   const reverse = index % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'
   const tilt = index % 2 === 1 ? 'rotate-3' : '-rotate-3'
 
   return (
-    <article
-      className={`whyus-card bauhaus-card relative flex flex-col items-center gap-5 p-4 text-center transition-transform duration-200 hover:-translate-y-1 sm:p-5 md:items-center md:gap-6 md:p-6 md:text-left ${reverse} ${CARD_BG[item.accent]}`}
-      style={cardStyle}
+    <motion.article
+      initial="hidden"
+      whileInView="show"
+      viewport={VIEWPORT_ONCE}
+      variants={riseIn()}
+      whileHover={{ y: -5 }}
+      className={`bauhaus-card relative flex flex-col items-center gap-5 p-4 text-center sm:p-5 md:items-center md:gap-6 md:p-6 md:text-left ${reverse} ${CARD_BG[item.accent]}`}
     >
-      <Heart
+      <motion.span
         aria-hidden="true"
-        className={`whyus-heart absolute left-4 top-4 h-5 w-5 sm:left-6 sm:top-5 ${HEART_COLOR[item.accent]}`}
-      />
+        variants={popIn(HEART_OFFSET)}
+        className="absolute left-4 top-4 sm:left-6 sm:top-5"
+      >
+        <Heart className={`h-5 w-5 ${HEART_COLOR[item.accent]}`} />
+      </motion.span>
 
-      <div className="whyus-image-wrap flex-shrink-0">
+      <motion.div
+        variants={popIn(IMAGE_OFFSET, 0, 0.6)}
+        className="flex-shrink-0"
+      >
         <div
           className={`bauhaus-card h-32 w-32 p-1.5 sm:h-40 sm:w-40 ${ACCENT_BG[item.accent]} ${tilt}`}
         >
@@ -59,37 +58,40 @@ function WhyUsCard({ item, index }: { item: WhyUsItem; index: number }) {
             className="h-full w-full rounded-[1rem] border-[2px] border-ink object-cover"
           />
         </div>
-      </div>
+      </motion.div>
 
       <div className="flex-1">
-        <h3 className="whyus-title font-display text-xl font-bold tracking-tight text-text-dark sm:text-2xl">
+        <motion.h3
+          variants={fadeUp(TITLE_OFFSET)}
+          className="font-display text-xl font-bold tracking-tight text-text-dark sm:text-2xl"
+        >
           {item.title}
-        </h3>
-        <p className="whyus-desc mt-2 max-w-xl text-sm leading-relaxed text-text-body sm:text-base">
+        </motion.h3>
+        <motion.p
+          variants={fadeUp(DESC_OFFSET)}
+          className="mt-2 max-w-xl text-sm leading-relaxed text-text-body sm:text-base"
+        >
           {item.description}
-        </p>
+        </motion.p>
         <div className="mt-5 flex justify-center md:justify-start">
-          <a
+          <motion.a
             href="#full-menu"
-            className="whyus-cta bauhaus-btn bg-accent-green text-xs text-white sm:text-sm"
+            variants={fadeUp(CTA_OFFSET)}
+            className="bauhaus-btn bg-accent-green text-xs text-white sm:text-sm"
           >
             View Menu
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </a>
+          </motion.a>
         </div>
       </div>
-    </article>
+    </motion.article>
   )
 }
 
 export function WhyUs() {
-  const { ref, inView } = useInView<HTMLElement>(0.15)
-
   return (
     <section
-      ref={ref}
       id="about"
-      data-whyus-visible={inView}
       className="relative overflow-hidden border-t-[3px] border-ink bg-band-basil px-4 py-20 sm:px-6 sm:py-28"
     >
       <FloatingSprite
