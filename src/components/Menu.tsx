@@ -274,6 +274,7 @@ export function Menu() {
   return (
     <section
       id="full-menu"
+      aria-labelledby="full-menu-heading"
       className="relative overflow-hidden border-t-[3px] border-ink bg-band-sage px-8 py-20 sm:px-6 sm:py-28"
     >
       <MenuCornerImage
@@ -320,6 +321,7 @@ export function Menu() {
           tickClass="bg-accent-green"
           title="Our Full Menu"
           subtitle="A handcrafted lineup of parfaits, mini pizzas, and juices — every bite made fresh, just for you."
+          headingId="full-menu-heading"
         />
 
         <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-4 lg:gap-6">

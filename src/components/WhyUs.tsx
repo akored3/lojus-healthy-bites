@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { ArrowRight, Heart, Sparkles } from 'lucide-react'
+import { ArrowRight, Sparkles } from 'lucide-react'
 import { WHY_US_ITEMS } from '#/lib/why-us'
 import type { WhyUsItem } from '#/lib/why-us'
 import { ACCENT_BG, CARD_BG } from '#/lib/accents'
@@ -8,15 +8,7 @@ import { FloatingSprite } from './FloatingSprite'
 import { SectionHeader } from './SectionHeader'
 import { SpritePlaceholder } from './SpritePlaceholder'
 
-const HEART_COLOR: Record<WhyUsItem['accent'], string> = {
-  tangerine: 'text-accent-tangerine',
-  pink: 'text-accent-pink',
-  lemon: 'text-accent-lemon',
-  green: 'text-accent-green',
-}
-
 const IMAGE_OFFSET = 0.24
-const HEART_OFFSET = 0.32
 const TITLE_OFFSET = 0.38
 const DESC_OFFSET = 0.46
 const CTA_OFFSET = 0.56
@@ -32,16 +24,8 @@ function WhyUsCard({ item, index }: { item: WhyUsItem; index: number }) {
       viewport={VIEWPORT_ONCE}
       variants={riseIn()}
       whileHover={{ y: -5 }}
-      className={`bauhaus-card relative flex flex-col items-center gap-5 p-4 text-center sm:p-5 md:items-center md:gap-6 md:p-6 md:text-left ${reverse} ${CARD_BG[item.accent]}`}
+      className={`bauhaus-card flex flex-col items-center gap-5 p-4 text-center sm:p-5 md:gap-6 md:p-6 md:text-left ${reverse} ${CARD_BG[item.accent]}`}
     >
-      <motion.span
-        aria-hidden="true"
-        variants={popIn(HEART_OFFSET)}
-        className="absolute left-4 top-4 sm:left-6 sm:top-5"
-      >
-        <Heart className={`h-5 w-5 ${HEART_COLOR[item.accent]}`} />
-      </motion.span>
-
       <motion.div
         variants={popIn(IMAGE_OFFSET, 0, 0.6)}
         className="flex-shrink-0"
@@ -93,6 +77,7 @@ export function WhyUs() {
   return (
     <section
       id="about"
+      aria-labelledby="about-heading"
       className="relative overflow-hidden border-t-[3px] border-ink bg-band-basil px-4 py-20 sm:px-6 sm:py-28"
     >
       <FloatingSprite
@@ -132,6 +117,7 @@ export function WhyUs() {
           tickClass="bg-accent-lemon"
           title="Why Loju's?"
           subtitle="Real food, made by hand, delivered the moment you tap."
+          headingId="about-heading"
           onDark
         />
 
