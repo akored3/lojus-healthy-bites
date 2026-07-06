@@ -17,16 +17,6 @@ const STAR_STAGGER = 0.06
 const TEXT_OFFSET = 0.34
 const AUTHOR_OFFSET = 0.44
 
-function initials(name: string) {
-  return name
-    .split(/\s+/)
-    .map((word) => word[0])
-    .join('')
-    .replace(/[^A-Za-z]/g, '')
-    .slice(0, 2)
-    .toUpperCase()
-}
-
 function StarRow({ rating, delay }: { rating: number; delay: number }) {
   return (
     <div
@@ -89,11 +79,16 @@ function TestimonialCard({
         variants={fadeUp(cardDelay + AUTHOR_OFFSET)}
         className="flex items-center gap-3 border-t-2 border-dashed border-ink/20 pt-3"
       >
-        <span
-          aria-hidden="true"
-          className={`bauhaus-chip h-9 w-9 shrink-0 text-xs ${ACCENT_BG[item.accent]} ${ON_ACCENT_TEXT[item.accent]}`}
-        >
-          {initials(item.name)}
+        <span className="bauhaus-chip h-9 w-9 shrink-0 overflow-hidden bg-white">
+          <img
+            src={item.avatar}
+            alt=""
+            width={96}
+            height={96}
+            loading="lazy"
+            decoding="async"
+            className="h-full w-full object-cover"
+          />
         </span>
         <span>
           <span className="block text-sm font-bold text-text-dark">

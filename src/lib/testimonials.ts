@@ -7,6 +7,7 @@ export type Testimonial = {
   location: string
   rating: 1 | 2 | 3 | 4 | 5
   accent: Accent
+  avatar: string
 }
 
 export const TESTIMONIALS: readonly Testimonial[] = [
@@ -18,6 +19,7 @@ export const TESTIMONIALS: readonly Testimonial[] = [
     location: 'Lekki, Lagos',
     rating: 5,
     accent: 'green',
+    avatar: '/images/reviews/aisha.jpg',
   },
   {
     id: 'tunde',
@@ -27,6 +29,7 @@ export const TESTIMONIALS: readonly Testimonial[] = [
     location: 'Victoria Island',
     rating: 5,
     accent: 'tangerine',
+    avatar: '/images/reviews/tunde.jpg',
   },
   {
     id: 'chinaza',
@@ -36,6 +39,7 @@ export const TESTIMONIALS: readonly Testimonial[] = [
     location: 'Yaba, Lagos',
     rating: 5,
     accent: 'green',
+    avatar: '/images/reviews/chinaza.jpg',
   },
   {
     id: 'bola',
@@ -45,6 +49,7 @@ export const TESTIMONIALS: readonly Testimonial[] = [
     location: 'Ikeja, Lagos',
     rating: 5,
     accent: 'lemon',
+    avatar: '/images/reviews/bola.jpg',
   },
   {
     id: 'kemi',
@@ -54,5 +59,6 @@ export const TESTIMONIALS: readonly Testimonial[] = [
     location: 'Ajah, Lagos',
     rating: 4,
     accent: 'pink',
+    avatar: '/images/reviews/kemi.jpg',
   },
 ]
