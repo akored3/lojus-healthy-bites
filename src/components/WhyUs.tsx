@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { ArrowRight, Sparkles } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { WHY_US_ITEMS } from '#/lib/why-us'
 import type { WhyUsItem } from '#/lib/why-us'
 import { ACCENT_BG, CARD_BG } from '#/lib/accents'
@@ -22,8 +22,8 @@ function WhyUsCard({ item, index }: { item: WhyUsItem; index: number }) {
       whileInView="show"
       viewport={VIEWPORT_ONCE}
       variants={riseIn()}
-      whileHover={{ y: -5 }}
-      className={`bauhaus-card flex flex-col items-center gap-5 p-4 text-center sm:p-5 md:gap-6 md:p-6 md:text-left ${reverse} ${CARD_BG[item.accent]}`}
+      whileHover={{ x: -2, y: -2 }}
+      className={`bauhaus-card bauhaus-lift flex flex-col items-center gap-5 p-4 text-center sm:p-5 md:gap-6 md:p-6 md:text-left ${reverse} ${CARD_BG[item.accent]}`}
     >
       <motion.div
         variants={popIn(IMAGE_OFFSET, 0, 0.6)}
@@ -99,7 +99,6 @@ export function WhyUs() {
       />
       <div className="relative mx-auto max-w-4xl">
         <SectionHeader
-          icon={Sparkles}
           chipClass="bg-accent-pink text-white"
           tickClass="bg-accent-lemon"
           title="Why Loju's?"

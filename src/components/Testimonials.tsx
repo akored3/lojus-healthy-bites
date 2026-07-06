@@ -51,8 +51,8 @@ function TestimonialCard({
       whileInView="show"
       viewport={VIEWPORT_ONCE}
       variants={riseIn(cardDelay)}
-      whileHover={{ y: -5 }}
-      className={`bauhaus-card relative flex w-[78%] shrink-0 snap-start flex-col gap-4 p-6 sm:w-[55%] md:w-[calc((100%-3rem)/3)] md:p-7 ${CARD_BG[item.accent]}`}
+      whileHover={{ x: -2, y: -2 }}
+      className={`bauhaus-card bauhaus-lift relative flex w-[78%] shrink-0 snap-start flex-col gap-4 p-6 sm:w-[55%] md:w-[calc((100%-3rem)/3)] md:p-7 ${CARD_BG[item.accent]}`}
     >
       <motion.span
         aria-hidden="true"
@@ -91,7 +91,6 @@ export function Testimonials() {
     >
       <div className="relative mx-auto max-w-6xl">
         <SectionHeader
-          icon={Quote}
           chipClass="bg-accent-green text-white"
           tickClass="bg-accent-pink"
           title="Loved by Lagos"

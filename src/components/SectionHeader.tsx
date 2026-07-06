@@ -1,7 +1,4 @@
-import type { LucideIcon } from 'lucide-react'
-
 export function SectionHeader({
-  icon: Icon,
   chipClass,
   tickClass,
   title,
@@ -9,7 +6,6 @@ export function SectionHeader({
   headingId,
   onDark = false,
 }: {
-  icon: LucideIcon
   chipClass: string
   tickClass: string
   title: string
@@ -19,11 +15,16 @@ export function SectionHeader({
 }) {
   return (
     <div className="text-center">
-      <span
-        aria-hidden="true"
-        className={`bauhaus-chip inline-flex h-10 w-10 items-center justify-center ${chipClass}`}
-      >
-        <Icon className="h-4 w-4" />
+      <span aria-hidden="true" className="relative inline-block h-11 w-12">
+        <span
+          className={`absolute left-0 top-0 h-9 w-9 rounded-full border-[2.5px] border-ink ${chipClass}`}
+        />
+        <span
+          className={`absolute bottom-0 right-0 h-6 w-6 rotate-12 border-[2.5px] border-ink shadow-[2px_2px_0_var(--color-ink)] ${tickClass}`}
+        />
+        <span
+          className={`absolute -right-1 -top-1 h-5 w-5 [clip-path:polygon(50%_0,100%_100%,0_100%)] ${onDark ? 'bg-bg-cream' : 'bg-ink'}`}
+        />
       </span>
       <h2
         id={headingId}

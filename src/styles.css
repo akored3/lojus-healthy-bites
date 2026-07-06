@@ -111,9 +111,23 @@ body {
   transform: translate(1px, 1px);
   box-shadow: 3px 3px 0 #1a1a1a;
 }
+.bauhaus-btn:focus-visible,
+.bauhaus-chip:focus-visible {
+  outline: 2.5px solid #1a1a1a;
+  outline-offset: 2px;
+}
 .bauhaus-btn:active {
   transform: translate(2px, 2px);
   box-shadow: 2px 2px 0 #1a1a1a;
+}
+
+/* Cards press toward the viewer on hover (Motion moves them -2,-2; the shadow
+   grows to match) — the inverse of bauhaus-btn pressing away. */
+@utility bauhaus-lift {
+  transition: box-shadow 0.15s;
+}
+.bauhaus-lift:hover {
+  box-shadow: 8px 8px 0 #1a1a1a;
 }
 
 @utility bauhaus-chip {
@@ -239,6 +253,24 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .hero-carousel,
   .hero-tick {
+    animation: none;
+  }
+}
+
+/* ——— Marquee seam (ambient loop, CSS-only) ——— */
+
+.marquee-track {
+  animation: marquee 22s linear infinite;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
     animation: none;
   }
 }

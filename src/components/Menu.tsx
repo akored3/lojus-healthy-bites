@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
-import { UtensilsCrossed, X } from 'lucide-react'
+import { X } from 'lucide-react'
 import { MENU_CATEGORIES } from '#/lib/menu'
 import type { MenuCategory, MenuVariant } from '#/lib/menu'
 import { formatPrice, orderItemMessage } from '#/lib/brand'
@@ -102,8 +102,8 @@ function MenuCard({
       whileInView="show"
       viewport={VIEWPORT_ONCE}
       variants={riseIn(cardDelay)}
-      whileHover={{ y: -5 }}
-      className={`bauhaus-card relative mx-auto flex w-full max-w-sm flex-col self-start p-5 text-center sm:p-6 ${CARD_BG[category.accent]}`}
+      whileHover={{ x: -2, y: -2 }}
+      className={`bauhaus-card bauhaus-lift relative mx-auto flex w-full max-w-sm flex-col self-start p-5 text-center sm:p-6 ${CARD_BG[category.accent]}`}
     >
       <span
         aria-hidden="true"
@@ -354,7 +354,6 @@ export function Menu({
 
       <div className="relative mx-auto max-w-6xl">
         <SectionHeader
-          icon={UtensilsCrossed}
           chipClass="bg-accent-tangerine text-ink"
           tickClass="bg-accent-green"
           title="Our Full Menu"
