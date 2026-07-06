@@ -7,6 +7,7 @@ import { MarqueeSeam } from '#/components/MarqueeSeam'
 import { Menu } from '#/components/Menu'
 import { WhyUs } from '#/components/WhyUs'
 import { Testimonials } from '#/components/Testimonials'
+import { Gallery } from '#/components/Gallery'
 import { WhatsAppFab } from '#/components/WhatsAppFab'
 
 export const Route = createFileRoute('/')({ component: App })
@@ -27,6 +28,7 @@ function App() {
         <Menu onModalOpenChange={setMenuModalOpen} />
         <WhyUs />
         <Testimonials />
+        <Gallery />
         <WhatsAppFab hidden={menuModalOpen} />
       </main>
     </MotionConfig>

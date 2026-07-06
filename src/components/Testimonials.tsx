@@ -117,7 +117,7 @@ export function Testimonials() {
     <section
       id="testimonials"
       aria-labelledby="testimonials-heading"
-      className="relative overflow-hidden border-y-[3px] border-ink bg-bg-cream px-4 py-20 sm:px-6 sm:py-28"
+      className="relative overflow-hidden border-t-[3px] border-ink bg-bg-cream px-4 py-20 sm:px-6 sm:py-28"
     >
       <div className="relative mx-auto max-w-6xl">
         <SectionHeader
