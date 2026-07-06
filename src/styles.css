@@ -153,9 +153,65 @@ body {
   animation: hero-carousel 18s infinite;
 }
 
-.hero-carousel:hover,
-.hero-carousel:focus-within {
+.hero-tick-1 {
+  animation: hero-tick-1 18s infinite;
+}
+.hero-tick-2 {
+  animation: hero-tick-2 18s infinite;
+}
+.hero-tick-3 {
+  animation: hero-tick-3 18s infinite;
+}
+
+.hero-frame:hover .hero-carousel,
+.hero-frame.carousel-paused .hero-carousel,
+.hero-frame:hover .hero-tick,
+.hero-frame.carousel-paused .hero-tick {
   animation-play-state: paused;
+}
+
+/* The 4th track slide duplicates the 1st, so tick 1 is also active 75-100%. */
+@keyframes hero-tick-1 {
+  0%,
+  22% {
+    background: var(--color-accent-lemon);
+  }
+  25%,
+  72% {
+    background: #ffffff;
+  }
+  75%,
+  100% {
+    background: var(--color-accent-lemon);
+  }
+}
+@keyframes hero-tick-2 {
+  0%,
+  22% {
+    background: #ffffff;
+  }
+  25%,
+  47% {
+    background: var(--color-accent-lemon);
+  }
+  50%,
+  100% {
+    background: #ffffff;
+  }
+}
+@keyframes hero-tick-3 {
+  0%,
+  47% {
+    background: #ffffff;
+  }
+  50%,
+  72% {
+    background: var(--color-accent-lemon);
+  }
+  75%,
+  100% {
+    background: #ffffff;
+  }
 }
 
 @keyframes hero-carousel {
@@ -181,7 +237,8 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-carousel {
+  .hero-carousel,
+  .hero-tick {
     animation: none;
   }
 }
@@ -329,7 +386,10 @@ body {
     display: none;
   }
 }
-html:not(.hydrated) .menu-more {
+
+/* JS-only controls (disclosure toggles, carousel pause) stay hidden until
+   hydration makes them functional. */
+html:not(.hydrated) .needs-js {
   display: none;
 }
 

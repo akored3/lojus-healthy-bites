@@ -168,7 +168,7 @@ function MenuCard({
             type="button"
             onClick={() => setExpanded((e) => !e)}
             aria-expanded={expanded}
-            className="menu-more bauhaus-chip mt-3 w-full cursor-pointer bg-white px-3 py-2 text-xs font-bold sm:hidden"
+            className="needs-js bauhaus-chip mt-3 w-full cursor-pointer bg-white px-3 py-2 text-xs font-bold sm:hidden"
           >
             {expanded ? 'Show less' : `+${extraCount} more`}
           </button>
