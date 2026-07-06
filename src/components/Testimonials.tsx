@@ -79,7 +79,7 @@ function TestimonialCard({
         variants={fadeUp(cardDelay + AUTHOR_OFFSET)}
         className="flex items-center gap-3 border-t-2 border-dashed border-ink/20 pt-3"
       >
-        <span className="bauhaus-chip h-9 w-9 shrink-0 overflow-hidden bg-white">
+        <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full border-[1.5px] border-ink bg-white shadow-[2px_2px_0_var(--color-ink)]">
           <img
             src={item.avatar}
             alt=""
