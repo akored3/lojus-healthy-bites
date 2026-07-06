@@ -322,6 +322,17 @@ body {
 
 /* Scroll-in reveals are driven by Motion (src/lib/reveal.ts), not CSS. */
 
+/* Mobile menu-card disclosure: rows 6+ collapse only once JS can expand them,
+   so no-JS visitors still see the full menu. */
+@media (width < 40rem) {
+  html.hydrated .menu-extra {
+    display: none;
+  }
+}
+html:not(.hydrated) .menu-more {
+  display: none;
+}
+
 /* Motion SSRs each reveal's hidden state as inline opacity/transform, which
    blanks whole sections until ~150KB of JS hydrates (or forever without JS).
    Author !important beats inline styles, so force server HTML visible until

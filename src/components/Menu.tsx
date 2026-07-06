@@ -81,6 +81,8 @@ function MenuCornerImage({
   )
 }
 
+const MOBILE_ROWS = 5
+
 function MenuCard({
   category,
   index,
@@ -91,6 +93,8 @@ function MenuCard({
   onSelect: (variant: MenuVariant, accent: MenuCategory['accent']) => void
 }) {
   const cardDelay = index * CARD_STAGGER
+  const [expanded, setExpanded] = useState(false)
+  const extraCount = category.variants.length - MOBILE_ROWS
 
   return (
     <motion.article
@@ -99,8 +103,14 @@ function MenuCard({
       viewport={VIEWPORT_ONCE}
       variants={riseIn(cardDelay)}
       whileHover={{ y: -5 }}
-      className={`bauhaus-card relative mx-auto flex w-full max-w-sm flex-col self-start p-5 text-center sm:p-6 md:p-4 lg:p-6 ${CARD_BG[category.accent]}`}
+      className={`bauhaus-card relative mx-auto flex w-full max-w-sm flex-col self-start p-5 text-center sm:p-6 ${CARD_BG[category.accent]}`}
     >
+      <span
+        aria-hidden="true"
+        className="font-display pointer-events-none absolute left-4 top-1 select-none text-5xl font-bold leading-none text-ink/10"
+      >
+        {String(index + 1).padStart(2, '0')}
+      </span>
       <motion.span
         aria-hidden="true"
         variants={popIn(cardDelay + DOT_OFFSET, 45)}
@@ -110,44 +120,59 @@ function MenuCard({
       <div className="mx-auto">
         <motion.span
           variants={popIn(cardDelay + PILL_OFFSET, 0, 0.5)}
-          className={`bauhaus-chip items-center px-5 py-1.5 text-sm sm:text-base md:px-3 md:py-1 md:text-xs lg:px-5 lg:py-1.5 lg:text-base ${ACCENT_BG[category.accent]} ${ON_ACCENT_TEXT[category.accent]}`}
+          className={`bauhaus-chip items-center px-5 py-1.5 text-sm sm:text-base ${ACCENT_BG[category.accent]} ${ON_ACCENT_TEXT[category.accent]}`}
         >
           {category.title}
         </motion.span>
       </div>
 
-      <div className="bauhaus-card mt-6 bg-white p-4 sm:p-5 md:p-3 lg:p-5">
-        <ul className="scrollbar-hide flex max-h-60 flex-col gap-2.5 overflow-y-auto text-sm text-text-body sm:max-h-none sm:overflow-visible sm:text-base md:gap-1.5 md:text-xs lg:gap-2.5 lg:text-sm xl:text-base">
+      <div className="bauhaus-card mt-6 bg-white p-4 sm:p-5">
+        <ul className="flex flex-col gap-1.5 text-sm text-text-body sm:text-base">
           {category.variants.map((variant, itemIdx) => {
             const itemDelay = cardDelay + ITEMS_OFFSET + itemIdx * ITEM_STAGGER
             return (
-              <motion.li key={variant.name} variants={slideIn(itemDelay)}>
+              <motion.li
+                key={variant.name}
+                variants={slideIn(itemDelay)}
+                className={
+                  !expanded && itemIdx >= MOBILE_ROWS ? 'menu-extra' : undefined
+                }
+              >
                 <button
                   type="button"
                   onClick={() => onSelect(variant, category.accent)}
                   aria-label={`View ${variant.name}, ${formatPrice(variant.price)}`}
-                  className={`group flex w-full cursor-pointer items-center gap-2 rounded-md px-2 py-2 transition-colors duration-200 focus-visible:outline-none md:gap-1.5 md:px-1 md:py-1 lg:gap-2 lg:px-2 lg:py-2 ${ROW_HOVER_BG[category.accent]}`}
+                  className={`group flex w-full cursor-pointer items-baseline gap-2 rounded-md px-2 py-2 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-1 ${ROW_HOVER_BG[category.accent]}`}
                 >
-                  <motion.span
+                  <span className="min-w-0 text-left">{variant.name}</span>
+                  <span
                     aria-hidden="true"
-                    variants={popIn(itemDelay)}
-                    className={`inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full transition-transform duration-200 motion-reduce:transition-none group-hover:scale-[1.7] group-focus-visible:scale-[1.7] ${ACCENT_BG[category.accent]}`}
+                    className="min-w-4 flex-1 border-b-2 border-dashed border-ink/25"
                   />
-                  <span className="relative min-w-0 flex-1 text-left">
-                    {variant.name}
-                    <span
-                      aria-hidden="true"
-                      className={`pointer-events-none absolute -bottom-0.5 left-0 h-[2px] w-full origin-left scale-x-0 transition-transform duration-200 ease-out motion-reduce:transition-none group-hover:scale-x-100 group-focus-visible:scale-x-100 ${ACCENT_BG[category.accent]}`}
-                    />
-                  </span>
-                  <span className="flex-shrink-0 text-xs font-bold tabular-nums text-accent-green sm:text-sm md:text-[10px] lg:text-xs xl:text-sm">
+                  <span className="shrink-0 text-sm font-bold tabular-nums text-ink sm:text-base">
                     {formatPrice(variant.price)}
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className="bauhaus-chip h-6 w-6 shrink-0 self-center bg-whatsapp text-ink transition-transform duration-200 group-hover:scale-110 group-focus-visible:scale-110 motion-reduce:transition-none"
+                  >
+                    <WhatsAppIcon className="h-3.5 w-3.5" />
                   </span>
                 </button>
               </motion.li>
             )
           })}
         </ul>
+        {extraCount > 0 && (
+          <button
+            type="button"
+            onClick={() => setExpanded((e) => !e)}
+            aria-expanded={expanded}
+            className="menu-more bauhaus-chip mt-3 w-full cursor-pointer bg-white px-3 py-2 text-xs font-bold sm:hidden"
+          >
+            {expanded ? 'Show less' : `+${extraCount} more`}
+          </button>
+        )}
       </div>
     </motion.article>
   )
@@ -251,7 +276,12 @@ function MenuItemModal({
           {formatPrice(variant.price)}
         </p>
 
-        <div className="mt-8 flex justify-end">
+        <p className="mt-6 rounded-xl border-2 border-dashed border-ink/20 bg-white/70 px-3 py-2 text-xs leading-relaxed text-text-body">
+          Opens WhatsApp with: &ldquo;
+          {orderItemMessage(variant.name, variant.price)}&rdquo;
+        </p>
+
+        <div className="mt-6 flex justify-center">
           <WhatsAppCta
             message={orderItemMessage(variant.name, variant.price)}
             className="bauhaus-btn bg-whatsapp text-sm text-ink sm:text-base"
@@ -283,7 +313,7 @@ export function Menu({
     <section
       id="full-menu"
       aria-labelledby="full-menu-heading"
-      className="relative overflow-hidden border-t-[3px] border-ink bg-band-sage px-8 py-20 sm:px-6 sm:py-28"
+      className="relative overflow-hidden border-t-[3px] border-ink bg-band-sage px-4 py-20 sm:px-6 sm:py-28"
     >
       <MenuCornerImage
         src="/images/menu_tl.webp"
@@ -304,10 +334,10 @@ export function Menu({
         height={400}
       />
       <MenuCornerImage
-        src="/images/menu_mr.webp"
+        src="/images/floating_pineapple.webp"
         corner="mr"
-        width={400}
-        height={571}
+        width={320}
+        height={480}
       />
       <MenuCornerImage
         src="/images/menu_bl.webp"
@@ -332,7 +362,17 @@ export function Menu({
           headingId="full-menu-heading"
         />
 
-        <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-4 lg:gap-6">
+        <p className="mt-5 flex items-center justify-center gap-2 text-xs font-bold text-text-menu sm:text-sm">
+          <span
+            aria-hidden="true"
+            className="bauhaus-chip h-5 w-5 bg-whatsapp text-ink"
+          >
+            <WhatsAppIcon className="h-3 w-3" />
+          </span>
+          Tap any item to order
+        </p>
+
+        <div className="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-3 lg:gap-6">
           {MENU_CATEGORIES.map((category, idx) => (
             <MenuCard
               key={category.id}
