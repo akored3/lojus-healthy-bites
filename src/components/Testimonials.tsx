@@ -5,7 +5,6 @@ import type { Testimonial } from '#/lib/testimonials'
 import { ACCENT_BG, CARD_BG, ON_ACCENT_TEXT } from '#/lib/accents'
 import { fadeUp, popIn, riseIn, VIEWPORT_ONCE } from '#/lib/reveal'
 import { SectionHeader } from './SectionHeader'
-import { SpritePlaceholder } from './SpritePlaceholder'
 
 const CARD_STAGGER = 0.14
 const QUOTE_OFFSET = 0.18
@@ -90,18 +89,6 @@ export function Testimonials() {
       aria-labelledby="testimonials-heading"
       className="relative overflow-hidden border-y-[3px] border-ink bg-bg-cream px-4 py-20 sm:px-6 sm:py-28"
     >
-      <SpritePlaceholder
-        label="T1"
-        className="left-[5%] top-14 hidden h-16 w-16 -rotate-6 border-ink/40 bg-bg-sage/60 text-ink/60 md:flex"
-      />
-      <SpritePlaceholder
-        label="T2"
-        className="right-[5%] top-20 hidden h-20 w-20 rotate-6 border-ink/40 bg-bg-sage/60 text-ink/60 md:flex"
-      />
-      <SpritePlaceholder
-        label="T3"
-        className="bottom-8 left-[12%] hidden h-14 w-14 rotate-12 border-ink/40 bg-bg-sage/60 text-ink/60 lg:flex"
-      />
       <div className="relative mx-auto max-w-6xl">
         <SectionHeader
           icon={Quote}

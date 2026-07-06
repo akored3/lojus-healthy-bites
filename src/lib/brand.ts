@@ -14,8 +14,7 @@ export const NAV_LINKS = [
   { label: 'Home', href: '#' },
   { label: 'Menu', href: '#full-menu' },
   { label: 'Why Us', href: '#about' },
-  { label: 'Gallery', href: '#gallery' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Testimonials', href: '#testimonials' },
 ] as const
 
 export function whatsappLink(message: string): string {
