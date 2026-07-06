@@ -1,10 +1,14 @@
+import { useRef } from 'react'
 import { motion } from 'motion/react'
-import { Quote, Star } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Quote, Star } from 'lucide-react'
 import { TESTIMONIALS } from '#/lib/testimonials'
 import type { Testimonial } from '#/lib/testimonials'
+import { WHATSAPP_MESSAGES } from '#/lib/brand'
 import { ACCENT_BG, CARD_BG, ON_ACCENT_TEXT } from '#/lib/accents'
 import { fadeUp, popIn, riseIn, VIEWPORT_ONCE } from '#/lib/reveal'
 import { SectionHeader } from './SectionHeader'
+import { WhatsAppCta } from './WhatsAppCta'
+import { WhatsAppIcon } from './WhatsAppIcon'
 
 const CARD_STAGGER = 0.14
 const QUOTE_OFFSET = 0.18
@@ -83,6 +87,14 @@ function TestimonialCard({
 }
 
 export function Testimonials() {
+  const rowRef = useRef<HTMLDivElement>(null)
+
+  const scrollByCard = (direction: -1 | 1) => {
+    const row = rowRef.current
+    if (!row) return
+    row.scrollBy({ left: direction * row.clientWidth * 0.8, behavior: 'smooth' })
+  }
+
   return (
     <section
       id="testimonials"
@@ -99,13 +111,44 @@ export function Testimonials() {
         />
 
         <div className="mt-12 -mx-4 sm:-mx-6">
-          <div className="scrollbar-hide flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-6 pt-4 sm:px-6">
+          <div
+            ref={rowRef}
+            tabIndex={0}
+            role="group"
+            aria-label="Customer reviews"
+            className="scrollbar-hide flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-6 pt-4 sm:px-6"
+          >
             {TESTIMONIALS.map((item, idx) => (
               <TestimonialCard key={item.id} item={item} index={idx} />
             ))}
           </div>
         </div>
-        <p className="mt-6 text-center text-xs font-bold text-ink/70 sm:text-sm">
+        <div className="mt-6 flex items-center justify-center gap-3">
+          <button
+            type="button"
+            onClick={() => scrollByCard(-1)}
+            aria-label="Previous reviews"
+            className="needs-js bauhaus-chip hidden h-10 w-10 cursor-pointer bg-white text-ink md:inline-flex"
+          >
+            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+          </button>
+          <WhatsAppCta
+            message={WHATSAPP_MESSAGES.reviews}
+            className="bauhaus-btn bg-whatsapp text-xs text-ink sm:text-sm"
+          >
+            <WhatsAppIcon className="h-4 w-4" />
+            Join them — order now
+          </WhatsAppCta>
+          <button
+            type="button"
+            onClick={() => scrollByCard(1)}
+            aria-label="Next reviews"
+            className="needs-js bauhaus-chip hidden h-10 w-10 cursor-pointer bg-white text-ink md:inline-flex"
+          >
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </button>
+        </div>
+        <p className="mt-4 text-center text-xs font-bold text-ink/70 md:hidden">
           Swipe to see more &rarr;
         </p>
       </div>

@@ -2,10 +2,13 @@ import { motion } from 'motion/react'
 import { ArrowRight } from 'lucide-react'
 import { WHY_US_ITEMS } from '#/lib/why-us'
 import type { WhyUsItem } from '#/lib/why-us'
+import { WHATSAPP_MESSAGES } from '#/lib/brand'
 import { ACCENT_BG, CARD_BG } from '#/lib/accents'
 import { fadeUp, popIn, riseIn, VIEWPORT_ONCE } from '#/lib/reveal'
 import { FloatingSprite } from './FloatingSprite'
 import { SectionHeader } from './SectionHeader'
+import { WhatsAppCta } from './WhatsAppCta'
+import { WhatsAppIcon } from './WhatsAppIcon'
 
 const IMAGE_OFFSET = 0.24
 const TITLE_OFFSET = 0.38
@@ -58,14 +61,26 @@ function WhyUsCard({ item, index }: { item: WhyUsItem; index: number }) {
           {item.description}
         </motion.p>
         <div className="mt-5 flex justify-center md:justify-start">
-          <motion.a
-            href="#full-menu"
-            variants={fadeUp(CTA_OFFSET)}
-            className="bauhaus-btn bg-accent-green text-xs text-white sm:text-sm"
-          >
-            View Menu
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </motion.a>
+          {item.cta === 'whatsapp' ? (
+            <motion.div variants={fadeUp(CTA_OFFSET)}>
+              <WhatsAppCta
+                message={WHATSAPP_MESSAGES.order}
+                className="bauhaus-btn bg-whatsapp text-xs text-ink sm:text-sm"
+              >
+                <WhatsAppIcon className="h-4 w-4" />
+                Chat with us
+              </WhatsAppCta>
+            </motion.div>
+          ) : (
+            <motion.a
+              href="#full-menu"
+              variants={fadeUp(CTA_OFFSET)}
+              className="bauhaus-btn bg-accent-green text-xs text-white sm:text-sm"
+            >
+              View Menu
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </motion.a>
+          )}
         </div>
       </div>
     </motion.article>

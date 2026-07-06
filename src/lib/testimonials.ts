@@ -40,7 +40,7 @@ export const TESTIMONIALS: readonly Testimonial[] = [
   {
     id: 'bola',
     quote:
-      "Finally, fast food I don't feel guilty about. My kids ask for the smoothie bowls by name.",
+      "Finally, fast food I don't feel guilty about. My kids ask for the Mango Smoothie by name.",
     name: 'Bola M.',
     location: 'Ikeja, Lagos',
     rating: 5,
@@ -49,10 +49,10 @@ export const TESTIMONIALS: readonly Testimonial[] = [
   {
     id: 'kemi',
     quote:
-      "The packaging is so cute I almost didn't want to open it. Then I tasted the wrap and forgot all about that.",
+      "The packaging is so cute I almost didn't want to open it. Then I tasted the BBQ Chicken mini pizza and forgot all about that.",
     name: 'Kemi R.',
     location: 'Ajah, Lagos',
-    rating: 5,
+    rating: 4,
     accent: 'pink',
   },
 ]

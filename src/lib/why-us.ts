@@ -6,6 +6,7 @@ export type WhyUsItem = {
   description: string
   accent: Accent
   image: string
+  cta: 'menu' | 'whatsapp'
 }
 
 export const WHY_US_ITEMS: readonly WhyUsItem[] = [
@@ -16,6 +17,7 @@ export const WHY_US_ITEMS: readonly WhyUsItem[] = [
       'Sourced daily from local markets. Nothing frozen, nothing processed.',
     accent: 'green',
     image: '/images/whyus_ingredients.webp',
+    cta: 'menu',
   },
   {
     id: 'handcrafted',
@@ -24,6 +26,7 @@ export const WHY_US_ITEMS: readonly WhyUsItem[] = [
       'Every parfait, pizza, and juice is made the moment you order. No batches, no shortcuts.',
     accent: 'tangerine',
     image: '/images/whyus_handcrafted.webp',
+    cta: 'menu',
   },
   {
     id: 'whatsapp',
@@ -31,5 +34,6 @@ export const WHY_US_ITEMS: readonly WhyUsItem[] = [
     description: "Skip the queue. Tap, send, and we'll get it to you fast.",
     accent: 'green',
     image: '/images/whyus_delivery.webp',
+    cta: 'whatsapp',
   },
 ]
