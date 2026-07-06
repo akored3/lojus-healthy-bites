@@ -57,15 +57,15 @@ function FloatingImage({
 }) {
   const position =
     side === 'left'
-      ? '-left-10 -rotate-6 sm:-left-14 md:-left-20 lg:-left-48 xl:-left-64'
-      : '-right-10 rotate-6 sm:-right-14 md:-right-20 lg:-right-48 xl:-right-64'
+      ? '-left-14 -rotate-6 md:-left-20 lg:-left-48 xl:-left-64'
+      : '-right-14 rotate-6 md:-right-20 lg:-right-48 xl:-right-64'
 
   return (
     <div
       aria-hidden="true"
       className={`pointer-events-none absolute top-1/2 -translate-y-1/2 select-none ${position}`}
     >
-      <div className="h-20 w-20 rounded-full border-2 border-ink bg-white shadow-[4px_4px_0_var(--color-ink)] sm:h-28 sm:w-28 md:h-36 md:w-36 lg:h-64 lg:w-64 xl:h-80 xl:w-80">
+      <div className="h-16 w-16 rounded-full border-2 border-ink bg-white shadow-[4px_4px_0_var(--color-ink)] min-[360px]:h-20 min-[360px]:w-20 sm:h-28 sm:w-28 md:h-36 md:w-36 lg:h-64 lg:w-64 xl:h-80 xl:w-80">
         <img
           src={src}
           alt=""
@@ -107,7 +107,7 @@ export function Hero() {
           width={640}
           height={353}
         />
-        <h1 className="font-display mb-5 text-center text-4xl font-bold leading-tight tracking-tight text-text-dark sm:text-5xl lg:text-6xl">
+        <h1 className="font-display mb-5 px-4 text-center text-3xl font-bold leading-tight tracking-tight text-text-dark sm:px-0 sm:text-5xl lg:text-6xl">
           Fresh, Flavorful &<br />
           Guilt-Free <SwapWord />
           <br />
