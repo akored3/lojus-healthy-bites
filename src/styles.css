@@ -321,3 +321,13 @@ body {
 }
 
 /* Scroll-in reveals are driven by Motion (src/lib/reveal.ts), not CSS. */
+
+/* Motion SSRs each reveal's hidden state as inline opacity/transform, which
+   blanks whole sections until ~150KB of JS hydrates (or forever without JS).
+   Author !important beats inline styles, so force server HTML visible until
+   the App effect stamps .hydrated and hands control back to Motion. */
+html:not(.hydrated) main [style] {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}

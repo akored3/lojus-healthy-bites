@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { createFileRoute } from '@tanstack/react-router'
 import { MotionConfig } from 'motion/react'
 import { Navbar } from '#/components/Navbar'
@@ -9,6 +10,10 @@ import { Testimonials } from '#/components/Testimonials'
 export const Route = createFileRoute('/')({ component: App })
 
 function App() {
+  useEffect(() => {
+    document.documentElement.classList.add('hydrated')
+  }, [])
+
   return (
     <MotionConfig reducedMotion="user">
       <Navbar />
