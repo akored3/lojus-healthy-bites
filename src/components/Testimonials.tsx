@@ -92,7 +92,10 @@ export function Testimonials() {
   const scrollByCard = (direction: -1 | 1) => {
     const row = rowRef.current
     if (!row) return
-    row.scrollBy({ left: direction * row.clientWidth * 0.8, behavior: 'smooth' })
+    row.scrollBy({
+      left: direction * row.clientWidth * 0.8,
+      behavior: 'smooth',
+    })
   }
 
   return (
