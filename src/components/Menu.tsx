@@ -265,11 +265,19 @@ function MenuItemModal({
   )
 }
 
-export function Menu() {
+export function Menu({
+  onModalOpenChange,
+}: {
+  onModalOpenChange: (open: boolean) => void
+}) {
   const [selected, setSelected] = useState<{
     variant: MenuVariant
     accent: MenuCategory['accent']
   } | null>(null)
+
+  useEffect(() => {
+    onModalOpenChange(selected !== null)
+  }, [selected, onModalOpenChange])
 
   return (
     <section
